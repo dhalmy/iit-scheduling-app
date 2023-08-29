@@ -28,23 +28,31 @@ College Students, Professors, IIT (or other University)
 Potentially all of the above (starting with a web app)
 
 ### Tech stack
-Flutter (UI frontend)? + Python(backend) + CSS(?) + Supabase(sql DB)
+Flutter (UI frontend) + Python(backend) + CSS(?) + Supabase(sql DB)
 
 #### Client Tech 
+Flutter + CSS
 #### Server Tech
- 
+Python + Supabase(Sql)
 ## Top Application Capabilities (name at least 5)
 - Pull live data from IIT course registration database.
 - Calculate courses that can be taken at the given semester.
 - Display formulated courses.
 - Properly filter through all available courses given set criteria such as major, prerequisites, and time. 
+- Generate schedules given a student's major, year, and class requirements.
+
+### Other potential capabilities:
+- Add a Ratemyprofessor rating next to the courses
 
 ## Top Two to Three Scenarios
 [see sample scenarios](https://github.com/mschray/IPro497Sample/blob/main/Examples/ScenarioExample.md)
 
 ### Your Scenario #1
+A student is running out of time to think of what classes they want to take for their upcomming semester. He see's a sign talking about an app called (name pending) and downloads it on their phone. There it asks the student to enter some information, preferences, major and all that. Finally the students list of classes is narrowed down to a handful, making it easier for them to choose their classes in time!
 ### Your Scenario #2
+A new student has just transferred to IIT; they have a very busy schedule and only have time for classes at certain times.  Trying to manually create a course schedule that will satisfy all of their major requirements using only courses that they can fit into their schedule would be an extremely time consuming, tedious, and frustrating process.  They can instead use the IIT Scheduling app to register for the right classes effortlessly in just a few minutes.
 ### Your Scenario #3
+A student at IIT has decided to change their major. while some of the classes they have taken overlap with both fo the majors, now they need to know what classes they need to take to get back on track to graduate in time. Using our apps filters to search by year, and requesting the best classes to take in their current situation they were able to fill up thier schedule with classes that they need. 
 
 ## Team Members
 Please create a table for the details below 
@@ -73,7 +81,7 @@ Please create a table for the details below
 - We will divide work fairly. Each member will be responsible for the work they choose to be assigned to (based on their skillset). Each member should be assigned to one or more stories on the Kanban board.
 
 ### Unacceptable behavior
-...
+... The app must NOT leak out all of the students private information
 
 ### How will we productively solve disagreement
 ...
@@ -97,6 +105,3 @@ Please create a table for the details below
 | 13 - Think, build, test, and demo for final         | Team member ...          |
 | 14 - Presentation dry run                           | Team member ...   |
 | 15 - Presentation                                   | Team member ... |
-
-
-
