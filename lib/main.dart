@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
+import 'dart:ui_web' as ui;
+import 'package:universal_html/html.dart' as html;
 
 void main() {
+  ui.platformViewRegistry
+      .registerViewFactory('example', (_) => html.DivElement()..innerText = 'Hello, HTML!');
   runApp(SidebarXExampleApp());
 }
 
