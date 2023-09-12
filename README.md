@@ -9,11 +9,7 @@ This project is a starting point for a Flutter application.
 # IPro 497 – Product Design Document
 
 ## Problem statement
-Problem statement 1: Students can select their major, year, and class requirements so that an app can recommend classes for the student to take in that semester, potentially using AI to cater to the student.
-
-Problem statement 2: IIT students can use an intuitive application, using their major, year, and class requirements to automatically generate a course schedule given their major and certain manually set preferences.
-
-Problem statement 3: IIT students can use an intuitive application to automatically generate a course schedule given their major and certain manually set preferences.
+Problem statement: IIT students can use an intuitive application, using their major, year, and class requirements to automatically generate a course schedule given their major and certain manually set preferences.
 
 ## Customer
 IIT Students
