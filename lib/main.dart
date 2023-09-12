@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:easy_sidemenu/easy_sidemenu.dart';
-import 'package:iitschedulingapp/vertical_nav_bar.dart';
-import 'dart:ui_web' as ui;
-import 'package:universal_html/html.dart' as html;
+import 'package:iitschedulingapp/nav_bar/nav_bar.dart';
+
+import 'constants.dart';
 
 void main() {
-  ui.platformViewRegistry
-      .registerViewFactory('example', (_) => html.DivElement()..innerText = 'Hello, HTML!');
   runApp(const MyApp());
 }
 
@@ -15,8 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    deviceHeight = MediaQuery.of(context).size.height;
+    deviceWidth = MediaQuery.of(context).size.width;
     return const MaterialApp(
-      home: VerticalNavigationBar(),
+      home: NavBar(),
       debugShowCheckedModeBanner: false,
     );
   }
