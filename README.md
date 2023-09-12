@@ -70,10 +70,10 @@ Please create a table for the details below
 
 ### Tools
 #### Examples (edit and add your own)
-- We will use Github for version control. Team-members will push their finished code to a branch to ensure the main branch remains bug-free.
-- If we need to meet outside of class we have found a mutually agreeable time at:
-- If we need to meet outside of class we will use the following tool/tech for meetings:
-- When we are not meeting together we will use the following tool/tech for communications:
+- We will use Github for version control. Team-members will push their finished code to a branch to ensure the main branch remains bug-free. 
+- If we need to meet outside of class we have found a mutually agreeable time at: Discord o clock
+- If we need to meet outside of class we will use the following tool/tech for meetings: Discord
+- When we are not meeting together we will use the following tool/tech for communications: Discord
 
 ### Requested Approach/Behavior 
 ##### Examples (edit and add your own)
@@ -81,27 +81,30 @@ Please create a table for the details below
 - We will divide work fairly. Each member will be responsible for the work they choose to be assigned to (based on their skillset). Each member should be assigned to one or more stories on the Kanban board.
 
 ### Unacceptable behavior
-... The app must NOT leak out all of the students private information
+- Not communicating with the rest of the team.
+- Not completing assigned tasks.
+- Arguing/name calling.
+- The app must NOT leak all of the students' private information
 
 ### How will we productively solve disagreement
-...
+https://spinthewheel.app/editor
 
 ## Sprint Schedule
 
 | Week | Sprint Leader |
 | --------  | ------------------- |
-| 1 - Problem Framing                                 | Team member #N              |
-| 2 - Problem Framing                                 | Team member #N             |
-| 3 - Problem Framing                                 | Team member #N+1|
-| 4 - Problem Framing                                 | Team member #N+1|
-| 5 - Think, build, test, and demo for midterm        | Team member #N+2 |
-| 6 - Think, build, test, and demo for midterm        | Team member #N+2 |
-| 7 - Think, build, test, and demo for midterm        | Team member #N+3|
-| 8 - Think, build, test, and demo for midterm        | Team member #N+3|
-| 9 - Think, build, test, and demo for final          | Team member ...             |
-| 10 - Think, build, test, and demo for final	      |  Team member ...      |
-| 11 - Think, build, test, and demo for final         | Team member ...         |
-| 12 - Think, build, test, and demo for final         | Team member ...          |
-| 13 - Think, build, test, and demo for final         | Team member ...          |
-| 14 - Presentation dry run                           | Team member ...   |
-| 15 - Presentation                                   | Team member ... |
+| 1 - Problem Framing                                 | Nick Allison  |
+| 2 - Problem Framing                                 | Nick Allison  |
+| 3 - Problem Framing                                 | Mosa Abdelnabi|
+| 4 - Problem Framing                                 | Mosa Abdelnabi|
+| 5 - Think, build, test, and demo for midterm        | Anthony Franco |
+| 6 - Think, build, test, and demo for midterm        | Anthony Franco |
+| 7 - Think, build, test, and demo for midterm        | David Halmy |
+| 8 - Think, build, test, and demo for midterm        | David Halmy|
+| 9 - Think, build, test, and demo for final          | Devin Liu |
+| 10 - Think, build, test, and demo for final	      | Devin Liu |
+| 11 - Think, build, test, and demo for final         | Nick Allison  |
+| 12 - Think, build, test, and demo for final         | Mosa Abdelnabi         |
+| 13 - Think, build, test, and demo for final         | Anthony Franco          |
+| 14 - Presentation dry run                           | David Halmy   |
+| 15 - Presentation                                   | Devin Liu |
