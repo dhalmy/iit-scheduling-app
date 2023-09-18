@@ -1,7 +1,8 @@
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:iitschedulingapp/nav_bar/home/side_menu_layout.dart';
+import 'package:iitschedulingapp/nav_bar/side_menu_layout.dart';
+import 'package:iitschedulingapp/nav_bar/top_nav_bar.dart';
 import 'dart:io' show Platform;
 
 import 'package:iitschedulingapp/nav_bar/vertical_nav_bar.dart';
@@ -19,11 +20,11 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   Widget navBarBuilder() {
     if (kIsWeb) {
+      return const TopNavBarLayout();
+    } else if (Platform.isAndroid || Platform.isIOS) {
       return const VerticalNavigationBar();
-    } else if (Platform.isWindows) {
-      return const SideMenuLayout();
     } else {
-      return const VerticalNavigationBar();
+      return const SideMenuLayout();
     }
   }
 

@@ -23,15 +23,15 @@ class _SideMenuLayoutState extends State<SideMenuLayout> {
         if (offset > 0) {
           _pageController
               .nextPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut)
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut)
               .then((value) => pageIsScrolling = false);
           print('next page');
         } else {
           _pageController
               .previousPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeInOut)
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut)
               .then((value) => pageIsScrolling = false);
           print('previous page');
         }
@@ -43,42 +43,63 @@ class _SideMenuLayoutState extends State<SideMenuLayout> {
         decoration: BoxDecoration(
           color: Colors.grey.withOpacity(0.3), // Make gray more transparent
           borderRadius:
-              BorderRadius.circular(20.0), // Adjust the radius as needed
+          BorderRadius.circular(20.0), // Adjust the radius as needed
         ),
-        child: const Text(
-          'One',
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Colors.black, // Change text color to black
-          ),
-        ),
-      ),
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.3), // Make gray more transparent
-          borderRadius:
-              BorderRadius.circular(20.0), // Adjust the radius as needed
-        ),
-        child: const Text(
-          'Small Widget Two',
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Colors.black, // Change text color to black
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.schedule, size: 50.0, color: Colors.blue), // Changed the icon here
+            Text(
+              'Schedule', // Changed the text here
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.black, // Change text color to black
+              ),
+            ),
+          ],
         ),
       ),
       Container(
         decoration: BoxDecoration(
           color: Colors.grey.withOpacity(0.3), // Make gray more transparent
           borderRadius:
-              BorderRadius.circular(20.0), // Adjust the radius as needed
+          BorderRadius.circular(20.0), // Adjust the radius as needed
         ),
-        child: const Text(
-          'Small Widget with Rounded Corners',
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Colors.black, // Change text color to black
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.assignment, size: 50.0, color: Colors.green), // Changed the icon here
+            Text(
+              'Assignments', // Changed the text here
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.black, // Change text color to black
+              ),
+            ),
+          ],
+        ),
+      ),
+      Container(
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.3), // Make gray more transparent
+          borderRadius:
+          BorderRadius.circular(20.0), // Adjust the radius as needed
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.notifications, size: 50.0, color: Colors.orange), // Changed the icon here
+            Text(
+              'Notifications', // Changed the text here
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.black, // Change text color to black
+              ),
+            ),
+          ],
         ),
       ),
     ];
@@ -95,13 +116,14 @@ class _SideMenuLayoutState extends State<SideMenuLayout> {
                   children: [
                     IconButton(
                         onPressed: () => _pageController.jumpToPage(0),
-                        icon: const Icon(Icons.home)),
+                        icon: const Icon(Icons.schedule)),
                     IconButton(
                         onPressed: () => _pageController.jumpToPage(1),
-                        icon: const Icon(Icons.search)),
+                        icon: const Icon(Icons.assignment)),
                     IconButton(
                         onPressed: () => _pageController.jumpToPage(2),
-                        icon: const Icon(Icons.add)),
+                        icon: const Icon(Icons.notifications)),
+                    // Add more IconButton widgets here
                   ],
                 ),
                 SizedBox(
