@@ -47,8 +47,6 @@ Python + Supabase(Sql)
 A student is running out of time to think of what classes they want to take for their upcomming semester. He see's a sign talking about an app called (name pending) and downloads it on their phone. There it asks the student to enter some information, preferences, major and all that. Finally the students list of classes is narrowed down to a handful, making it easier for them to choose their classes in time!
 ### Your Scenario #2
 A new student has just transferred to IIT; they have a very busy schedule and only have time for classes at certain times.  Trying to manually create a course schedule that will satisfy all of their major requirements using only courses that they can fit into their schedule would be an extremely time consuming, tedious, and frustrating process.  They can instead use the IIT Scheduling app to register for the right classes effortlessly in just a few minutes.
-### Your Scenario #3
-A student at IIT has decided to change their major. while some of the classes they have taken overlap with both fo the majors, now they need to know what classes they need to take to get back on track to graduate in time. Using our apps filters to search by year, and requesting the best classes to take in their current situation they were able to fill up thier schedule with classes that they need. 
 
 ## Team Members
 Please create a table for the details below 
