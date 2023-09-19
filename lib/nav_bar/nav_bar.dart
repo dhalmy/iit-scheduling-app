@@ -8,6 +8,7 @@ import 'dart:io' show Platform;
 import 'package:iitschedulingapp/nav_bar/vertical_nav_bar.dart';
 
 import '../insta/insta.dart';
+import 'bottom_nav_bar.dart';
 import 'home/first_page.dart';
 
 class NavBar extends StatefulWidget {
@@ -22,7 +23,7 @@ class _NavBarState extends State<NavBar> {
     if (kIsWeb) {
       return const TopNavBarLayout();
     } else if (Platform.isAndroid || Platform.isIOS) {
-      return const VerticalNavigationBar();
+      return const BottomNavBarLayout();
     } else {
       return const SideMenuLayout();
     }
