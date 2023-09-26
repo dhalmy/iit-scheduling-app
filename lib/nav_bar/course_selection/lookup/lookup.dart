@@ -12,8 +12,8 @@ class Lookup extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.0), // Adjust the border radius as needed
       ),
       child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Lookup", // Text displayed in the container
