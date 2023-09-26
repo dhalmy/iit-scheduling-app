@@ -102,3 +102,9 @@ https://spinthewheel.app/editor
 | 13 - Think, build, test, and demo for final         | Anthony Franco          |
 | 14 - Presentation dry run                           | David Halmy   |
 | 15 - Presentation                                   | Devin Liu |
+
+## UI Mockups
+![IITSchedulingApp - Course Selection (Light)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/b2217ba0-cd2d-44be-b0ad-80eb0ce3c34e)
+
+![IITSchedulingApp - Course Selection (Dark)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/2d6f47e9-e5b6-469e-b7a2-4a03504528fb)
+
