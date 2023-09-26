@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/nav_bar.dart';
-import 'package:iitschedulingapp/search_bar/search_bar_web.dart';
 import 'constants.dart';
 
 void main() {
@@ -12,13 +11,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the device dimensions and system UI offset
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
     deviceTopSystemUIOffset = MediaQuery.of(context).padding.top;
     minimumAppBarHeaderHeight = kToolbarHeight + deviceTopSystemUIOffset;
+
     return const MaterialApp(
       home: NavBar(),
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, // Disable debug banner
     );
   }
-  }
+}

@@ -6,7 +6,6 @@ import 'dart:io' show Platform;
 
 import 'bottom_nav_bar.dart';
 import 'custom_navbar.dart';
-import 'home/first_page.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -16,21 +15,22 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
+  // Function to build the appropriate navigation bar layout based on the platform
   Widget navBarBuilder() {
     if (kIsWeb) {
-      return const TopNavBarLayout();
+      return const TopNavBarLayout(); // For web, use the top navigation bar
     } else if (Platform.isAndroid || Platform.isIOS) {
-      return const BottomNavBarLayout();
-      // return const CustomNavBar();
+      return const BottomNavBarLayout(); // For Android and iOS, use the bottom navigation bar
+      // return const CustomNavBar(); // Optionally, use a custom navigation bar
     } else {
-      return const SideMenuLayout();
+      return const SideMenuLayout(); // For other platforms, use a side menu layout
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: navBarBuilder(),
+      body: navBarBuilder(), // Build the selected navigation bar layout
     );
   }
 }
