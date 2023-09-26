@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class TopNavBarLayout extends StatefulWidget {
   const TopNavBarLayout({super.key});
@@ -48,9 +49,9 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(Icons.schedule, size: 50.0, color: Colors.blue),
+            SvgPicture.asset('svgs/Course_Selection_Icon.svg'),
             Text(
-              'Class Schedule',
+              'Course Selection',
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.black, // Change text color to black
@@ -68,9 +69,9 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(Icons.assignment, size: 50.0, color: Colors.green),
+            SvgPicture.asset('svgs/Tasks_Icon.svg'),
             Text(
-              'Assignments',
+              'Tasks',
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.black, // Change text color to black
@@ -88,9 +89,9 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(Icons.notifications, size: 50.0, color: Colors.orange),
+            SvgPicture.asset('svgs/Today_Icon.svg'),
             Text(
-              'Notifications',
+              "Today",
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.black, // Change text color to black
@@ -108,9 +109,29 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(Icons.person, size: 50.0, color: Colors.purple),
+            SvgPicture.asset('svgs/CASSIE_Icon.svg'),
             Text(
-              'Profile',
+              'CASSIE',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.black, // Change text color to black
+              ),
+            ),
+          ],
+        ),
+      ),
+      Container(
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.3), // Make gray more transparent
+          borderRadius: BorderRadius.circular(20.0), // Adjust the radius as needed
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SvgPicture.asset('svgs/Settings_Icon.svg'),
+            Text(
+              'Settings',
               style: TextStyle(
                 fontSize: 18.0,
                 color: Colors.black, // Change text color to black
@@ -135,20 +156,29 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
                     children: [
                       IconButton(
                         onPressed: () => _pageController.jumpToPage(0),
-                        icon: const Icon(Icons.schedule),
+                        icon: SvgPicture.asset('svgs/Course_Selection_Icon.svg'),
                       ),
+                      const Text('Course Selection'),
                       IconButton(
                         onPressed: () => _pageController.jumpToPage(1),
-                        icon: const Icon(Icons.assignment),
+                        icon: SvgPicture.asset('svgs/Tasks_Icon.svg'),
                       ),
+                      const Text('Tasks'),
                       IconButton(
                         onPressed: () => _pageController.jumpToPage(2),
-                        icon: const Icon(Icons.notifications),
+                        icon: SvgPicture.asset("svgs/Today_Icon.svg"),
                       ),
+                      const Text('Today'),
                       IconButton(
                         onPressed: () => _pageController.jumpToPage(3),
-                        icon: const Icon(Icons.person),
+                        icon: SvgPicture.asset('svgs/CASSIE_Icon.svg'),
                       ),
+                      const Text('CASSIE'),
+                      IconButton(
+                        onPressed: () => _pageController.jumpToPage(4),
+                        icon: SvgPicture.asset('svgs/Settings_Icon.svg'),
+                      ),
+                      const Text('Settings'),
                     ],
                   ),
                 ),

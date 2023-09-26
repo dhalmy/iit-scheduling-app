@@ -14,8 +14,8 @@ class _BottomNavBarLayoutState extends State<BottomNavBarLayout> {
 
   @override
   Widget build(BuildContext context) {
-    double spacing = MediaQuery.of(context).size.height *
-        0.025; // 2.5% of the screen height for top and bottom
+    double topBarHeight = MediaQuery.of(context).size.height * 0.1;
+    double topPadding = MediaQuery.of(context).padding.top;
 
     void onScroll(double offset) {
       if (pageIsScrolling == false) {
@@ -23,83 +23,110 @@ class _BottomNavBarLayoutState extends State<BottomNavBarLayout> {
         if (offset > 0) {
           _pageController
               .nextPage(
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeInOut)
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          )
               .then((value) => pageIsScrolling = false);
-          print('next page');
+          print('Next page');
         } else {
           _pageController
               .previousPage(
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeInOut)
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          )
               .then((value) => pageIsScrolling = false);
-          print('previous page');
+          print('Previous page');
         }
       }
     }
 
     List<Widget> pages = [
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.3), // Make gray more transparent
-          borderRadius:
-          BorderRadius.circular(20.0), // Adjust the radius as needed
+      ClipRRect(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20.0),
+          bottomRight: Radius.circular(20.0),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(Icons.schedule, size: 50.0, color: Colors.blue), // Changed the icon here
-            Text(
-              'Schedule', // Changed the text here
+        child: Container(
+          width: MediaQuery.of(context).size.width, // Take up whole width
+          padding: EdgeInsets.only(top: topPadding), // Add top padding
+          decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(0.3),
+          ),
+          child: Center(
+            child: Text(
+              'Page 1 Content',
               style: TextStyle(
                 fontSize: 18.0,
-                color: Colors.black, // Change text color to black
+                color: Colors.black,
               ),
             ),
-          ],
+          ),
         ),
       ),
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.3), // Make gray more transparent
-          borderRadius:
-          BorderRadius.circular(20.0), // Adjust the radius as needed
+      ClipRRect(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20.0),
+          bottomRight: Radius.circular(20.0),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(Icons.assignment, size: 50.0, color: Colors.green), // Changed the icon here
-            Text(
-              'Assignments', // Changed the text here
+        child: Container(
+          width: MediaQuery.of(context).size.width, // Take up whole width
+          padding: EdgeInsets.only(top: topPadding), // Add top padding
+          decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(0.3),
+          ),
+          child: Center(
+            child: Text(
+              'Page 2 Content',
               style: TextStyle(
                 fontSize: 18.0,
-                color: Colors.black, // Change text color to black
+                color: Colors.black,
               ),
             ),
-          ],
+          ),
         ),
       ),
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.3), // Make gray more transparent
-          borderRadius:
-          BorderRadius.circular(20.0), // Adjust the radius as needed
+      ClipRRect(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20.0),
+          bottomRight: Radius.circular(20.0),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(Icons.notifications, size: 50.0, color: Colors.orange), // Changed the icon here
-            Text(
-              'Notifications', // Changed the text here
+        child: Container(
+          width: MediaQuery.of(context).size.width, // Take up whole width
+          padding: EdgeInsets.only(top: topPadding), // Add top padding
+          decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(0.3),
+          ),
+          child: Center(
+            child: Text(
+              'Page 3 Content',
               style: TextStyle(
                 fontSize: 18.0,
-                color: Colors.black, // Change text color to black
+                color: Colors.black,
               ),
             ),
-          ],
+          ),
+        ),
+      ),
+      ClipRRect(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20.0),
+          bottomRight: Radius.circular(20.0),
+        ),
+        child: Container(
+          width: MediaQuery.of(context).size.width, // Take up whole width
+          padding: EdgeInsets.only(top: topPadding), // Add top padding
+          decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(0.3),
+          ),
+          child: Center(
+            child: Text(
+              'Page 4 Content',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.black,
+              ),
+            ),
+          ),
         ),
       ),
     ];
@@ -107,63 +134,56 @@ class _BottomNavBarLayoutState extends State<BottomNavBarLayout> {
     return Scaffold(
       body: Stack(
         children: [
-          // Transparent gray background for smaller widget
-          Positioned(
-            top: spacing / 2,
-            bottom: spacing / 2,
-            right: spacing, // 2.5% of the screen width from the right
+          // Page content taking up the whole screen
+          Positioned.fill(
+            left: 0,
+            right: 0,
+            bottom: topBarHeight, // Leave space for icons at the bottom
             child: GestureDetector(
-              onHorizontalDragUpdate: (details) {
-                onScroll(details.delta.dx); // Use delta.dx for horizontal scrolling
+              onPanUpdate: (details) {
+                onScroll(details.delta.dx);
               },
               child: Listener(
                 onPointerSignal: (pointerSignal) {
                   if (pointerSignal is PointerScrollEvent) {
-                    onScroll(pointerSignal.scrollDelta.dy);
+                    onScroll(pointerSignal.scrollDelta.dx);
                   }
                 },
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width *
-                      0.75, // 75% of the screen width
-                  child: PageView.builder(
-                    itemCount: pages.length,
-                    scrollDirection: Axis.horizontal, // Change to horizontal
-                    padEnds: false,
-                    controller: _pageController,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        margin: EdgeInsets.only(left: spacing / 2, right: spacing / 2),
-                        child: pages[index],
-                      );
-                    },
-                  ),
+                child: PageView.builder(
+                  itemCount: pages.length,
+                  controller: _pageController,
+                  itemBuilder: (BuildContext context, int index) {
+                    return pages[index];
+                  },
                 ),
               ),
             ),
           ),
-
-          // White background for bottom bar
+          // Icons at the bottom
           Positioned(
-            bottom: 0,
             left: 0,
             right: 0,
-            child: Container(
-              height: 50, // Adjust the height as needed
-              color: Colors.white, // Change background color to white
-              child: Row(
-                children: [
-                  IconButton(
-                      onPressed: () => _pageController.jumpToPage(0),
-                      icon: const Icon(Icons.schedule)),
-                  IconButton(
-                      onPressed: () => _pageController.jumpToPage(1),
-                      icon: const Icon(Icons.assignment)),
-                  IconButton(
-                      onPressed: () => _pageController.jumpToPage(2),
-                      icon: const Icon(Icons.notifications)),
-                  // Add more IconButton widgets here
-                ],
-              ),
+            bottom: 0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                  onPressed: () => _pageController.jumpToPage(0),
+                  icon: const Icon(Icons.schedule),
+                ),
+                IconButton(
+                  onPressed: () => _pageController.jumpToPage(1),
+                  icon: const Icon(Icons.assignment),
+                ),
+                IconButton(
+                  onPressed: () => _pageController.jumpToPage(2),
+                  icon: const Icon(Icons.notifications),
+                ),
+                IconButton(
+                  onPressed: () => _pageController.jumpToPage(3),
+                  icon: const Icon(Icons.person),
+                ),
+              ],
             ),
           ),
         ],

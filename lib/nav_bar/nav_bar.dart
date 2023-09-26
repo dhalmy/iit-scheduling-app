@@ -1,14 +1,11 @@
-import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/side_menu_layout.dart';
 import 'package:iitschedulingapp/nav_bar/top_nav_bar.dart';
 import 'dart:io' show Platform;
 
-import 'package:iitschedulingapp/nav_bar/vertical_nav_bar.dart';
-
-import '../insta/insta.dart';
 import 'bottom_nav_bar.dart';
+import 'custom_navbar.dart';
 import 'home/first_page.dart';
 
 class NavBar extends StatefulWidget {
@@ -24,6 +21,7 @@ class _NavBarState extends State<NavBar> {
       return const TopNavBarLayout();
     } else if (Platform.isAndroid || Platform.isIOS) {
       return const BottomNavBarLayout();
+      // return const CustomNavBar();
     } else {
       return const SideMenuLayout();
     }

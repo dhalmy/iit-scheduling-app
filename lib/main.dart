@@ -14,6 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     deviceHeight = MediaQuery.of(context).size.height;
     deviceWidth = MediaQuery.of(context).size.width;
+    deviceTopSystemUIOffset = MediaQuery.of(context).padding.top;
+    minimumAppBarHeaderHeight = kToolbarHeight + deviceTopSystemUIOffset;
     return const MaterialApp(
       home: NavBar(),
       debugShowCheckedModeBanner: false,

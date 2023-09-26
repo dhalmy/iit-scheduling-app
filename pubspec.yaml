@@ -31,9 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  easy_sidemenu: ^0.5.0
-#  universal_html: any
-  flutter_staggered_grid_view: any
+  flutter_svg: any
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +52,7 @@ flutter:
   assets:
     - assets/fonts/
     - assets/images/
+    - assets/svgs/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
