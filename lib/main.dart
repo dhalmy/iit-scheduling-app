@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/nav_bar.dart';
-
+import 'package:iitschedulingapp/search_bar/search_bar_web.dart';
 import 'constants.dart';
 
 void main() {
@@ -21,4 +21,4 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
     );
   }
-}
+  }
