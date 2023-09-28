@@ -13,11 +13,11 @@ class Preview extends StatelessWidget {
         borderRadius: BorderRadius.circular(
             20.0), // Adjust the radius as needed
       ),
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text(
+          Text(
             "Preview",
             style: TextStyle(
               fontSize: 18.0,
