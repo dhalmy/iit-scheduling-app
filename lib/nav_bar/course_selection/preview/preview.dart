@@ -5,23 +5,19 @@ class Preview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.4,
-      decoration: BoxDecoration(
-        color:
-            Colors.grey.withOpacity(0.3), // Make gray more transparent
-        borderRadius: BorderRadius.circular(
-            20.0), // Adjust the radius as needed
-      ),
+    // Create a Container with a width of 45% of the screen width
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.45,
       child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // Display the "Preview" text with specified style
           Text(
             "Preview",
             style: TextStyle(
               fontSize: 18.0,
-              color: Colors.black, // Change text color to black
+              color: Colors.black, // Set text color to black
             ),
           ),
         ],

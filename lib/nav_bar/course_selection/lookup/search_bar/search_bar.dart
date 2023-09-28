@@ -1,11 +1,7 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:iitschedulingapp/nav_bar/course_selection/search_bar/autocomplete.dart';
-import 'dart:io' show Platform;
 
 class SearchBar extends StatefulWidget {
-  const SearchBar({super.key});
+  const SearchBar({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SearchBarState();
@@ -35,8 +31,6 @@ class _SearchBarState extends State<SearchBar> {
           IconButton(
             icon: const Icon(Icons.search), // Search icon
             onPressed: () {
-              const autoCompleteFunction();
-              const AutocompleteBasicExample();
               // Implement your search functionality here
               // This onPressed function will be called when the search button is pressed.
             },

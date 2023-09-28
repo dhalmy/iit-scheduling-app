@@ -7,15 +7,17 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Get the device dimensions and system UI offset
-    deviceHeight = MediaQuery.of(context).size.height;
-    deviceWidth = MediaQuery.of(context).size.width;
-    deviceTopSystemUIOffset = MediaQuery.of(context).padding.top;
-    minimumAppBarHeaderHeight = kToolbarHeight + deviceTopSystemUIOffset;
+    // Initialize constants once
+    if (deviceHeight == -1) {
+      deviceHeight = MediaQuery.of(context).size.height;
+      deviceWidth = MediaQuery.of(context).size.width;
+      deviceTopSystemUIOffset = MediaQuery.of(context).padding.top;
+      minimumAppBarHeaderHeight = kToolbarHeight + deviceTopSystemUIOffset;
+    }
 
     return const MaterialApp(
       home: NavBar(),
