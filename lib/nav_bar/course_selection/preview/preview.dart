@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'list_week_tab_bar/list_week_tab_bar.dart';
+
 class Preview extends StatelessWidget {
   const Preview({Key? key}) : super(key: key);
 
@@ -13,13 +15,14 @@ class Preview extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Display the "Preview" text with specified style
-          Text(
-            "Preview",
-            style: TextStyle(
-              fontSize: 18.0,
-              color: Colors.black, // Set text color to black
-            ),
-          ),
+          // Text(
+          //   "Preview",
+          //   style: TextStyle(
+          //     fontSize: 18.0,
+          //     color: Colors.black, // Set text color to black
+          //   ),
+          // ),
+          ListWeekTabBar(),
         ],
       ),
     );

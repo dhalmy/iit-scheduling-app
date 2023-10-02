@@ -11,14 +11,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Initialize constants once
+    // Initialize constants only if they haven't been set yet
     if (deviceHeight == -1) {
-      deviceHeight = MediaQuery.of(context).size.height;
-      deviceWidth = MediaQuery.of(context).size.width;
-      deviceTopSystemUIOffset = MediaQuery.of(context).padding.top;
+      // Get device dimensions and system UI offset using MediaQuery
+      final mediaQuery = MediaQuery.of(context);
+      deviceHeight = mediaQuery.size.height;
+      deviceWidth = mediaQuery.size.width;
+      deviceTopSystemUIOffset = mediaQuery.padding.top;
+      // Calculate the minimum app bar header height
       minimumAppBarHeaderHeight = kToolbarHeight + deviceTopSystemUIOffset;
     }
 
+    // Create and return the MaterialApp widget
     return const MaterialApp(
       home: NavBar(),
       debugShowCheckedModeBanner: false, // Disable debug banner
