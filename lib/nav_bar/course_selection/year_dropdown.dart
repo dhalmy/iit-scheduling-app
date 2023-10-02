@@ -16,11 +16,8 @@ class Dropdownliststate extends State<DropDownList> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Semester drop down'),
-      ),
-      body: Center(
+    return Container(
+      child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

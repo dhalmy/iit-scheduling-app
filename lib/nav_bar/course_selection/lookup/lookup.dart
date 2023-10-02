@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../year_dropdown.dart';
+
 class Lookup extends StatelessWidget {
   const Lookup({Key? key}) : super(key: key);
 
@@ -14,6 +16,7 @@ class Lookup extends StatelessWidget {
         children: [
           // Include the SearchBar widget
           SearchBar(),
+          DropDownList(),
         ],
       ),
     );

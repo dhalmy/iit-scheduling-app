@@ -11,7 +11,7 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 300.0, // Set the width of the search bar
+      width: 200.0, // Set the width of the search bar
       padding: const EdgeInsets.all(10.0), // Add padding to the container
       margin: const EdgeInsets.all(20.0), // Add margin around the container
       decoration: BoxDecoration(
