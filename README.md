@@ -104,7 +104,15 @@ https://spinthewheel.app/editor
 | 15 - Presentation                                   | Devin Liu |
 
 ## UI Mockups
+### Course Selection
 ![IITSchedulingApp - Course Selection (Light)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/b2217ba0-cd2d-44be-b0ad-80eb0ce3c34e)
 
 ![IITSchedulingApp - Course Selection (Dark)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/2d6f47e9-e5b6-469e-b7a2-4a03504528fb)
 
+![IITSchedulingApp - Course Selection ~ CS Search (Light)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/1d3b6b83-5a47-4ef4-a1c0-c7290def46ce)
+
+![IITSchedulingApp - Course Selection ~ CS Search (Dark)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/99dd8bf4-ffa4-4559-9c44-5a440d07cfa6)
+
+![IITSchedulingApp - Course Selection ~ CS Search   Chosen (Light)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/61f31e6c-817e-4153-a3ff-b969371f67a7)
+
+![IITSchedulingApp - Course Selection ~ CS Search   Chosen (Dark)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/6882c438-65f1-41b1-adaa-0086bdefc0cc)
