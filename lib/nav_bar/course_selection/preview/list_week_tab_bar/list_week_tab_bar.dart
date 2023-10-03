@@ -73,7 +73,7 @@ class _ListWeekTabBarState extends State<ListWeekTabBar>
                 // first tab bar view widget
                 Center(
                   child: Text(
-                    'Place Bid',
+                    'List',
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w600,
@@ -84,7 +84,7 @@ class _ListWeekTabBarState extends State<ListWeekTabBar>
                 // second tab bar view widget
                 Center(
                   child: Text(
-                    'Buy Now',
+                    'Week',
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w600,
