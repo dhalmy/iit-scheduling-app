@@ -21,8 +21,7 @@ class Dropdownliststate extends State<DropDownList> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Selected Item: $selectedItem'),
-            const SizedBox(height: 20.0),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05,),
             // create the dropdown button.
             DropdownButton<String>(
               value: selectedItem, // selected item.
@@ -40,6 +39,7 @@ class Dropdownliststate extends State<DropDownList> {
                 );
               }).toList(),
             ),
+            Text('Selected Item: $selectedItem'),
           ],
         ),
       ),
