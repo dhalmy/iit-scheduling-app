@@ -1,5 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:iitschedulingapp/nav_bar/settings/settings.dart';
+import 'package:iitschedulingapp/nav_bar/tasks/tasks.dart';
+import 'package:iitschedulingapp/nav_bar/today/today.dart';
+
+import 'cassie/cassie.dart';
+import 'course_selection/course_selection.dart';
 
 class SideMenuLayout extends StatefulWidget {
   const SideMenuLayout({super.key});
@@ -39,69 +45,11 @@ class _SideMenuLayoutState extends State<SideMenuLayout> {
     }
 
     List<Widget> pages = [
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.3), // Make gray more transparent
-          borderRadius:
-          BorderRadius.circular(20.0), // Adjust the radius as needed
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(Icons.schedule, size: 50.0, color: Colors.blue), // Changed the icon here
-            Text(
-              'Schedule', // Changed the text here
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.black, // Change text color to black
-              ),
-            ),
-          ],
-        ),
-      ),
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.3), // Make gray more transparent
-          borderRadius:
-          BorderRadius.circular(20.0), // Adjust the radius as needed
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(Icons.assignment, size: 50.0, color: Colors.green), // Changed the icon here
-            Text(
-              'Assignments', // Changed the text here
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.black, // Change text color to black
-              ),
-            ),
-          ],
-        ),
-      ),
-      Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.3), // Make gray more transparent
-          borderRadius:
-          BorderRadius.circular(20.0), // Adjust the radius as needed
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(Icons.notifications, size: 50.0, color: Colors.orange), // Changed the icon here
-            Text(
-              'Notifications', // Changed the text here
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.black, // Change text color to black
-              ),
-            ),
-          ],
-        ),
-      ),
+      const CourseSelection(),
+      const Tasks(),
+      const Today(),
+      const CASSIE(),
+      const Settings(),
     ];
 
     return Scaffold(

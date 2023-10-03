@@ -1,6 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:iitschedulingapp/nav_bar/cassie/cassie.dart';
 import 'package:iitschedulingapp/nav_bar/settings/settings.dart';
 import 'package:iitschedulingapp/nav_bar/tasks/tasks.dart';
@@ -20,8 +19,7 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
   static const double iconSizeFactor = 0.04;
   static const double topPadding = 8.0;
 
-  final _pageController = PageController();
-  bool pageIsScrolling = false;
+  late PageController _pageController;
   int selectedIndex = 0; // Store the selected index
 
   List<Widget> pages = [
@@ -33,61 +31,70 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(
+      initialPage: 0,
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose(); // Dispose the controller when done.
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // Calculate the top bar height based on screen dimensions
     final double topBarHeight = MediaQuery.of(context).size.height * topBarHeightFactor;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            color: Colors.white,
-            child: Column(
-              children: [
-                // Top navigation bar with icons and labels
-                SizedBox(
-                  height: topBarHeight,
-                  child: ListView.builder(
-                    itemCount: pages.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return _buildNavItem(index);
-                    },
-                  ),
-                ),
-                // Content area with horizontal scrolling pages
-                SizedBox(
-                  height: MediaQuery.of(context).size.height - topBarHeight,
-                  child: GestureDetector(
-                    onPanUpdate: (details) {
-                      onScroll(details.delta.dx);
-                    },
-                    child: Listener(
-                      onPointerSignal: (pointerSignal) {
-                        if (pointerSignal is PointerScrollEvent) {
-                          onScroll(pointerSignal.scrollDelta.dx);
-                        }
-                      },
-                      child: PageView.builder(
-                        itemCount: pages.length,
-                        controller: _pageController,
-                        itemBuilder: (BuildContext context, int index) {
-                          return _buildPage(index);
-                        },
-                        onPageChanged: (index) {
-                          // Update the selected index when the page changes
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+      body: NotificationListener<ScrollNotification>(
+        onNotification: (notification) {
+          if (notification is ScrollUpdateNotification) {
+            final isScrollingDown = notification.scrollDelta! > 0;
+
+            // Allow the child widget to scroll when it's at the top or the bottom
+            if ((_pageController.page == 0 && isScrollingDown) ||
+                (_pageController.page == pages.length - 1 && !isScrollingDown)) {
+              return false;
+            }
+          }
+          return true; // Allow parent widget to scroll
+        },
+        child: ListView(
+          children: [
+            // Top navigation bar with icons and labels
+            SizedBox(
+              height: topBarHeight,
+              child: ListView.builder(
+                itemCount: pages.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (BuildContext context, int index) {
+                  return _buildNavItem(index);
+                },
+              ),
             ),
-          ),
-        ],
+            // Content area with horizontal scrolling pages
+            SizedBox(
+              height: MediaQuery.of(context).size.height - topBarHeight,
+              child: PageView.builder(
+                itemCount: pages.length,
+                controller: _pageController,
+                itemBuilder: (BuildContext context, int index) {
+                  return _buildPage(index);
+                },
+                onPageChanged: (index) {
+                  // Update the selected index when the page changes
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -118,7 +125,11 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
 
     return InkWell(
       onTap: () {
-        _pageController.jumpToPage(index);
+        _pageController.animateToPage(
+          index,
+          duration: const Duration(milliseconds: 300), // Adjust the duration
+          curve: Curves.fastOutSlowIn, // Adjust the curve
+        );
         setState(() {
           selectedIndex = index;
         });
@@ -145,8 +156,8 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
                   Text(
                     navItems[index]['label'],
                     style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 21,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 21,
                     ),
                   ),
                 ],
@@ -159,33 +170,10 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
     );
   }
 
-  // Build the page content
   Widget _buildPage(int index) {
     return Container(
       margin: const EdgeInsets.all(spacing),
-      child: pages[index],
+      child: pages[index], // Return the page based on the index
     );
-  }
-
-  // Handle horizontal scrolling between pages
-  void onScroll(double offset) {
-    if (pageIsScrolling == false) {
-      pageIsScrolling = true;
-      if (offset > 0) {
-        _pageController
-            .nextPage(
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-        )
-            .then((value) => pageIsScrolling = false);
-      } else {
-        _pageController
-            .previousPage(
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-        )
-            .then((value) => pageIsScrolling = false);
-      }
-    }
   }
 }

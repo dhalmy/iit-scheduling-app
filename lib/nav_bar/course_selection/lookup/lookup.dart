@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_box/query_box.dart';
+import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/query_grid.dart';
 
-import '../year_dropdown.dart';
+import 'year_semester_drop_down/year_semester_drop_down.dart';
 
 class Lookup extends StatelessWidget {
   const Lookup({Key? key}) : super(key: key);
@@ -15,10 +16,15 @@ class Lookup extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
+          Column(
             children: [
-              QueryBox(),
-              DropDownList(),
+              Row(
+                children: [
+                  QueryBox(),
+                  YearSemesterDropDown(),
+                ],
+              ),
+              QueryGrid(),
             ],
           ),
         ],

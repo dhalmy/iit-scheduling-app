@@ -11,18 +11,12 @@ class Preview extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.475,
       child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          // Display the "Preview" text with specified style
-          // Text(
-          //   "Preview",
-          //   style: TextStyle(
-          //     fontSize: 18.0,
-          //     color: Colors.black, // Set text color to black
-          //   ),
-          // ),
-          ListWeekTabBar(),
+          DefaultTabController(
+            length: 2,
+            child: ListWeekTabBar(),
+          ),
         ],
       ),
     );
