@@ -7,9 +7,9 @@ class Preview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Create a Container with a width of 45% of the screen width
+    // Create a Container with a width of 47.5% of the screen width
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.45,
+      width: MediaQuery.of(context).size.width * 0.475,
       child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
