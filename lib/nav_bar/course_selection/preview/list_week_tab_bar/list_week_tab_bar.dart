@@ -47,19 +47,19 @@ class _ListWeekTabBarState extends State<ListWeekTabBar>
                   borderRadius: BorderRadius.circular(
                     12.0,
                   ),
-                  color: Colors.green,
+                  color: const Color(0xFF00BD90),
                 ),
                 labelColor: Colors.white,
                 unselectedLabelColor: Colors.black,
                 tabs: const [
                   // first tab [you can add an icon using the icon property]
                   Tab(
-                    text: 'Place Bid',
+                    text: 'List',
                   ),
 
                   // second tab [you can add an icon using the icon property]
                   Tab(
-                    text: 'Buy Now',
+                    text: 'Week',
                   ),
                 ],
               ),

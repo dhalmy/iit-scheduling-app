@@ -15,7 +15,6 @@ class TopNavBarLayout extends StatefulWidget {
 }
 
 class _TopNavBarLayoutState extends State<TopNavBarLayout> {
-  // Constants for spacing and layout
   static const double spacing = 16.0;
   static const double topBarHeightFactor = 0.08;
   static const double iconSizeFactor = 0.04;
@@ -23,8 +22,8 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
 
   final _pageController = PageController();
   bool pageIsScrolling = false;
+  int selectedIndex = 0; // Store the selected index
 
-  // List of pages to display in the navigation bar
   List<Widget> pages = [
     const CourseSelection(),
     const Tasks(),
@@ -75,6 +74,12 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
                         itemBuilder: (BuildContext context, int index) {
                           return _buildPage(index);
                         },
+                        onPageChanged: (index) {
+                          // Update the selected index when the page changes
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
                       ),
                     ),
                   ),
@@ -88,7 +93,6 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
   }
 
   Widget _buildNavItem(int index) {
-    // List of navigation items with icon paths and labels
     final List<Map<String, dynamic>> navItems = [
       {
         'iconPath': 'svgs/Course_Selection_Icon.svg',
@@ -112,36 +116,51 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
       },
     ];
 
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.15,
-      child: InkWell(
-        onTap: () => _pageController.jumpToPage(index),
-        child: Padding(
-          padding: const EdgeInsets.only(top: topPadding),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Icon with specified height
-              SvgPicture.asset(
-                navItems[index]['iconPath'],
-                height: MediaQuery.of(context).size.height * iconSizeFactor,
+    return InkWell(
+      onTap: () {
+        _pageController.jumpToPage(index);
+        setState(() {
+          selectedIndex = index;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(top: topPadding),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(width: spacing),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: index == selectedIndex ? const Color(0xFF00BD90) : Colors.transparent,
+                borderRadius: BorderRadius.circular(8.0),
               ),
-              SizedBox(width: MediaQuery.of(context).size.width * 0.01), // Adjust spacing
-              Text(
-                navItems[index]['label'],
-                style: const TextStyle(
-                  color: Colors.black,
-                ),
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    navItems[index]['iconPath'],
+                    height: MediaQuery.of(context).size.height * iconSizeFactor,
+                  ),
+                  const SizedBox(width: spacing),
+                  Text(
+                    navItems[index]['label'],
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 21,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            const SizedBox(width: spacing * 2.5),
+          ],
         ),
       ),
     );
   }
 
+  // Build the page content
   Widget _buildPage(int index) {
-    // Container with page content and margin
     return Container(
       margin: const EdgeInsets.all(spacing),
       child: pages[index],
