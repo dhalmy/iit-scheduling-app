@@ -22,7 +22,7 @@ class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+          const SizedBox(height: 15),
           // create the dropdown button wrapped in a Container
           SizedBox(
             width: dropdownWidth, // Set the width here

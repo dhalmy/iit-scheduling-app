@@ -123,24 +123,25 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
       },
     ];
 
-    return InkWell(
-      onTap: () {
-        _pageController.animateToPage(
-          index,
-          duration: const Duration(milliseconds: 300), // Adjust the duration
-          curve: Curves.fastOutSlowIn, // Adjust the curve
-        );
-        setState(() {
-          selectedIndex = index;
-        });
-      },
-      child: Padding(
-        padding: const EdgeInsets.only(top: topPadding),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(width: spacing),
-            Container(
+    return Padding(
+      padding: const EdgeInsets.only(top: topPadding),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(width: spacing),
+          InkWell(
+            borderRadius: BorderRadius.circular(8.0),
+            onTap: () {
+              _pageController.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 300), // Adjust the duration
+                curve: Curves.ease, // Adjust the curve
+              );
+              setState(() {
+                selectedIndex = index;
+              });
+            },
+            child: Container(
               padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 color: index == selectedIndex ? const Color(0xFF00BD90) : Colors.transparent,
@@ -163,9 +164,9 @@ class _TopNavBarLayoutState extends State<TopNavBarLayout> {
                 ],
               ),
             ),
-            const SizedBox(width: spacing * 2.5),
-          ],
-        ),
+          ),
+          const SizedBox(width: spacing * 2.5),
+        ],
       ),
     );
   }
