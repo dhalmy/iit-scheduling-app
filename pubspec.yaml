@@ -33,6 +33,8 @@ dependencies:
 
   flutter_svg: any
   flutter_staggered_grid_view: any
+  date_picker_timeline: any
+  intl: any
 
 dev_dependencies:
   flutter_test:
