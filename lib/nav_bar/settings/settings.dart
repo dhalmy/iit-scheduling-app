@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'account/account_button.dart';
+
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
 
@@ -15,14 +17,7 @@ class Settings extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset('svgs/Settings_Icon.svg'),
-          const Text(
-            'Settings',
-            style: TextStyle(
-              fontSize: 18.0,
-              color: Colors.black, // Change text color to black
-            ),
-          ),
+          const AccountButton(),
         ],
       ),
     );
