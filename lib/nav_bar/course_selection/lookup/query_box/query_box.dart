@@ -26,7 +26,7 @@ class _QueryBoxState extends State<QueryBox> {
   void _performSearch() {
     final searchTerm = _searchController.text;
     // Handle the search functionality here
-    print('Performing search for: $searchTerm');
+    // This function will be called when the search button is pressed or the Enter key is pressed.
   }
 
   @override
@@ -51,12 +51,12 @@ class _QueryBoxState extends State<QueryBox> {
             ),
           ),
           Container(
-            padding: EdgeInsets.zero,// Adjust the alignment to center vertically
+            padding: EdgeInsets.zero, // Adjust the alignment to center vertically
             child: IconButton(
               icon: const Icon(Icons.search), // Search icon
               onPressed: () {
                 // Implement your search functionality here
-                // This onPressed function will be called when the search button is pressed.
+                _performSearch();
               },
             ),
           ),
