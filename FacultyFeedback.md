@@ -26,7 +26,9 @@
   - From there we will random presentation order so you could first or last or anywhere in between
 
 ## Week 8 ##
-
+- Problem statement is more of statement of what we will do rather problem and solution to that problem
+- Really like the clean design of nav bar
+- Feels like the nav offers way more capability than the problem statement
 ## Week 9 ##
 
 ## Week 10 ##
