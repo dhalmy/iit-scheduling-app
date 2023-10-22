@@ -20,20 +20,20 @@ class _CourseSelectionState extends State<CourseSelection> {
   void initState() {
     super.initState();
 
-    _fetchData();
+    // _fetchData();
     // sortCourseSubjectsAlphabetically(courseSubjects);
     // final courseSubjectsByArea = groupCourseSubjectsByArea(courseSubjects);
     // displayCourseSubjects(courseSubjectsByArea);
   }
 
-  Future<void> _fetchData() async {
-    try {
-      final data = await Supabase.instance.client.from('fall2023').select('courseSubject');
-      print(data);
-    } catch (error) {
-      // Handle error
-    }
-  }
+  // Future<void> _fetchData() async {
+  //   try {
+  //     final data = await Supabase.instance.client.from('fall2023').select('courseSubject');
+  //     print(data);
+  //   } catch (error) {
+  //     // Handle error
+  //   }
+  // }
 
   // Future<void> _fetchData() async {
   //   try {

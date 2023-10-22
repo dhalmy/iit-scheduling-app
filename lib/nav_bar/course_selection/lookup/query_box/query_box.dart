@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class QueryBox extends StatefulWidget {
   const QueryBox({Key? key}) : super(key: key);
@@ -29,36 +30,35 @@ class _QueryBoxState extends State<QueryBox> {
     // This function will be called when the search button is pressed or the Enter key is pressed.
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.30, // Set the width of the search bar
       height: MediaQuery.of(context).size.height * 0.05,
-      padding: const EdgeInsets.all(10.0), // Add padding to the container
       margin: const EdgeInsets.all(20.0), // Add margin around the container
       decoration: BoxDecoration(
-        color: Colors.grey[200], // Set the background color to a light gray
         borderRadius: BorderRadius.circular(40.0), // Apply a border radius for rounded corners
+        border: Border.all(color: Colors.grey, width: 1.0), // Add a grey border
       ),
       child: Row(
         children: [
+          const SizedBox(width: 12,),
           const Expanded(
             child: TextField(
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.only(bottom: 12),
                 hintText: 'Search...', // Placeholder text for the search input
                 border: InputBorder.none, // Remove the input border
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.zero, // Adjust the alignment to center vertically
-            child: IconButton(
-              icon: const Icon(Icons.search), // Search icon
-              onPressed: () {
-                // Implement your search functionality here
-                _performSearch();
-              },
-            ),
+          IconButton(
+            icon: const Icon(Icons.search), // Search icon
+            onPressed: () {
+              // Implement your search functionality here
+              _performSearch();
+            },
           ),
         ],
       ),
