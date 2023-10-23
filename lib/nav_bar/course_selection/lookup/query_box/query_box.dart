@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../query_logic/query_logic.dart';
+import '../query_logic/user_search_input.dart';
+import '../year_semester_drop_down/year_semester.dart';
+
 class QueryBox extends StatefulWidget {
   const QueryBox({Key? key}) : super(key: key);
 
@@ -23,30 +27,27 @@ class _QueryBoxState extends State<QueryBox> {
     super.dispose();
   }
 
-  // Function to perform the search when Enter key is pressed or search button is clicked
-  void _performSearch() {
-    final searchTerm = _searchController.text;
-    // Handle the search functionality here
-    // This function will be called when the search button is pressed or the Enter key is pressed.
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.30, // Set the width of the search bar
+      width: MediaQuery.of(context).size.width *
+          0.30, // Set the width of the search bar
       height: MediaQuery.of(context).size.height * 0.05,
       margin: const EdgeInsets.all(20.0), // Add margin around the container
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(40.0), // Apply a border radius for rounded corners
+        borderRadius: BorderRadius.circular(
+            40.0), // Apply a border radius for rounded corners
         border: Border.all(color: Colors.grey, width: 1.0), // Add a grey border
       ),
       child: Row(
         children: [
-          const SizedBox(width: 12,),
-          const Expanded(
+          const SizedBox(
+            width: 12,
+          ),
+          Expanded(
             child: TextField(
-              decoration: InputDecoration(
+              controller: _searchController,
+              decoration: const InputDecoration(
                 contentPadding: EdgeInsets.only(bottom: 12),
                 hintText: 'Search...', // Placeholder text for the search input
                 border: InputBorder.none, // Remove the input border
@@ -56,8 +57,10 @@ class _QueryBoxState extends State<QueryBox> {
           IconButton(
             icon: const Icon(Icons.search), // Search icon
             onPressed: () {
-              // Implement your search functionality here
-              _performSearch();
+              final query = _searchController.text;
+              final userInput = UserSearchInput(query);
+              final queryLogic = QueryLogic(userInput, YearSemester.year2023Fall);
+              queryLogic.parsedUserInput();
             },
           ),
         ],

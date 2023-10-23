@@ -36,6 +36,7 @@ dependencies:
   date_picker_timeline: any
   intl: any
   supabase_flutter: any
+  enum_to_string: any
 
 dev_dependencies:
   flutter_test:

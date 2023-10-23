@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'year_semester.dart';
 
 class YearSemesterDropDown extends StatefulWidget {
-  const YearSemesterDropDown({super.key});
+  const YearSemesterDropDown({Key? key}) : super(key: key);
 
   @override
   State<YearSemesterDropDown> createState() => _YearSemesterDropDownState();
 }
 
 class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
-  // examples
-  List<String> items = ['2021FALL', '2022SPRING', '2022SUMMER', '2023FALL'];
+  // Use the enum values for the items
+  List<YearSemester> items = [
+    YearSemester.year2021Fall,
+    YearSemester.year2022Spring,
+    YearSemester.year2022Summer,
+    YearSemester.year2023Fall,
+  ];
 
   // current item
-  String selectedItem = '2021FALL';
+  YearSemester selectedItem = YearSemester.year2021Fall;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +32,7 @@ class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
           // create the dropdown button wrapped in a Container
           SizedBox(
             width: dropdownWidth, // Set the width here
-            child: DropdownButton<String>(
+            child: DropdownButton<YearSemester>(
               value: selectedItem, // selected item.
               onChanged: (newValue) {
                 // change state based on selected item
@@ -36,16 +42,21 @@ class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
               },
               items: items.map((item) {
                 // create a dropdown menu item for each item in the list.
-                return DropdownMenuItem<String>(
+                return DropdownMenuItem<YearSemester>(
                   value: item,
-                  child: Text(item),
+                  child: Text(item.toString().split('.').last), // Display the enum value as a string
                 );
               }).toList(),
             ),
           ),
-          Text('Selected Item: $selectedItem'),
+          Text('Selected Item: ${selectedItem.toString().split('.').last}'), // Display the selected item as a string
         ],
       ),
     );
+  }
+
+  // Define a getter method to access the selected item
+  YearSemester getSelectedYearSemester() {
+    return selectedItem;
   }
 }
