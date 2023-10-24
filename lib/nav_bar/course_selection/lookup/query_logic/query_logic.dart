@@ -85,8 +85,10 @@ class QueryLogic {
     final String filterByInstructor =
         userSearchInput[SearchKeywords.instructor] ?? '';
 
+    // final users = await Supabase.instance.client.from(EnumToString.convertToString(yearSemester)).filter('name', 'eq', 'Alice').select('*');
+
     PostgrestFilterBuilder<dynamic> query =
-        Supabase.instance.client.from('fall2023').select('courseSubject');
+        Supabase.instance.client.from('fall2023').select('*');
 
     if (filterByCourseSubject != '') {
       query = query.eq(
@@ -94,6 +96,7 @@ class QueryLogic {
               (k) => userSearchInput[k] == filterByCourseSubject,
               orElse: () => SearchKeywords.unknown)),
           filterByCourseSubject);
+      print(filterByCourseSubject);
     }
     if (filterByCourseNumber != '') {
       query = query.gte(
@@ -101,6 +104,7 @@ class QueryLogic {
               (k) => userSearchInput[k] == filterByCourseNumber,
               orElse: () => SearchKeywords.unknown)),
           filterByCourseNumber);
+      print(filterByCourseNumber);
     }
     if (filterByInstructor != '') {
       query = query.lt(
@@ -108,6 +112,7 @@ class QueryLogic {
               (k) => userSearchInput[k] == filterByInstructor,
               orElse: () => SearchKeywords.unknown)),
           filterByInstructor);
+      print(filterByInstructor);
     }
 
     final data = await query;
