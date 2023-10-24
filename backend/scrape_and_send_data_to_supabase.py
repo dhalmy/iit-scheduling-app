@@ -49,8 +49,8 @@ terms = {
 }
 
 
-supabase_url = os.environ.get("DB_URL")
-supabase_key = os.environ.get("DB_KEY")
+supabase_url = os.environ.get("SUPABASE_URL")
+supabase_key = os.environ.get("SUPABASE_KEY")
 supabase_client = supabase.Client(supabase_url, supabase_key)
 
 
