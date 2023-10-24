@@ -11,23 +11,9 @@ class Lookup extends StatelessWidget {
   Widget build(BuildContext context) {
     // Create a SizedBox with a width of 47.5% of the screen width
     return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.875,
       width: MediaQuery.of(context).size.width * 0.525,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Row(
-            children: [
-              QueryBox(),
-              Spacer(),
-              YearSemesterDropDown(),
-            ],
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.75,
-              child: const QueryGrid()),
-        ],
-      ),
+      child: const QueryBox(),
     );
   }
 }

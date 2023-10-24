@@ -10,15 +10,15 @@ class YearSemesterDropDown extends StatefulWidget {
 
 class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
   // Use the enum values for the items
-  List<YearSemester> items = [
-    YearSemester.year2021Fall,
-    YearSemester.year2022Spring,
-    YearSemester.year2022Summer,
-    YearSemester.year2023Fall,
+  List<String> items = [
+    '2021 - Fall',
+    '2022 - Spring',
+    '2022 - Summer',
+    '2023 - Fall',
   ];
 
   // current item
-  YearSemester selectedItem = YearSemester.year2021Fall;
+  String selectedItem = '2023 - Fall';
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
           // create the dropdown button wrapped in a Container
           SizedBox(
             width: dropdownWidth, // Set the width here
-            child: DropdownButton<YearSemester>(
+            child: DropdownButton<String>(
               value: selectedItem, // selected item.
               onChanged: (newValue) {
                 // change state based on selected item
@@ -42,7 +42,7 @@ class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
               },
               items: items.map((item) {
                 // create a dropdown menu item for each item in the list.
-                return DropdownMenuItem<YearSemester>(
+                return DropdownMenuItem<String>(
                   value: item,
                   child: Text(item.toString().split('.').last), // Display the enum value as a string
                 );
@@ -56,7 +56,7 @@ class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
   }
 
   // Define a getter method to access the selected item
-  YearSemester getSelectedYearSemester() {
+  String getSelectedYearSemester() {
     return selectedItem;
   }
 }

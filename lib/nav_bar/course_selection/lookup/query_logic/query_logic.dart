@@ -4,6 +4,7 @@ import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_logic/sea
 import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_logic/user_search_input.dart';
 
 import '../year_semester_drop_down/year_semester.dart';
+import 'course.dart';
 
 class QueryLogic {
   final UserSearchInput userInput;
@@ -74,10 +75,11 @@ class QueryLogic {
       }
     }
 
+    print(keyValuePairs);
     return keyValuePairs;
   }
 
-  void getSupabaseQuery(Map<SearchKeywords, String> userSearchInput) async {
+  Future<List<Course>> getSupabaseQuery(Map<SearchKeywords, String> userSearchInput) async {
     final String filterByCourseSubject =
         userSearchInput[SearchKeywords.courseSubject] ?? '';
     final String filterByCourseNumber =
@@ -85,48 +87,61 @@ class QueryLogic {
     final String filterByInstructor =
         userSearchInput[SearchKeywords.instructor] ?? '';
 
-    // final users = await Supabase.instance.client.from(EnumToString.convertToString(yearSemester)).filter('name', 'eq', 'Alice').select('*');
-
     PostgrestFilterBuilder<dynamic> query =
-        Supabase.instance.client.from('fall2023').select('*');
+    Supabase.instance.client.from(EnumToString.convertToString(yearSemester)).select('*');
+    print(EnumToString.convertToString(yearSemester));
 
     if (filterByCourseSubject != '') {
       query = query.eq(
           EnumToString.convertToString(userSearchInput.keys.firstWhere(
-              (k) => userSearchInput[k] == filterByCourseSubject,
+                  (k) => userSearchInput[k] == filterByCourseSubject,
               orElse: () => SearchKeywords.unknown)),
           filterByCourseSubject);
-      print(filterByCourseSubject);
     }
     if (filterByCourseNumber != '') {
       query = query.gte(
           EnumToString.convertToString(userSearchInput.keys.firstWhere(
-              (k) => userSearchInput[k] == filterByCourseNumber,
+                  (k) => userSearchInput[k] == filterByCourseNumber,
               orElse: () => SearchKeywords.unknown)),
           filterByCourseNumber);
-      print(filterByCourseNumber);
     }
     if (filterByInstructor != '') {
       query = query.lt(
           EnumToString.convertToString(userSearchInput.keys.firstWhere(
-              (k) => userSearchInput[k] == filterByInstructor,
+                  (k) => userSearchInput[k] == filterByInstructor,
               orElse: () => SearchKeywords.unknown)),
           filterByInstructor);
-      print(filterByInstructor);
     }
 
-    final data = await query;
-    print(data);
+    final data = await query.execute();
+    final courses = data.data as List<dynamic>; // Replace with your actual data structure.
+    return courses.map((courseData) => Course.fromJson(courseData)).toList();
+
+    // final data = await query;
+    //
+    // final courses = data as List<dynamic>; // Replace with your actual data structure.
+    //
+    // print('Course Information:');
+    // for (final courseData in courses) {
+    //   final course = Course.fromJson(courseData);
+    //   print('Course Code: ${course.courseCode}');
+    //   print('Course Title: ${course.courseTitle}');
+    //   print('Status: ${course.status}');
+    //   print('Instructor: ${course.instructor}');
+    //   print('Enrolled: ${course.enrolled}/${course.max}');
+    //   print('Available: ${course.available}');
+    //   print('Location: ${course.campus} - ${course.locations}');
+    //   print('Dates: ${course.dates}');
+    //   print('---------------------------');
+    // }
+    //
+    // return courses;
   }
 
   // cs: math cn: 374 i: lubin
-  Map<SearchKeywords, UserSearchInput> parsedUserInput() {
-    Map<SearchKeywords, UserSearchInput> organized = {};
-    int patternCount = _findPatternCount(userInput.getUserInput);
+  Future<List<Course>> parsedUserInput() async {
     Map<SearchKeywords, String> keyValues = _pairKeyValues(userInput);
-    print(patternCount);
-    print(keyValues);
-    getSupabaseQuery(keyValues);
-    return organized;
+    final newCourses = await getSupabaseQuery(keyValues);
+    return newCourses;
   }
 }

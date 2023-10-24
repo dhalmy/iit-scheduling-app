@@ -1,6 +1,7 @@
 enum YearSemester {
-  year2021Fall,
-  year2022Spring,
-  year2022Summer,
-  year2023Fall,
+  fall2022,
+  spring2022,
+  summer2022,
+  fall2023,
+  unknown,
 }
