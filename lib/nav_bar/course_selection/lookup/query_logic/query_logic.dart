@@ -41,11 +41,10 @@ class QueryLogic {
   }
 
   Map<SearchKeywords, String> _pairKeyValues(UserSearchInput userSearchInput) {
-    // Split the input string by spaces
+    // Split the user input string by spaces
     List<String> parts = userSearchInput.getUserInput.split(' ');
-    print(parts);
 
-    // Initialize an empty map to store key-value pairs
+    // Initialize a map to store key-value pairs
     Map<SearchKeywords, String> keyValuePairs = {};
 
     // Iterate through the parts of the input
@@ -57,22 +56,20 @@ class QueryLogic {
 
         // Convert the keyString to a SearchKeywords enum value
         SearchKeywords key;
-        switch (EnumToString.fromString(SearchKeywords.values, keyString)) {
-          case SearchKeywords.courseSubject:
+        switch (keyString) {
+          case 'cs':
             key = SearchKeywords.courseSubject;
             break;
-          case SearchKeywords.courseNumber:
+          case 'cn':
             key = SearchKeywords.courseNumber;
             break;
-          case SearchKeywords.instructor:
+          case 'i':
             key = SearchKeywords.instructor;
             break;
           default:
             key = SearchKeywords.unknown;
             break;
         }
-
-        // Store the key-value pair in the map
         keyValuePairs[key] = value;
       }
     }
