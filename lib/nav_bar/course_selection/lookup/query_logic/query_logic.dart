@@ -77,6 +77,43 @@ class QueryLogic {
     return keyValuePairs;
   }
 
+  void getSupabaseQuery(Map<SearchKeywords, String> userSearchInput) async {
+    final String filterByCourseSubject =
+        userSearchInput[SearchKeywords.courseSubject] ?? '';
+    final String filterByCourseNumber =
+        userSearchInput[SearchKeywords.courseNumber] ?? '';
+    final String filterByInstructor =
+        userSearchInput[SearchKeywords.instructor] ?? '';
+
+    PostgrestFilterBuilder<dynamic> query =
+        Supabase.instance.client.from('fall2023').select('courseSubject');
+
+    if (filterByCourseSubject != '') {
+      query = query.eq(
+          EnumToString.convertToString(userSearchInput.keys.firstWhere(
+              (k) => userSearchInput[k] == filterByCourseSubject,
+              orElse: () => SearchKeywords.unknown)),
+          filterByCourseSubject);
+    }
+    if (filterByCourseNumber != '') {
+      query = query.gte(
+          EnumToString.convertToString(userSearchInput.keys.firstWhere(
+              (k) => userSearchInput[k] == filterByCourseNumber,
+              orElse: () => SearchKeywords.unknown)),
+          filterByCourseNumber);
+    }
+    if (filterByInstructor != '') {
+      query = query.lt(
+          EnumToString.convertToString(userSearchInput.keys.firstWhere(
+              (k) => userSearchInput[k] == filterByInstructor,
+              orElse: () => SearchKeywords.unknown)),
+          filterByInstructor);
+    }
+
+    final data = await query;
+    print(data);
+  }
+
   // cs: math cn: 374 i: lubin
   Map<SearchKeywords, UserSearchInput> parsedUserInput() {
     Map<SearchKeywords, UserSearchInput> organized = {};
@@ -84,6 +121,7 @@ class QueryLogic {
     Map<SearchKeywords, String> keyValues = _pairKeyValues(userInput);
     print(patternCount);
     print(keyValues);
+    getSupabaseQuery(keyValues);
     return organized;
   }
 }
