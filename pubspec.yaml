@@ -37,6 +37,7 @@ dependencies:
   intl: any
   supabase_flutter: any
   enum_to_string: any
+  flutter_layout_grid: any
 
 dev_dependencies:
   flutter_test:

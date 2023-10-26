@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../query_logic/course.dart';
 
-class CourseItemWidget extends StatelessWidget {
+class CourseItemWidgetSmall extends StatelessWidget {
   final Course course;
 
-  CourseItemWidget({required this.course});
+  CourseItemWidgetSmall({super.key, required this.course});
 
   @override
   Widget build(BuildContext context) {
     // You can customize the appearance of the course details here
     return Container(
       height: 125,
+      width: 205,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.0),
