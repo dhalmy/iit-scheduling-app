@@ -46,6 +46,7 @@ class _QueryBoxState extends State<QueryBox> {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               width: MediaQuery.of(context).size.width * 0.30,
@@ -81,8 +82,7 @@ class _QueryBoxState extends State<QueryBox> {
                 ],
               ),
             ),
-            const Spacer(),
-            const SizedBox(child: YearSemesterDropDown()),
+            const Expanded(child: SizedBox(child: YearSemesterDropDown())),
           ],
         ),
         const SizedBox(height: 29),
@@ -96,7 +96,7 @@ class _QueryBoxState extends State<QueryBox> {
             } else {
               final courses = snapshot.data ?? [];
               return SizedBox(
-                height: MediaQuery.of(context).size.height * 0.705,
+                height: MediaQuery.of(context).size.height * 0.699,
                 child: QueryGrid(courses: courses),
               );
             }

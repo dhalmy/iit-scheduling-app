@@ -22,7 +22,7 @@ class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
 
   @override
   Widget build(BuildContext context) {
-    double dropdownWidth = MediaQuery.of(context).size.width * 0.12; // 12% of screen width
+    double dropdownWidth = MediaQuery.of(context).size.width * 0.11;
 
     return Center(
       child: Column(
@@ -33,18 +33,34 @@ class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
           SizedBox(
             width: dropdownWidth, // Set the width here
             child: DropdownButton<String>(
-              value: selectedItem, // selected item.
+              isExpanded: true,
+              hint: const Text('Select Year-Semester'),
+              value: selectedItem,
+              underline: Container(
+                height: 0,
+              ),
               onChanged: (newValue) {
-                // change state based on selected item
                 setState(() {
                   selectedItem = newValue!;
                 });
               },
+              selectedItemBuilder: (BuildContext context) {
+                return items.map<Widget>((String text) {
+                  return Center(
+                    child: Text(
+                      text,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  );
+                }).toList();
+              },
               items: items.map((item) {
-                // create a dropdown menu item for each item in the list.
                 return DropdownMenuItem<String>(
                   value: item,
-                  child: Text(item.toString().split('.').last), // Display the enum value as a string
+                  child: Text(
+                    item,
+                    style: const TextStyle(color: Colors.black),
+                  ),
                 );
               }).toList(),
             ),

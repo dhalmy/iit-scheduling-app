@@ -14,106 +14,6 @@ class CourseSelection extends StatefulWidget {
 }
 
 class _CourseSelectionState extends State<CourseSelection> {
-  List<String> _courseSubjects = [];
-
-  @override
-  void initState() {
-    super.initState();
-
-    // _fetchData();
-    // sortCourseSubjectsAlphabetically(courseSubjects);
-    // final courseSubjectsByArea = groupCourseSubjectsByArea(courseSubjects);
-    // displayCourseSubjects(courseSubjectsByArea);
-  }
-
-  // Future<void> _fetchData() async {
-  //   try {
-  //     final data = await Supabase.instance.client.from('fall2023').select('courseSubject');
-  //     print(data);
-  //   } catch (error) {
-  //     // Handle error
-  //   }
-  // }
-
-  // Future<void> _fetchData() async {
-  //   try {
-  //     final data = await Supabase.instance.client.from('fall2023').select('courseSubject');
-  //
-  //     // Sort the course subjects alphabetically.
-  //     _courseSubjects = data.data.map((e) => e['courseSubject']).toList();
-  //     _courseSubjects.sort((a, b) => a.compareTo(b));
-  //
-  //     // Display the course subjects.
-  //     setState(() {});
-  //   } catch (error) {
-  //     // Handle error
-  //   }
-  // }
-
-  // Future<void> _fetchData() async {
-  //   try {
-  //     final data = await Supabase.instance.client.from('fall2023').select('courseSubject');
-  //
-  //     // Sort the course subjects alphabetically.
-  //     _courseSubjects = data.data.map((e) => e['courseSubject']).toList();
-  //     _courseSubjects.sort((a, b) => a.compareTo(b));
-  //
-  //     // Display the sorted course subjects.
-  //     print('Course subjects (sorted alphabetically):');
-  //     for (final courseSubject in _courseSubjects) {
-  //       print("Printed!");
-  //       print(courseSubject);
-  //     }
-  //   } catch (error) {
-  //     // Handle error
-  //     print("Failed");
-  //   }
-  // }
-
-// // Sort the list of course subjects alphabetically.
-//   void sortCourseSubjectsAlphabetically(List<Map<String, String>> courseSubjects) {
-//     courseSubjects.sort((a, b) => a['courseSubject']!.compareTo(b['courseSubject']!));
-//   }
-//
-// // Group the list of course subjects by subject area.
-//   Map<String, List<Map<String, String>>> groupCourseSubjectsByArea(
-//       List<Map<String, String>> courseSubjects) {
-//     final Map<String, List<Map<String, String>>> courseSubjectsByArea = {};
-//     for (final courseSubject in courseSubjects) {
-//       final subjectArea = courseSubject['courseSubject']![0];
-//       if (!courseSubjectsByArea.containsKey(subjectArea)) {
-//         courseSubjectsByArea[subjectArea] = [];
-//       }
-//       courseSubjectsByArea[subjectArea]!.add(courseSubject);
-//     }
-//     return courseSubjectsByArea;
-//   }
-//
-// // Display the list of course subjects in a more readable format.
-//   void displayCourseSubjects(Map<String, List<Map<String, String>>> courseSubjectsByArea) {
-//     print('Course Subjects by Area:');
-//     for (final subjectArea in courseSubjectsByArea.keys) {
-//       print('  - $subjectArea:');
-//       for (final courseSubject in courseSubjectsByArea[subjectArea]!) {
-//         print('    - ${courseSubject['courseSubject']}');
-//       }
-//     }
-//   }
-//
-// // Example usage:
-//
-//   final courseSubjects = [
-//     {'courseSubject': 'AAH'},
-//     {'courseSubject': 'ARCH'},
-//     {'courseSubject': 'AS'},
-//     {'courseSubject': 'BIOL'},
-//     {'courseSubject': 'BME'},
-//     {'courseSubject': 'BUS'},
-//     {'courseSubject': 'CAE'},
-//     {'courseSubject': 'CHE'},
-//     {'courseSubject': 'CIV'},
-//   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -125,9 +25,8 @@ class _CourseSelectionState extends State<CourseSelection> {
       child: const Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Lookup(), // Widget for looking up course information
-          Spacer(), // Spacer to create space between widgets
-          Preview(), // Widget for previewing course information
+          Expanded(child: Lookup()), // Widget for looking up course information
+          Expanded(child: Preview()), // Widget for previewing course information
         ],
       ),
     );

@@ -20,10 +20,9 @@ class QueryGrid extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(width: gap),
-            SizedBox(
-              height: MediaQuery.of(context).size.width * 0.5,
-              width: 222,
+            Flexible(
               child: ListView.separated(
+                shrinkWrap: true,
                 itemBuilder: (context, index) {
                   final course = courses[index];
                   return CourseItemWidget(course: course);
@@ -32,11 +31,22 @@ class QueryGrid extends StatelessWidget {
                 itemCount: courses.length,
               ),
             ),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.width * 0.5,
+            //   width: 222,
+            //   child: ListView.separated(
+            //     itemBuilder: (context, index) {
+            //       final course = courses[index];
+            //       return CourseItemWidget(course: course);
+            //     },
+            //     separatorBuilder: (context, index) => SizedBox(height: gap),
+            //     itemCount: courses.length,
+            //   ),
+            // ),
             SizedBox(width: gap),
-            SizedBox(
-              height: MediaQuery.of(context).size.width * 0.5,
-              width: 275,
+            Flexible(
               child: ListView.separated(
+                shrinkWrap: true,
                 itemBuilder: (context, index) {
                   final course = courses[index];
                   return CourseItemWidget(course: course);
@@ -45,11 +55,22 @@ class QueryGrid extends StatelessWidget {
                 itemCount: courses.length,
               ),
             ),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.width * 0.5,
+            //   width: 275,
+            //   child: ListView.separated(
+            //     itemBuilder: (context, index) {
+            //       final course = courses[index];
+            //       return CourseItemWidget(course: course);
+            //     },
+            //     separatorBuilder: (context, index) => SizedBox(height: gap),
+            //     itemCount: courses.length,
+            //   ),
+            // ),
             SizedBox(width: gap),
-            SizedBox(
-              height: MediaQuery.of(context).size.width * 0.5,
-              width: 222,
+            Flexible(
               child: ListView.separated(
+                shrinkWrap: true,
                 itemBuilder: (context, index) {
                   final course = courses[index];
                   return CourseItemWidget(course: course);
@@ -58,6 +79,18 @@ class QueryGrid extends StatelessWidget {
                 itemCount: courses.length,
               ),
             ),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.width * 0.5,
+            //   width: 222,
+            //   child: ListView.separated(
+            //     itemBuilder: (context, index) {
+            //       final course = courses[index];
+            //       return CourseItemWidget(course: course);
+            //     },
+            //     separatorBuilder: (context, index) => SizedBox(height: gap),
+            //     itemCount: courses.length,
+            //   ),
+            // ),
           ],
         ),
       ),
