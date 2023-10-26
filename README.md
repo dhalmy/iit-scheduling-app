@@ -116,3 +116,8 @@ https://spinthewheel.app/editor
 ![IITSchedulingApp - Course Selection ~ CS Search   Chosen (Light)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/61f31e6c-817e-4153-a3ff-b969371f67a7)
 
 ![IITSchedulingApp - Course Selection ~ CS Search   Chosen (Dark)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/6882c438-65f1-41b1-adaa-0086bdefc0cc)
+
+### Tasks
+![IITSchedulingApp - Tasks (Light)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/e872cbb6-18a2-4465-a5df-2c5d027337a4)
+
+![IITSchedulingApp - Tasks (Dark)](https://github.com/anthonyfranco0123/iitschedulingapp/assets/67798119/4bb6886c-eebe-42c4-9c91-ff2274111581)
