@@ -35,6 +35,20 @@ class _QueryBoxState extends State<QueryBox> {
     });
   }
 
+  int _getColumnCourseListLength(int columnPosition) {
+    if (courses.length % 3 != columnPosition) {
+      print('ceil');
+      return (courses.length / 3).ceil();
+    } else {
+      print('else');
+      // print(courses);
+      // print(courses.length); // 200
+      // print(courses.length % 3); // 2
+      print((courses.length / 3).floor());
+      return (courses.length / 3).floor();
+    }
+  }
+
   @override
   void dispose() {
     _searchController.dispose();
@@ -76,7 +90,10 @@ class _QueryBoxState extends State<QueryBox> {
                     onPressed: () async {
                       final query = _searchController.text;
                       final userInput = UserSearchInput(query);
-                      await _loadCourses(QueryLogic(userInput, YearSemester.fall2023)); // Load courses when searching
+                      await _loadCourses(QueryLogic(
+                          userInput,
+                          YearSemester
+                              .fall2023)); // Load courses when searching
                     },
                   ),
                 ],
@@ -97,7 +114,12 @@ class _QueryBoxState extends State<QueryBox> {
               final courses = snapshot.data ?? [];
               return SizedBox(
                 height: MediaQuery.of(context).size.height * 0.699,
-                child: QueryGrid(courses: courses),
+                child: QueryGrid(
+                  courses: courses,
+                  firstColumnCourseListLength: _getColumnCourseListLength(0),
+                  secondColumnCourseListLength: _getColumnCourseListLength(1),
+                  thirdColumnCourseListLength: _getColumnCourseListLength(2),
+                ),
               );
             }
           },

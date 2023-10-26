@@ -5,7 +5,7 @@ import '../query_logic/course.dart';
 class CourseItemWidgetSmall extends StatelessWidget {
   final Course course;
 
-  CourseItemWidgetSmall({super.key, required this.course});
+  const CourseItemWidgetSmall({super.key, required this.course});
 
   @override
   Widget build(BuildContext context) {
