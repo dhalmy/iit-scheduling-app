@@ -20,7 +20,24 @@ class CourseItemWidgetBig extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Course Code: ${course.courseCode}'),
+          Row(
+            children: [
+              Expanded(
+                  child: SizedBox(
+                      child: Text(course.courseCode,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 32)))),
+              Column(
+                children: [
+                  Text('Catalog >'),
+                  Text('Evaluations >'),
+                ],
+              )
+            ],
+          ),
+          Text(''),
+          Row(),
           Text('Course Title: ${course.courseTitle}'),
           Text('Instructor: ${course.instructor}'),
           Text('Enrolled: ${course.enrolled}/${course.max}'),
