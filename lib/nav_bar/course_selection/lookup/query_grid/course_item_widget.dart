@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 
 import '../query_logic/course.dart';
 
-class CourseItemWidgetBig extends StatelessWidget {
+class CourseItemWidget extends StatelessWidget {
   final Course course;
+  final double height;
+  final double width;
+  final double fontSize;
 
-  CourseItemWidgetBig({super.key, required this.course});
+  const CourseItemWidget({super.key, required this.course, required this.height, required this.width, required this.fontSize});
 
   @override
   Widget build(BuildContext context) {
     // You can customize the appearance of the course details here
     return Container(
-      height: 155,
-      width: 258,
+      height: height,
+      width: width,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.0),
@@ -25,9 +28,9 @@ class CourseItemWidgetBig extends StatelessWidget {
               Expanded(
                   child: SizedBox(
                       child: Text(course.courseCode,
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 32)))),
+                              fontSize: fontSize)))),
               Column(
                 children: [
                   Text('Catalog >'),
@@ -37,11 +40,16 @@ class CourseItemWidgetBig extends StatelessWidget {
             ],
           ),
           Text(''),
-          Row(),
           Text('Course Title: ${course.courseTitle}'),
           Text('Instructor: ${course.instructor}'),
           Text('Enrolled: ${course.enrolled}/${course.max}'),
           Text('Available: ${course.available}'),
+          Row(
+            children: [
+              Expanded(child: SizedBox(child: Text('Sections'))),
+              Text('Course Prerequisites'),
+            ],
+          ),
           // Add more Text widgets for other course details as needed
         ],
       ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/course_item_widget_big.dart';
 
 import '../query_logic/course.dart';
-import 'course_item_widget_small.dart';
+import 'course_item_widget.dart';
 
 class QueryGrid extends StatelessWidget {
   final List<Course> courses;
@@ -32,7 +31,7 @@ class QueryGrid extends StatelessWidget {
                 for (int i = 0; i < firstColumnCourseListLength; i += 3)
                   Padding(
                     padding: EdgeInsets.only(top: 0, bottom: gap, left: gap / 2, right: gap / 2),
-                    child: CourseItemWidgetSmall(course: courses[i]),
+                    child: CourseItemWidget(course: courses[i], height: 125, width: 205, fontSize: 20),
                   ),
               ],
             ),
@@ -41,7 +40,7 @@ class QueryGrid extends StatelessWidget {
                 for (int i = 1; i < secondColumnCourseListLength; i += 3)
                   Padding(
                     padding: EdgeInsets.only(top: 0, bottom: gap, left: gap / 2, right: gap / 2),
-                    child: CourseItemWidgetBig(course: courses[i]),
+                    child: CourseItemWidget(course: courses[i], height: 155, width: 258, fontSize: 32),
                   ),
               ],
             ),
@@ -50,7 +49,7 @@ class QueryGrid extends StatelessWidget {
                 for (int i = 2; i < thirdColumnCourseListLength; i += 3)
                   Padding(
                     padding: EdgeInsets.only(top: 0, bottom: gap, left: gap / 2, right: gap / 2),
-                    child: CourseItemWidgetSmall(course: courses[i]),
+                    child: CourseItemWidget(course: courses[i], height: 125, width: 205, fontSize: 20),
                   ),
               ],
             ),
