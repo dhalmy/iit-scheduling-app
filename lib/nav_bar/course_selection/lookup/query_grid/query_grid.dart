@@ -30,8 +30,12 @@ class QueryGrid extends StatelessWidget {
               children: <Widget>[
                 for (int i = 0; i < firstColumnCourseListLength; i += 3)
                   Padding(
-                    padding: EdgeInsets.only(top: 0, bottom: gap, left: gap / 2, right: gap / 2),
-                    child: CourseItemWidget(course: courses[i], height: 125, width: 205, fontSize: 20),
+                    padding: EdgeInsets.only(
+                        top: 0, bottom: gap, left: gap / 2, right: gap / 2),
+                    child: CourseItemWidget(
+                      course: courses[i],
+                      isSmallWidget: true,
+                    ),
                   ),
               ],
             ),
@@ -39,8 +43,12 @@ class QueryGrid extends StatelessWidget {
               children: <Widget>[
                 for (int i = 1; i < secondColumnCourseListLength; i += 3)
                   Padding(
-                    padding: EdgeInsets.only(top: 0, bottom: gap, left: gap / 2, right: gap / 2),
-                    child: CourseItemWidget(course: courses[i], height: 155, width: 258, fontSize: 32),
+                    padding: EdgeInsets.only(
+                        top: 0, bottom: gap, left: gap / 2, right: gap / 2),
+                    child: CourseItemWidget(
+                      course: courses[i],
+                      isSmallWidget: false,
+                    ),
                   ),
               ],
             ),
@@ -48,8 +56,12 @@ class QueryGrid extends StatelessWidget {
               children: <Widget>[
                 for (int i = 2; i < thirdColumnCourseListLength; i += 3)
                   Padding(
-                    padding: EdgeInsets.only(top: 0, bottom: gap, left: gap / 2, right: gap / 2),
-                    child: CourseItemWidget(course: courses[i], height: 125, width: 205, fontSize: 20),
+                    padding: EdgeInsets.only(
+                        top: 0, bottom: gap, left: gap / 2, right: gap / 2),
+                    child: CourseItemWidget(
+                      course: courses[i],
+                      isSmallWidget: true,
+                    ),
                   ),
               ],
             ),

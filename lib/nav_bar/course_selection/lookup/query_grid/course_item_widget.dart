@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/grid_svg_icon_logic.dart';
 
 import '../query_logic/course.dart';
 
 class CourseItemWidget extends StatelessWidget {
   final Course course;
-  final double height;
-  final double width;
-  final double fontSize;
+  final bool isSmallWidget;
 
-  const CourseItemWidget({super.key, required this.course, required this.height, required this.width, required this.fontSize});
+  const CourseItemWidget(
+      {super.key, required this.course, required this.isSmallWidget});
 
   @override
   Widget build(BuildContext context) {
-    // You can customize the appearance of the course details here
     return Container(
-      height: height,
-      width: width,
+      height: isSmallWidget ? 125 : 155,
+      width: isSmallWidget ? 205 : 258,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.0),
@@ -30,8 +29,8 @@ class CourseItemWidget extends StatelessWidget {
                       child: Text(course.courseCode,
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: fontSize)))),
-              Column(
+                              fontSize: isSmallWidget ? 20 : 32)))),
+              const Column(
                 children: [
                   Text('Catalog >'),
                   Text('Evaluations >'),
@@ -39,15 +38,33 @@ class CourseItemWidget extends StatelessWidget {
               )
             ],
           ),
-          Text(''),
+          const Text('Course Description..'),
           Text('Course Title: ${course.courseTitle}'),
-          Text('Instructor: ${course.instructor}'),
-          Text('Enrolled: ${course.enrolled}/${course.max}'),
-          Text('Available: ${course.available}'),
+          Expanded(child: SizedBox(child: Text('Instructor: ${course.instructor}'))),
           Row(
             children: [
-              Expanded(child: SizedBox(child: Text('Sections'))),
-              Text('Course Prerequisites'),
+              Expanded(
+                  child: SizedBox(
+                      child: Row(
+                children: [
+                  const Text('Sections'),
+                  GridSvgIconLogic()
+                      .getSectionsIcon(course.enrolled, course.max),
+                ],
+              ))),
+              const SizedBox(
+                width: 2,
+              ),
+              Text(
+                'Course Prerequisites',
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: isSmallWidget ? 10 : 13),
+              ),
+              Icon(
+                Icons.question_mark_outlined,
+                size: isSmallWidget ? 10 : 13,
+              ),
             ],
           ),
           // Add more Text widgets for other course details as needed
