@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iitschedulingapp/hover_builder.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/query_grid.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -99,6 +100,35 @@ class _QueryBoxState extends State<QueryBox> {
                 ],
               ),
             ),
+            HoverBuilder(builder: (isHovering) {
+              return Stack(
+                children: [
+                  Icon(Icons.question_mark_outlined),
+                  if (isHovering)
+                    Positioned(
+                      top: -30,
+                      child: Container(
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 5,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          'This is a tooltip text.',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            }),
             const Expanded(child: SizedBox(child: YearSemesterDropDown())),
           ],
         ),
