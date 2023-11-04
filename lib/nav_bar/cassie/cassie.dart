@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:iitschedulingapp/nav_bar/cassie/cassie_UI/cassie_chat_message.dart';
+import 'package:iitschedulingapp/nav_bar/cassie/cassie_UI/cassie_chat_screen.dart';
 
 class CASSIE extends StatelessWidget {
   const CASSIE({Key? key}) : super(key: key);
@@ -15,14 +17,8 @@ class CASSIE extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SvgPicture.asset('svgs/CASSIE_Icon.svg'),
-          const Text(
-            'CASSIE',
-            style: TextStyle(
-              fontSize: 18.0,
-              color: Colors.black, // Change text color to black
-            ),
-          ),
+          ChatMessage(text: 'Hello', isUser: true),
+          const ChatScreen(),
         ],
       ),
     );

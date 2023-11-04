@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'cassie_chat_message.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({required Key key}) : super(key: key);
+  const ChatScreen({Key? key}) : super(key: key);
 
   @override
   State createState() => ChatScreenState();
@@ -37,42 +37,45 @@ class ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-          color: Theme.of(context).primaryColor,
-          child: const Center(
-            child: Text(
-              "AI Chat",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.796,
+      child: Column(
+        children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+            color: Theme.of(context).primaryColor,
+            child: const Center(
+              child: Text(
+                "AI Chat",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
-        ),
-        Expanded(
-          child: Column(
-            children: <Widget>[
-              Flexible(
-                child: ListView.builder(
-                  padding: const EdgeInsets.all(8.0),
-                  reverse: true,
-                  itemCount: _messages.length,
-                  itemBuilder: (_, int index) => _messages[index],
+          Expanded(
+            child: Column(
+              children: <Widget>[
+                Flexible(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.all(8.0),
+                    reverse: true,
+                    itemCount: _messages.length,
+                    itemBuilder: (_, int index) => _messages[index],
+                  ),
                 ),
-              ),
-              Divider(height: 1.0),
-              Container(
-                decoration: BoxDecoration(color: Theme.of(context).cardColor),
-                child: _buildTextComposer(),
-              ),
-            ],
+                Divider(height: 1.0),
+                Container(
+                  decoration: BoxDecoration(color: Theme.of(context).cardColor),
+                  child: _buildTextComposer(),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
