@@ -72,6 +72,7 @@ class _QueryBoxState extends State<QueryBox> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 20),
         Row(
           children: [
             const SizedBox(
@@ -79,7 +80,7 @@ class _QueryBoxState extends State<QueryBox> {
             ),
             Container(
               width: 446.4,
-              height: MediaQuery.of(context).size.height * 0.05,
+              // height: 35.36,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40.0),
                 border: Border.all(color: Colors.grey, width: 1.0),
@@ -93,7 +94,7 @@ class _QueryBoxState extends State<QueryBox> {
                     child: TextField(
                       controller: _searchController,
                       decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.only(bottom: 12),
+                        contentPadding: EdgeInsets.only(bottom: 0.5),
                         hintText: 'Search...',
                         border: InputBorder.none,
                       ),
@@ -133,13 +134,14 @@ class _QueryBoxState extends State<QueryBox> {
                 ),
               ),
             ),
-            const Expanded(child: SizedBox(child: YearSemesterDropDown())),
+            const Expanded(
+                flex: 1, child: SizedBox(child: YearSemesterDropDown())),
             const SizedBox(
               width: 12,
             ),
           ],
         ),
-        const SizedBox(height: 29),
+        const SizedBox(height: 20),
         FutureBuilder<List<Course>>(
           future: Future.value(courses), // Wrap the list in a Future
           builder: (context, snapshot) {

@@ -49,6 +49,9 @@ class CourseItemWidget extends StatelessWidget {
                       child: Row(
                         children: [
                           const Text('Sections'),
+                          const SizedBox(
+                            width: 2,
+                          ),
                           GridSvgIconLogic()
                               .getSectionsIcon(course.enrolled, course.max),
                         ],
@@ -73,28 +76,6 @@ class CourseItemWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              // Expanded(
-              //     child: SizedBox(
-              //         child: Row(
-              //   children: [
-              //     const Text('Sections'),
-              //     GridSvgIconLogic()
-              //         .getSectionsIcon(course.enrolled, course.max),
-              //   ],
-              // ))),
-              // const SizedBox(
-              //   width: 2,
-              // ),
-              // Text(
-              //   'Course Prerequisites',
-              //   style: TextStyle(
-              //       fontWeight: FontWeight.w600,
-              //       fontSize: isSmallWidget ? 10 : 13),
-              // ),
-              // Icon(
-              //   Icons.question_mark_outlined,
-              //   size: isSmallWidget ? 10 : 13,
-              // ),
               const Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
