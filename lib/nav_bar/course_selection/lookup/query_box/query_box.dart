@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/hover_builder.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/query_grid.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../query_logic/course.dart';
 import '../query_logic/query_logic.dart';
@@ -20,6 +19,7 @@ class _QueryBoxState extends State<QueryBox> {
   late TextEditingController _searchController;
   List<Course> courses = [];
   late QueryLogic queryLogic;
+  bool isMouseEnter = false;
 
   @override
   void initState() {
@@ -50,6 +50,18 @@ class _QueryBoxState extends State<QueryBox> {
     }
   }
 
+  void _onExitMouse(PointerEvent details) {
+    setState(() {
+      isMouseEnter = false;
+    });
+  }
+
+  void _onEnterMouse(PointerEvent details) {
+    setState(() {
+      isMouseEnter = true;
+    });
+  }
+
   @override
   void dispose() {
     _searchController.dispose();
@@ -61,12 +73,13 @@ class _QueryBoxState extends State<QueryBox> {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            const SizedBox(
+              width: 20,
+            ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.30,
+              width: 446.4,
               height: MediaQuery.of(context).size.height * 0.05,
-              margin: const EdgeInsets.all(20.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40.0),
                 border: Border.all(color: Colors.grey, width: 1.0),
@@ -100,36 +113,30 @@ class _QueryBoxState extends State<QueryBox> {
                 ],
               ),
             ),
-            HoverBuilder(builder: (isHovering) {
-              return Stack(
-                children: [
-                  Icon(Icons.question_mark_outlined),
-                  if (isHovering)
-                    Positioned(
-                      top: -30,
-                      child: Container(
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey,
-                              blurRadius: 5,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Text(
-                          'This is a tooltip text.',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
-                    ),
-                ],
-              );
-            }),
+            SizedBox(
+              width: 28,
+              height: 28,
+              child: MouseRegion(
+                onEnter: _onEnterMouse,
+                onExit: _onExitMouse,
+                child: AnimatedContainer(
+                  padding: EdgeInsets.zero,
+                  width: 28,
+                  height: 28,
+                  duration: const Duration(milliseconds: 300),
+                  child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      child: Icon(
+                        Icons.question_mark_rounded,
+                        size: isMouseEnter ? 28 : 24,
+                      )),
+                ),
+              ),
+            ),
             const Expanded(child: SizedBox(child: YearSemesterDropDown())),
+            const SizedBox(
+              width: 12,
+            ),
           ],
         ),
         const SizedBox(height: 29),
@@ -137,7 +144,9 @@ class _QueryBoxState extends State<QueryBox> {
           future: Future.value(courses), // Wrap the list in a Future
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
+              return const CircularProgressIndicator(
+                color: Color(0xFF00BD90),
+              );
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {

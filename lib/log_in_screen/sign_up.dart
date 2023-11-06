@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -29,8 +31,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
-              padding: EdgeInsets.only(bottom: 20.0),
-              child: Text(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: const Text(
                 'Sign Up',
                 style: TextStyle(
                   fontSize: 24,
@@ -51,10 +53,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 labelText: 'Username',
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextFormField(
               controller: passwordController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Password',
               ),
               obscureText: true,
@@ -62,7 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 checkPasswords();
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextFormField(
               controller: repeatPasswordController,
               decoration: InputDecoration(
@@ -74,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 checkPasswords();
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 if (passwordsMatch) {
@@ -86,7 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   // Add your sign-up logic here
                 }
               },
-              child: Text('Sign me up!'),
+              child: const Text('Sign me up!'),
             ),
           ],
         ),

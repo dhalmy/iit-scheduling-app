@@ -66,7 +66,7 @@ class ChatScreenState extends State<ChatScreen> {
                     itemBuilder: (_, int index) => _messages[index],
                   ),
                 ),
-                Divider(height: 1.0),
+                const Divider(height: 1.0),
                 Container(
                   decoration: BoxDecoration(color: Theme.of(context).cardColor),
                   child: _buildTextComposer(),
@@ -83,7 +83,7 @@ class ChatScreenState extends State<ChatScreen> {
     return IconTheme(
       data: IconThemeData(color: Theme.of(context).canvasColor),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 8.0),
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Row(
           children: <Widget>[
             Flexible(
@@ -94,7 +94,7 @@ class ChatScreenState extends State<ChatScreen> {
               ),
             ),
             IconButton(
-              icon: Icon(Icons.send),
+              icon: const Icon(Icons.send),
               onPressed: () => _handleSubmitted(_textController.text),
             ),
           ],

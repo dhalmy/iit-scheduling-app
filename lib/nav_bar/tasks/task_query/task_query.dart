@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TodayPage extends StatelessWidget {
+  const TodayPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -9,9 +11,9 @@ class TodayPage extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             alignment: Alignment.centerLeft,
-            child: Text(
+            child: const Text(
               'Today',
               style: TextStyle(
                 fontSize: 24,
@@ -21,7 +23,7 @@ class TodayPage extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
-              children: [  // Remove shrinkWrap: true
+              children: const [  // Remove shrinkWrap: true
                 Row(
                   children: [
                     Expanded(child: CardWidget()),
@@ -48,15 +50,17 @@ class TodayPage extends StatelessWidget {
 }
 
 class CardWidget extends StatelessWidget {
+  const CardWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      margin: EdgeInsets.all(8.0),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.all(8.0),
+      child: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Center(
           child: Text(
             'Card Content',

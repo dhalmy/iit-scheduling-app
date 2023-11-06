@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'year_semester.dart';
 
 class YearSemesterDropDown extends StatefulWidget {
   const YearSemesterDropDown({Key? key}) : super(key: key);
@@ -24,50 +23,48 @@ class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
   Widget build(BuildContext context) {
     double dropdownWidth = MediaQuery.of(context).size.width * 0.11;
 
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const SizedBox(height: 15),
-          // create the dropdown button wrapped in a Container
-          SizedBox(
-            width: dropdownWidth, // Set the width here
-            child: DropdownButton<String>(
-              isExpanded: true,
-              hint: const Text('Select Year-Semester'),
-              value: selectedItem,
-              underline: Container(
-                height: 0,
-              ),
-              onChanged: (newValue) {
-                setState(() {
-                  selectedItem = newValue!;
-                });
-              },
-              selectedItemBuilder: (BuildContext context) {
-                return items.map<Widget>((String text) {
-                  return Center(
-                    child: Text(
-                      text,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  );
-                }).toList();
-              },
-              items: items.map((item) {
-                return DropdownMenuItem<String>(
-                  value: item,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        const SizedBox(height: 15),
+        // create the dropdown button wrapped in a Container
+        SizedBox(
+          width: dropdownWidth, // Set the width here
+          child: DropdownButton<String>(
+            isExpanded: true,
+            hint: const Text('Select Year-Semester'),
+            value: selectedItem,
+            underline: Container(
+              height: 0,
+            ),
+            onChanged: (newValue) {
+              setState(() {
+                selectedItem = newValue!;
+              });
+            },
+            selectedItemBuilder: (BuildContext context) {
+              return items.map<Widget>((String text) {
+                return Center(
                   child: Text(
-                    item,
-                    style: const TextStyle(color: Colors.black),
+                    text,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 );
-              }).toList(),
-            ),
+              }).toList();
+            },
+            items: items.map((item) {
+              return DropdownMenuItem<String>(
+                value: item,
+                child: Text(
+                  item,
+                  style: const TextStyle(color: Colors.black),
+                ),
+              );
+            }).toList(),
           ),
-          Text('Selected Item: ${selectedItem.toString().split('.').last}'), // Display the selected item as a string
-        ],
-      ),
+        ),
+        Text('Selected Item: ${selectedItem.toString().split('.').last}'), // Display the selected item as a string
+      ],
     );
   }
 

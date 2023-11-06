@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 
 class LoginApp extends StatelessWidget {
+  const LoginApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: LoginPage(),
     );
   }
 }
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login Page'),
+        title: const Text('Login Page'),
       ),
       body: Center(
         child: Padding(
@@ -22,31 +26,31 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextField(
+              const TextField(
                 decoration: InputDecoration(
                   labelText: 'Username',
                 ),
               ),
-              SizedBox(height: 20),
-              TextField(
+              const SizedBox(height: 20),
+              const TextField(
                 decoration: InputDecoration(
                   labelText: 'Password',
                 ),
                 obscureText: true, // Password should be hidden
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   // Add your login logic here
                 },
-                child: Text('Sign In'),
+                child: const Text('Sign In'),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
                   // Add navigation logic to create a new account page
                 },
-                child: Text(
+                child: const Text(
                   'Create new account',
                   style: TextStyle(
                     color: Colors.blue,

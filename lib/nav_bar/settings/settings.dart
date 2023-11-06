@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'account/account_button.dart';
 
@@ -13,11 +12,11 @@ class Settings extends StatelessWidget {
         color: Colors.grey.withOpacity(0.3), // Make gray more transparent
         borderRadius: BorderRadius.circular(20.0), // Adjust the radius as needed
       ),
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const AccountButton(),
+          AccountButton(),
         ],
       ),
     );

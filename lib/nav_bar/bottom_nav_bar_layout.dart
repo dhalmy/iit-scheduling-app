@@ -42,7 +42,7 @@ class _BottomNavBarLayoutState extends State<BottomNavBarLayout> {
 
     List<Widget> pages = [
       ClipRRect(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20.0),
           bottomRight: Radius.circular(20.0),
         ),
@@ -52,7 +52,7 @@ class _BottomNavBarLayoutState extends State<BottomNavBarLayout> {
           decoration: BoxDecoration(
             color: Colors.grey.withOpacity(0.3),
           ),
-          child: Center(
+          child: const Center(
             child: Text(
               'Page 1 Content',
               style: TextStyle(
@@ -64,7 +64,7 @@ class _BottomNavBarLayoutState extends State<BottomNavBarLayout> {
         ),
       ),
       ClipRRect(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20.0),
           bottomRight: Radius.circular(20.0),
         ),
@@ -74,7 +74,7 @@ class _BottomNavBarLayoutState extends State<BottomNavBarLayout> {
           decoration: BoxDecoration(
             color: Colors.grey.withOpacity(0.3),
           ),
-          child: Center(
+          child: const Center(
             child: Text(
               'Page 2 Content',
               style: TextStyle(
@@ -86,7 +86,7 @@ class _BottomNavBarLayoutState extends State<BottomNavBarLayout> {
         ),
       ),
       ClipRRect(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20.0),
           bottomRight: Radius.circular(20.0),
         ),
@@ -96,7 +96,7 @@ class _BottomNavBarLayoutState extends State<BottomNavBarLayout> {
           decoration: BoxDecoration(
             color: Colors.grey.withOpacity(0.3),
           ),
-          child: Center(
+          child: const Center(
             child: Text(
               'Page 3 Content',
               style: TextStyle(
@@ -108,7 +108,7 @@ class _BottomNavBarLayoutState extends State<BottomNavBarLayout> {
         ),
       ),
       ClipRRect(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20.0),
           bottomRight: Radius.circular(20.0),
         ),
@@ -118,7 +118,7 @@ class _BottomNavBarLayoutState extends State<BottomNavBarLayout> {
           decoration: BoxDecoration(
             color: Colors.grey.withOpacity(0.3),
           ),
-          child: Center(
+          child: const Center(
             child: Text(
               'Page 4 Content',
               style: TextStyle(

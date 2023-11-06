@@ -6,7 +6,7 @@ class GridSvgIconLogic {
   SvgPicture getSectionsIcon(int courseEnrolled, int courseMax) {
     String iconName = '';
 
-    if(courseEnrolled == 0) {
+    if(courseEnrolled == courseMax) {
       iconName = 'error_circle_outline';
     } else if(courseEnrolled > 0 && courseEnrolled < courseMax / 5) {
       iconName = 'caution_rounded_triangle_outline';

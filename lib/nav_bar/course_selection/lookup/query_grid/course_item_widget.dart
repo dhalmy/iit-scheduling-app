@@ -13,7 +13,7 @@ class CourseItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: isSmallWidget ? 125 : 155,
+      height: isSmallWidget ? 125 : 154,
       width: isSmallWidget ? 205 : 258,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -30,40 +30,77 @@ class CourseItemWidget extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: isSmallWidget ? 20 : 32)))),
-              const Column(
-                children: [
-                  Text('Catalog >'),
-                  Text('Evaluations >'),
-                ],
-              )
+              Icon(Icons.add_circle_outline),
             ],
           ),
           const Text('Course Description..'),
           Text('Course Title: ${course.courseTitle}'),
           Expanded(child: SizedBox(child: Text('Instructor: ${course.instructor}'))),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                  child: SizedBox(
-                      child: Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Sections'),
-                  GridSvgIconLogic()
-                      .getSectionsIcon(course.enrolled, course.max),
+                  const SizedBox(
+                    height: 1,
+                  ),
+                  SizedBox(
+                      child: Row(
+                        children: [
+                          const Text('Sections'),
+                          GridSvgIconLogic()
+                              .getSectionsIcon(course.enrolled, course.max),
+                        ],
+                      )),
+                  const SizedBox(
+                    height: 1,
+                  ),
+                  const Row(
+                    textDirection: TextDirection.ltr,
+                    children: [
+                      Text(
+                        'Prerequisites',
+                      ),
+                      Icon(
+                        Icons.question_mark_outlined,
+                        size: 13,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 1,
+                  ),
                 ],
-              ))),
-              const SizedBox(
-                width: 2,
               ),
-              Text(
-                'Course Prerequisites',
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: isSmallWidget ? 10 : 13),
-              ),
-              Icon(
-                Icons.question_mark_outlined,
-                size: isSmallWidget ? 10 : 13,
+              // Expanded(
+              //     child: SizedBox(
+              //         child: Row(
+              //   children: [
+              //     const Text('Sections'),
+              //     GridSvgIconLogic()
+              //         .getSectionsIcon(course.enrolled, course.max),
+              //   ],
+              // ))),
+              // const SizedBox(
+              //   width: 2,
+              // ),
+              // Text(
+              //   'Course Prerequisites',
+              //   style: TextStyle(
+              //       fontWeight: FontWeight.w600,
+              //       fontSize: isSmallWidget ? 10 : 13),
+              // ),
+              // Icon(
+              //   Icons.question_mark_outlined,
+              //   size: isSmallWidget ? 10 : 13,
+              // ),
+              const Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text('Catalog >'),
+                  Text('Evaluations >'),
+                ],
               ),
             ],
           ),
