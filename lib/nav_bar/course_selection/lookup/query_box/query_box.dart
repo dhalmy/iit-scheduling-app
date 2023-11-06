@@ -74,70 +74,87 @@ class _QueryBoxState extends State<QueryBox> {
       children: [
         const SizedBox(height: 20),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const SizedBox(
-              width: 20,
-            ),
-            Container(
-              width: 446.4,
-              // height: 35.36,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40.0),
-                border: Border.all(color: Colors.grey, width: 1.0),
-              ),
+            Flexible(
+              flex: 3,
               child: Row(
                 children: [
                   const SizedBox(
-                    width: 12,
+                    width: 20,
                   ),
                   Expanded(
-                    child: TextField(
-                      controller: _searchController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.only(bottom: 0.5),
-                        hintText: 'Search...',
-                        border: InputBorder.none,
+                    flex: 6,
+                    child: Container(
+                      // width: 446.4,
+                      // height: 35.36,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40.0),
+                        border: Border.all(color: Colors.grey, width: 1.0),
+                      ),
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 12,
+                          ),
+                          Expanded(
+                            child: TextField(
+                              controller: _searchController,
+                              decoration: const InputDecoration(
+                                contentPadding: EdgeInsets.only(bottom: 0.5),
+                                hintText: 'Search...',
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.search),
+                            onPressed: () async {
+                              final query = _searchController.text;
+                              final userInput = UserSearchInput(query);
+                              await _loadCourses(QueryLogic(
+                                  userInput,
+                                  YearSemester
+                                      .fall2023)); // Load courses when searching
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.search),
-                    onPressed: () async {
-                      final query = _searchController.text;
-                      final userInput = UserSearchInput(query);
-                      await _loadCourses(QueryLogic(
-                          userInput,
-                          YearSemester
-                              .fall2023)); // Load courses when searching
-                    },
+                  Flexible(
+                    flex: 1,
+                    child: SizedBox(
+                      width: 28,
+                      height: 28,
+                      child: MouseRegion(
+                        onEnter: _onEnterMouse,
+                        onExit: _onExitMouse,
+                        child: AnimatedContainer(
+                          padding: EdgeInsets.zero,
+                          width: 28,
+                          height: 28,
+                          duration: const Duration(milliseconds: 300),
+                          child: AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 300),
+                              child: Icon(
+                                Icons.question_mark_rounded,
+                                size: isMouseEnter ? 28 : 24,
+                              )),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              width: 28,
-              height: 28,
-              child: MouseRegion(
-                onEnter: _onEnterMouse,
-                onExit: _onExitMouse,
-                child: AnimatedContainer(
-                  padding: EdgeInsets.zero,
-                  width: 28,
-                  height: 28,
-                  duration: const Duration(milliseconds: 300),
-                  child: AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 300),
-                      child: Icon(
-                        Icons.question_mark_rounded,
-                        size: isMouseEnter ? 28 : 24,
-                      )),
-                ),
-              ),
-            ),
             const Expanded(
-                flex: 1, child: SizedBox(child: YearSemesterDropDown())),
-            const SizedBox(
-              width: 12,
+              flex: 1,
+              child: Row(
+                children: [
+                  Expanded(child: SizedBox(child: YearSemesterDropDown())),
+                ],
+              ),
             ),
           ],
         ),
@@ -153,8 +170,9 @@ class _QueryBoxState extends State<QueryBox> {
               return Text('Error: ${snapshot.error}');
             } else {
               final courses = snapshot.data ?? [];
-              return SizedBox(
-                height: MediaQuery.of(context).size.height * 0.699,
+              return Expanded(
+              // return SizedBox(
+              //   height: MediaQuery.of(context).size.height * 0.699,
                 child: QueryGrid(
                   courses: courses,
                   firstColumnCourseListLength: _getColumnCourseListLength(0),
@@ -165,6 +183,7 @@ class _QueryBoxState extends State<QueryBox> {
             }
           },
         ),
+        const SizedBox(height: 18.55),
       ],
     );
   }
