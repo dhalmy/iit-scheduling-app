@@ -63,7 +63,6 @@ class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
             }).toList(),
           ),
         ),
-        Text('Selected Item: ${selectedItem.toString().split('.').last}'), // Display the selected item as a string
       ],
     );
   }

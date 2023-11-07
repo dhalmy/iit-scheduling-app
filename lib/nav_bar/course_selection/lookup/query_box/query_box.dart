@@ -85,8 +85,6 @@ class _QueryBoxState extends State<QueryBox> {
                   Expanded(
                     flex: 6,
                     child: Container(
-                      // width: 446.4,
-                      // height: 35.36,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(40.0),
                         border: Border.all(color: Colors.grey, width: 1.0),
@@ -157,7 +155,7 @@ class _QueryBoxState extends State<QueryBox> {
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 24.5),
         FutureBuilder<List<Course>>(
           future: Future.value(courses), // Wrap the list in a Future
           builder: (context, snapshot) {

@@ -89,6 +89,7 @@ class QueryLogic {
 
     PostgrestFilterBuilder<dynamic> query =
     Supabase.instance.client.from(EnumToString.convertToString(yearSemester)).select('*');
+    print(query);
     print(EnumToString.convertToString(yearSemester));
 
     if (filterByCourseSubject != '') {
