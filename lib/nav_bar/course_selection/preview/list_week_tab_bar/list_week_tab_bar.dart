@@ -74,12 +74,15 @@ class ListWeekTabBar extends StatelessWidget {
                                   return SizedBox(
                                     height: MediaQuery.of(context).size.height * 0.66,
                                     width: double.maxFinite,
-                                    child: ListView.builder(
+                                    child: ListView.separated(
                                       itemCount: selectedCourses.courses.length,
                                       itemBuilder: (context, index) {
                                         return ListTile(
                                           title: Text(selectedCourses.courses[index]),
                                         );
+                                      },
+                                      separatorBuilder: (context, index) {
+                                        return const Divider();
                                       },
                                     ),
                                   );
