@@ -7,7 +7,6 @@ class ListWeekTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedCourses = Provider.of<SelectedCourses>(context).courses;
     return DefaultTabController(
       length: 2,
       child: SizedBox(
@@ -24,7 +23,6 @@ class ListWeekTabBar extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TabBar(
-                  // Define your custom TextStyle here
                   labelStyle: const TextStyle(
                     fontWeight: FontWeight.w500,
                   ),
@@ -36,10 +34,7 @@ class ListWeekTabBar extends StatelessWidget {
                   labelColor: Colors.black,
                   unselectedLabelColor: Colors.black,
                   tabs: const [
-                    // First tab
                     Tab(text: 'List'),
-
-                    // Second tab
                     Tab(text: 'Week'),
                   ],
                 ),
@@ -48,50 +43,58 @@ class ListWeekTabBar extends StatelessWidget {
             // Tab bar view here
             Padding(
               padding:
-                  EdgeInsets.all(MediaQuery.of(context).size.height * 0.025),
+              EdgeInsets.all(MediaQuery.of(context).size.height * 0.025),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                height: MediaQuery.of(context).size.height *
-                    0.705, // Adjust the height as needed
+                height: MediaQuery.of(context).size.height * 0.705,
                 child: NotificationListener<ScrollNotification>(
                   onNotification: (notification) {
                     if (notification is ScrollUpdateNotification) {
-                      // Prevent child from scrolling when the parent is scrolling
                       return false;
                     }
-                    return true; // Allow child widget to handle its own scrolling
+                    return true;
                   },
                   child: SingleChildScrollView(
                     physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics(),
                     ),
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height *
-                          0.705, // Adjust the height as needed
+                      height: MediaQuery.of(context).size.height * 0.705,
                       child: TabBarView(
                         controller: DefaultTabController.of(context),
                         children: [
                           // First tab bar view widget
-                          // Center(
-                          //   child: Text(
-                          //     'List',
-                          //     style: TextStyle(
-                          //       fontSize: 25,
-                          //       fontWeight: FontWeight.w600,
-                          //     ),
-                          //   ),
-                          // ),
-
-                          ListView.builder(
-                            itemCount: selectedCourses.length,
-                            itemBuilder: (context, index) {
-                              return ListTile(
-                                title: Text(selectedCourses[index]),
-                              );
-                            },
+                          Column(
+                            children: [
+                              Consumer<SelectedCourses>(
+                                builder: (context, selectedCourses, child) {
+                                  return SizedBox(
+                                    height: MediaQuery.of(context).size.height * 0.66,
+                                    width: double.maxFinite,
+                                    child: ListView.separated(
+                                      itemCount: selectedCourses.courses.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          title: Text(selectedCourses.courses[index]),
+                                        );
+                                      },
+                                      separatorBuilder: (context, index) {
+                                        return const Divider();
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                              OutlinedButton(
+                                onPressed: () {
+                                  // Add your logic to generate here
+                                },
+                                child: const Text("Generate"),
+                              ),
+                            ],
                           ),
 
                           // Second tab bar view widget
