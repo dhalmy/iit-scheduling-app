@@ -21,21 +21,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
+    return Material(
+      child: Container(
+        color: Colors.white, // Set background color
         padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              padding: EdgeInsets.only(bottom: 20.0),
-              child: Text(
-                'Sign Up',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+            Text(
+              'Sign Up',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
             ),
             TextFormField(
@@ -44,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 labelText: 'Email',
               ),
             ),
-            const SizedBox(height: 20.0),
+            SizedBox(height: 20.0),
             TextFormField(
               controller: usernameController,
               decoration: const InputDecoration(

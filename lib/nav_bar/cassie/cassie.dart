@@ -17,8 +17,8 @@ class CASSIE extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ChatMessage(text: 'Hello', isUser: true),
-          const ChatScreen(),
+            ChatMessage(text: 'hello world', isUser: true),
+            const ChatScreen()
         ],
       ),
     );
