@@ -85,13 +85,25 @@ class ListWeekTabBar extends StatelessWidget {
                           //   ),
                           // ),
 
-                          ListView.builder(
-                            itemCount: selectedCourses.length,
-                            itemBuilder: (context, index) {
-                              return ListTile(
-                                title: Text(selectedCourses[index]),
-                              );
-                            },
+                          Column(
+                            children: [
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.66,
+                                width: double.maxFinite,
+                                child: ListView.builder(
+                                  itemCount: selectedCourses.length,
+                                  itemBuilder: (context, index) {
+                                    return ListTile(
+                                      title: Text(selectedCourses[index]),
+                                    );
+                                  },
+                                ),
+                              ),
+                              OutlinedButton(
+                                  onPressed: () {},
+                                  child: const Text("Generate")),
+                            ],
                           ),
 
                           // Second tab bar view widget
