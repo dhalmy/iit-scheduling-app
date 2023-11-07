@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'cassie_chat_message.dart';
+import 'package:dart_openai/dart_openai.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -12,7 +14,7 @@ class ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
 
-  void _handleSubmitted(String text) {
+  Future<void> _handleSubmitted(String text) async {
     _textController.clear();
     ChatMessage message = ChatMessage(
       text: text,
@@ -24,8 +26,22 @@ class ChatScreenState extends State<ChatScreen> {
 
     // Replace this with the logic to send the user's message to your AI model
     // and get a response.
-    String response = "AI response goes here";
+    await dotenv.load(fileName: '.env');
+    OpenAI.apiKey = dotenv.env['OPENAI_API_KEY'] ?? "key not found";
 
+    final completion = await OpenAI.instance.chat.create(
+      model: "gpt-3.5-turbo",
+      messages: [
+        OpenAIChatCompletionChoiceMessageModel(
+          content: text,
+          role: OpenAIChatMessageRole.user,
+        ),
+      ],
+    );
+
+
+//figure out how to select only the final message from the ai
+    String response = completion.toMap.toString();
     ChatMessage botMessage = ChatMessage(
       text: response,
       isUser: false,
