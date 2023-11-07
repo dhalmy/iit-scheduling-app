@@ -67,30 +67,31 @@ class Scheduler: # class to create class schedule variations
 
         return selected_courses
 
-course_list = [
-    ('CS', '330'),
-    ('CS', '425'),
-    ('CS', '350'),
-    ('CS', '351'),
-    ('CS', '116'),
-    ('CS', '430'),
-    ('MATH', '251'),
-    ('MATH', '152'),
-    ('PHYS', '221'),
-    ('CS', '201'),
-    ('COM', '372'),
-    ('COM', '377'),
-    ('CS', '540'),
-    ('CS', '480'),
-    ('CS', '445'),
-    ('MATH', '252')
-    ]
+if '__name__' == '__main__':
+    course_list = [
+        ('CS', '330'),
+        ('CS', '425'),
+        ('CS', '350'),
+        ('CS', '351'),
+        ('CS', '116'),
+        ('CS', '430'),
+        ('MATH', '251'),
+        ('MATH', '152'),
+        ('PHYS', '221'),
+        ('CS', '201'),
+        ('COM', '372'),
+        ('COM', '377'),
+        ('CS', '540'),
+        ('CS', '480'),
+        ('CS', '445'),
+        ('MATH', '252')
+        ]
 
-courses = [group for group in (getCourse(c[0], c[1]) for c in course_list) if group is not None]
+    courses = [group for group in (getCourse(c[0], c[1]) for c in course_list) if group is not None]
 
 
-pp(courses)
+    pp(courses)
 
-selected_courses = Scheduler().get_schedule(courses)
-for course in selected_courses:
-    print(f"Selected: {course['courseType']} - {course['courseTitle']} with {course['instructor']} at {course['time']} on days {course['days']}")
+    selected_courses = Scheduler().get_schedule(courses)
+    for course in selected_courses:
+        print(f"Selected: {course['courseType']} - {course['courseTitle']} with {course['instructor']} at {course['time']} on days {course['days']}")

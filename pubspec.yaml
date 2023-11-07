@@ -38,6 +38,7 @@ dependencies:
   supabase_flutter: any
   enum_to_string: any
   provider: any
+  http: any
 
 dev_dependencies:
   flutter_test:

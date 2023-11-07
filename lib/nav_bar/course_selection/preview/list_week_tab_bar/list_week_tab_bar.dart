@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/selected_courses.dart';
 import 'package:provider/provider.dart';
+import 'schedule_api.dart';
+
 
 class ListWeekTabBar extends StatelessWidget {
   const ListWeekTabBar({Key? key}) : super(key: key);
@@ -87,7 +89,7 @@ class ListWeekTabBar extends StatelessWidget {
                               ),
                               OutlinedButton(
                                 onPressed: () {
-                                  // Add your logic to generate here
+                                  postSchedule();
                                 },
                                 child: const Text("Generate"),
                               ),
