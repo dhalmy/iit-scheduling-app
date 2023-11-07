@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:iitschedulingapp/nav_bar/course_selection/selected_courses.dart';
 import 'package:iitschedulingapp/nav_bar/nav_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'constants.dart';
 
@@ -7,9 +9,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
     url: 'https://hojaypiafpzmnznbilgm.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvamF5cGlhZnB6bW56bmJpbGdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYxNzQ3ODcsImV4cCI6MjAxMTc1MDc4N30.HTuzXegPGHO-ZE6etRg9BtL5W7nAUP6QdIcRGA2Stlg',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvamF5cGlhZnB6bW56bmJpbGdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYxNzQ3ODcsImV4cCI6MjAxMTc1MDc4N30.HTuzXegPGHO-ZE6etRg9BtL5W7nAUP6QdIcRGA2Stlg',
   );
-  runApp(const MyApp());
+  // runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => SelectedCourses(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

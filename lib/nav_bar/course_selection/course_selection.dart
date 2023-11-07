@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/preview/preview.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'lookup/lookup.dart';
-import 'dart:collection';
 
 
 class CourseSelection extends StatefulWidget {

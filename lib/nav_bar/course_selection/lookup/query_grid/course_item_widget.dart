@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/grid_svg_icon_logic.dart';
+import 'package:provider/provider.dart';
 
+import '../../selected_courses.dart';
 import '../query_logic/course.dart';
 
 class CourseItemWidget extends StatelessWidget {
@@ -13,7 +15,7 @@ class CourseItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: isSmallWidget ? 125 : 155,
+      height: isSmallWidget ? 125 : 154,
       width: isSmallWidget ? 205 : 258,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -30,40 +32,66 @@ class CourseItemWidget extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: isSmallWidget ? 20 : 32)))),
-              const Column(
-                children: [
-                  Text('Catalog >'),
-                  Text('Evaluations >'),
-                ],
-              )
+              InkWell(
+                onTap: () {
+                  final selectedCoursesProvider = context.read<SelectedCourses>();
+                  selectedCoursesProvider.addCourse(course.courseTitle);
+                  print(selectedCoursesProvider.courses.length);
+                },
+                child: const Icon(Icons.add),
+              ),
             ],
           ),
           const Text('Course Description..'),
           Text('Course Title: ${course.courseTitle}'),
-          Expanded(child: SizedBox(child: Text('Instructor: ${course.instructor}'))),
+          Expanded(
+              child: SizedBox(child: Text('Instructor: ${course.instructor}'))),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                  child: SizedBox(
-                      child: Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Sections'),
-                  GridSvgIconLogic()
-                      .getSectionsIcon(course.enrolled, course.max),
+                  const SizedBox(
+                    height: 1,
+                  ),
+                  SizedBox(
+                      child: Row(
+                    children: [
+                      const Text('Sections'),
+                      const SizedBox(
+                        width: 2,
+                      ),
+                      GridSvgIconLogic()
+                          .getSectionsIcon(course.enrolled, course.max),
+                    ],
+                  )),
+                  const SizedBox(
+                    height: 1,
+                  ),
+                  const Row(
+                    textDirection: TextDirection.ltr,
+                    children: [
+                      Text(
+                        'Prerequisites',
+                      ),
+                      Icon(
+                        Icons.question_mark_outlined,
+                        size: 13,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 1,
+                  ),
                 ],
-              ))),
-              const SizedBox(
-                width: 2,
               ),
-              Text(
-                'Course Prerequisites',
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: isSmallWidget ? 10 : 13),
-              ),
-              Icon(
-                Icons.question_mark_outlined,
-                size: isSmallWidget ? 10 : 13,
+              const Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text('Catalog >'),
+                  Text('Evaluations >'),
+                ],
               ),
             ],
           ),
