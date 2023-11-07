@@ -28,3 +28,9 @@ def getTestRow(testId):
     else:
         print("getTestRow: No data found :(")
     pass
+
+def insertLogin(username, password):
+    try:
+        table = supabase.table("login")
+    except:
+        return
