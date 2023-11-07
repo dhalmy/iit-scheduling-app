@@ -35,8 +35,7 @@ class CourseItemWidget extends StatelessWidget {
               InkWell(
                 onTap: () {
                   final selectedCoursesProvider = context.read<SelectedCourses>();
-                  selectedCoursesProvider.addCourse(course.courseTitle);
-                  print(selectedCoursesProvider.courses.length);
+                  selectedCoursesProvider.addCourse("${course.courseCode} - ${course.courseTitle}");
                 },
                 child: const Icon(Icons.add),
               ),
