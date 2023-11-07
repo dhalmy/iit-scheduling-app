@@ -15,7 +15,8 @@ def generate_schedule():
     # Convert the selected courses into a JSON-serializable format
     selected_courses_json = [{k: v for k, v in course.items()} for course in selected_courses]
     
-    return jsonify(selected_courses_json)
+    print(selected_courses)
+    # return jsonify(selected_courses_json)
 
 if __name__ == '__main__':
     app.run(debug=True)
