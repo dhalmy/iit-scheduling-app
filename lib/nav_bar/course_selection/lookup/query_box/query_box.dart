@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iitschedulingapp/hover_builder.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/query_grid.dart';
 
 import '../query_logic/course.dart';

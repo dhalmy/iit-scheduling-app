@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:iitschedulingapp/nav_bar/course_selection/selected_courses.dart';
+import 'package:provider/provider.dart';
 
 class ListWeekTabBar extends StatelessWidget {
   const ListWeekTabBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final selectedCourses = Provider.of<SelectedCourses>(context).courses;
     return DefaultTabController(
       length: 2,
       child: SizedBox(
@@ -44,13 +47,15 @@ class ListWeekTabBar extends StatelessWidget {
             ),
             // Tab bar view here
             Padding(
-              padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.025),
+              padding:
+                  EdgeInsets.all(MediaQuery.of(context).size.height * 0.025),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-                height: MediaQuery.of(context).size.height * 0.705, // Adjust the height as needed
+                height: MediaQuery.of(context).size.height *
+                    0.705, // Adjust the height as needed
                 child: NotificationListener<ScrollNotification>(
                   onNotification: (notification) {
                     if (notification is ScrollUpdateNotification) {
@@ -64,23 +69,33 @@ class ListWeekTabBar extends StatelessWidget {
                       parent: AlwaysScrollableScrollPhysics(),
                     ),
                     child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.705, // Adjust the height as needed
+                      height: MediaQuery.of(context).size.height *
+                          0.705, // Adjust the height as needed
                       child: TabBarView(
                         controller: DefaultTabController.of(context),
-                        children: const [
+                        children: [
                           // First tab bar view widget
-                          Center(
-                            child: Text(
-                              'List',
-                              style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
+                          // Center(
+                          //   child: Text(
+                          //     'List',
+                          //     style: TextStyle(
+                          //       fontSize: 25,
+                          //       fontWeight: FontWeight.w600,
+                          //     ),
+                          //   ),
+                          // ),
+
+                          ListView.builder(
+                            itemCount: selectedCourses.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                title: Text(selectedCourses[index]),
+                              );
+                            },
                           ),
 
                           // Second tab bar view widget
-                          Center(
+                          const Center(
                             child: Text(
                               'Week',
                               style: TextStyle(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/grid_svg_icon_logic.dart';
+import 'package:provider/provider.dart';
 
+import '../../selected_courses.dart';
 import '../query_logic/course.dart';
 
 class CourseItemWidget extends StatelessWidget {
@@ -30,12 +32,20 @@ class CourseItemWidget extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: isSmallWidget ? 20 : 32)))),
-              Icon(Icons.add_circle_outline),
+              InkWell(
+                onTap: () {
+                  final selectedCoursesProvider = context.read<SelectedCourses>();
+                  selectedCoursesProvider.addCourse(course.courseTitle);
+                  print(selectedCoursesProvider.courses.length);
+                },
+                child: const Icon(Icons.add),
+              ),
             ],
           ),
           const Text('Course Description..'),
           Text('Course Title: ${course.courseTitle}'),
-          Expanded(child: SizedBox(child: Text('Instructor: ${course.instructor}'))),
+          Expanded(
+              child: SizedBox(child: Text('Instructor: ${course.instructor}'))),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -47,15 +57,15 @@ class CourseItemWidget extends StatelessWidget {
                   ),
                   SizedBox(
                       child: Row(
-                        children: [
-                          const Text('Sections'),
-                          const SizedBox(
-                            width: 2,
-                          ),
-                          GridSvgIconLogic()
-                              .getSectionsIcon(course.enrolled, course.max),
-                        ],
-                      )),
+                    children: [
+                      const Text('Sections'),
+                      const SizedBox(
+                        width: 2,
+                      ),
+                      GridSvgIconLogic()
+                          .getSectionsIcon(course.enrolled, course.max),
+                    ],
+                  )),
                   const SizedBox(
                     height: 1,
                   ),
