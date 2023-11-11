@@ -39,7 +39,6 @@ dependencies:
   enum_to_string: any
   provider: any
   dart_openai: ^4.0.0
-  envied: ^0.5.1
   flutter_dotenv: ^5.1.0
 
 dev_dependencies:

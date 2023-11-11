@@ -9,12 +9,11 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
-  String SUPABASEURL = dotenv.env['SUPABASE_URL'] ?? "url not found";
-  String ANONKEY = dotenv.env['SUPABASE_ANON_KEY'] ?? "key not found";
-
+  print(dotenv.env['SUPABASE_URL']);
+  print(dotenv.env['SUPABASE_ANON_KEY']);
   await Supabase.initialize(
-    url: "https://hojaypiafpzmnznbilgm.supabase.co", //SUPABASEURL,
-    anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvamF5cGlhZnB6bW56bmJpbGdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYxNzQ3ODcsImV4cCI6MjAxMTc1MDc4N30.HTuzXegPGHO-ZE6etRg9BtL5W7nAUP6QdIcRGA2Stlg" //ANONKEY,
+    url: dotenv.env['SUPABASE_URL'] ?? '',
+    anonKey: dotenv.env['SUPABASE_ANON_KEY'] ?? '',
   );
   runApp(ChangeNotifierProvider(
     create: (context) => SelectedCourses(),

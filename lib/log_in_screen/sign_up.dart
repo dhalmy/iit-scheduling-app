@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -29,7 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
+            const Text(
               'Sign Up',
               style: TextStyle(
                 fontSize: 24,
@@ -42,17 +44,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 labelText: 'Email',
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextFormField(
               controller: usernameController,
               decoration: const InputDecoration(
                 labelText: 'Username',
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextFormField(
               controller: passwordController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Password',
               ),
               obscureText: true,
@@ -60,7 +62,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 checkPasswords();
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextFormField(
               controller: repeatPasswordController,
               decoration: InputDecoration(
@@ -72,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 checkPasswords();
               },
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             ElevatedButton(
               onPressed: () {
                 if (passwordsMatch) {
@@ -84,7 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   // Add your sign-up logic here
                 }
               },
-              child: Text('Sign me up!'),
+              child: const Text('Sign me up!'),
             ),
           ],
         ),
