@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/preview/list_week_tab_bar/list_tab/list_tab.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/preview/list_week_tab_bar/week_tab/week_tab.dart';
-import 'package:iitschedulingapp/nav_bar/course_selection/selected_courses.dart';
-import 'package:provider/provider.dart';
-import 'list_tab/schedule_api.dart';
-
-
-import '../../selected_courses_color.dart';
 
 class ListWeekTabBar extends StatelessWidget {
   const ListWeekTabBar({Key? key}) : super(key: key);
