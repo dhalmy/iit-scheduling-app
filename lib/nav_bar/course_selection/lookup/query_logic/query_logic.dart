@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:collection';
 
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
