@@ -41,7 +41,7 @@ class ChatScreenState extends State<ChatScreen> {
 
 
 //figure out how to select only the final message from the ai
-    String response = completion.toMap.toString();
+    String response = completion.choices.last.message.content;
     ChatMessage botMessage = ChatMessage(
       text: response,
       isUser: false,
