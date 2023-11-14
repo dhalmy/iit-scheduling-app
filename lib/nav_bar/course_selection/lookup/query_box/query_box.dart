@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/query_grid.dart';
 
@@ -17,6 +18,7 @@ class QueryBox extends StatefulWidget {
 class _QueryBoxState extends State<QueryBox> {
   List<Course> courses = [];
   bool isMouseEnter = false;
+  Timer? _debounceTimer;
 
   int _getColumnCourseListLength(int columnPosition) {
     if (courses.length % 3 != columnPosition) {
@@ -36,6 +38,36 @@ class _QueryBoxState extends State<QueryBox> {
     setState(() {
       isMouseEnter = true;
     });
+  }
+
+  void _onTextChanged(String userInput) {
+    if (_debounceTimer != null) {
+      _debounceTimer!.cancel();
+    }
+
+    _debounceTimer = Timer(const Duration(milliseconds: 500), () async {
+      if (userInput.isEmpty) {
+        setState(() {
+          courses.clear();
+        });
+        return;
+      }
+      final userSearchInput = UserSearchInput(userInput);
+      QueryLogic queryLogic = QueryLogic(
+        userSearchInput,
+        YearSemester.fall2023,
+      );
+      final newCourses = await queryLogic.getFilteredCourses();
+      setState(() {
+        courses = newCourses;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _debounceTimer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -67,23 +99,7 @@ class _QueryBoxState extends State<QueryBox> {
                           ),
                           Expanded(
                             child: TextField(
-                              onChanged: (userInput) async {
-                                if (userInput.isEmpty) {
-                                  setState(() {
-                                    courses.clear();
-                                  });
-                                  return;
-                                }
-                                final userSearchInput = UserSearchInput(userInput);
-                                QueryLogic queryLogic = QueryLogic(
-                                  userSearchInput,
-                                  YearSemester.fall2023,
-                                );
-                                final newCourses = await queryLogic.getFilteredCourses();
-                                setState(() {
-                                  courses = newCourses;
-                                });
-                              },
+                              onChanged: _onTextChanged,
                               decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.only(bottom: 0.5),
                                 hintText: 'Search...',

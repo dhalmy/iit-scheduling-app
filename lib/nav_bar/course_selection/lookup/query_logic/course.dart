@@ -49,28 +49,28 @@ class Course {
 
   factory Course.fromJson(Map<String, dynamic> json) {
     return Course(
-      status: json['status'] as String,
-      departmentCode: json['departmentCode'] as int,
-      courseCode: json['courseCode'] as String,
-      courseSubject: json['courseSubject'] as String,
-      courseNumber: json['courseNumber'] as int,
-      courseTitle: json['courseTitle'] as String,
-      crossListCode: json['crossListCode'] as String,
-      college: json['college'] as String,
-      department: json['department'] as String,
-      courseType: json['courseType'] as String,
-      credits: (json['credits'] as num).round(),
-      days: json['days'] as String,
-      time: json['time'] as String,
-      instructor: json['instructor'] as String,
-      max: _toInt(json['max']),
-      enrolled: _toInt(json['enrolled']),
-      available: _toInt(json['available']),
-      waitCount: _toInt(json['waitCount']),
-      campus: json['campus'] as String,
-      locations: json['locations'] as String,
-      seating: _toInt(json['seating']),
-      dates: json['dates'] as String,
+      status: json['status'] as String? ?? '',
+      departmentCode: json['departmentCode'] as int? ?? 0,
+      courseCode: json['courseCode'] as String? ?? '',
+      courseSubject: json['courseSubject'] as String? ?? '',
+      courseNumber: json['courseNumber'] as int? ?? 0,
+      courseTitle: json['courseTitle'] as String? ?? '',
+      crossListCode: json['crossListCode'] as String? ?? '',
+      college: json['college'] as String? ?? '',
+      department: json['department'] as String? ?? '',
+      courseType: json['courseType'] as String? ?? '',
+      credits: (json['credits'] as num?)?.round() ?? 0,
+      days: json['days'] as String? ?? '',
+      time: json['time'] as String? ?? '',
+      instructor: json['instructor'] as String? ?? '',
+      max: int.tryParse(json['max'].toString()) ?? 0,
+      enrolled: int.tryParse(json['enrolled'].toString()) ?? 0,
+      available: int.tryParse(json['available'].toString()) ?? 0,
+      waitCount: int.tryParse(json['waitCount'].toString()) ?? 0,
+      campus: json['campus'] as String? ?? '',
+      locations: json['locations'] as String? ?? '',
+      seating: int.tryParse(json['seating'].toString()) ?? 0,
+      dates: json['dates'] as String? ?? '',
     );
   }
 
@@ -99,20 +99,6 @@ class Course {
       'seating': seating,
       'dates': dates,
     };
-  }
-
-  static int _toInt(dynamic value) {
-    if (value == null) {
-      print('Warning: Attempting to convert a null value to int.');
-      return 0;
-    }
-
-    try {
-      return value.toInt();
-    } catch (e) {
-      print('Error converting $value to int: $e');
-      return 0;
-    }
   }
 
   bool containsQuery(String query) {

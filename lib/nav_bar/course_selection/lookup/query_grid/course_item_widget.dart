@@ -9,8 +9,8 @@ class CourseItemWidget extends StatelessWidget {
   final Course course;
   final bool isSmallWidget;
 
-  const CourseItemWidget(
-      {super.key, required this.course, required this.isSmallWidget});
+  const CourseItemWidget({Key? key, required this.course, required this.isSmallWidget})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +27,22 @@ class CourseItemWidget extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                  child: SizedBox(
-                      child: Text(course.courseCode,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: isSmallWidget ? 20 : 32)))),
+                child: SizedBox(
+                  child: Text(
+                    course.courseCode,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: isSmallWidget ? 20 : 32,
+                    ),
+                  ),
+                ),
+              ),
               InkWell(
                 onTap: () {
-                  final selectedCoursesProvider =
-                      context.read<SelectedCourses>();
+                  final selectedCoursesProvider = context.read<SelectedCourses>();
                   selectedCoursesProvider.addCourse(
-                      "${course.courseCode} ${course.courseTitle} - ${course.instructor} ~ ${course.days} ${course.time}");
+                    "${course.courseCode} ${course.courseTitle} - ${course.instructor} ~ ${course.days} ${course.time}",
+                  );
                 },
                 child: const Icon(Icons.add),
               ),
@@ -45,46 +50,35 @@ class CourseItemWidget extends StatelessWidget {
           ),
           const Text('Course Description..'),
           Text('Course Title: ${course.courseTitle}'),
-          Expanded(
-              child: SizedBox(child: Text('Instructor: ${course.instructor}'))),
+          Expanded(child: SizedBox(child: Text('Instructor: ${course.instructor}'))),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 1,
-                  ),
+                  const SizedBox(height: 1),
                   SizedBox(
-                      child: Row(
-                    children: [
-                      const Text('Sections'),
-                      const SizedBox(
-                        width: 2,
-                      ),
-                      GridSvgIconLogic()
-                          .getSectionsIcon(course.enrolled, course.max),
-                    ],
-                  )),
-                  const SizedBox(
-                    height: 1,
+                    child: Row(
+                      children: [
+                        const Text('Sections'),
+                        const SizedBox(width: 2),
+                        GridSvgIconLogic().getSectionsIcon(course.enrolled, course.max),
+                      ],
+                    ),
                   ),
+                  const SizedBox(height: 1),
                   const Row(
                     textDirection: TextDirection.ltr,
                     children: [
-                      Text(
-                        'Prerequisites',
-                      ),
+                      Text('Prerequisites'),
                       Icon(
                         Icons.question_mark_outlined,
                         size: 13,
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 1,
-                  ),
+                  const SizedBox(height: 1),
                 ],
               ),
               const Column(

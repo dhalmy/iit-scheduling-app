@@ -10,7 +10,7 @@ import 'course.dart';
 
 class QueryLogic {
   final UserSearchInput userInput;
-  final YearSemester yearSemester; // Replace with the actual type you are using
+  final YearSemester yearSemester;
 
   QueryLogic(this.userInput, this.yearSemester);
 
@@ -19,9 +19,9 @@ class QueryLogic {
     String? cachedCourses = prefs.getString('cached_courses');
 
     return cachedCourses != null
-        ? (jsonDecode(cachedCourses) as List<dynamic>)
-            .map((courseData) => Course.fromJson(courseData))
-            .toList()
+        ? (jsonDecode(cachedCourses) as List)
+        .map((courseData) => Course.fromJson(courseData))
+        .toList()
         : [];
   }
 
@@ -47,11 +47,11 @@ class QueryLogic {
           .from(EnumToString.convertToString(yearSemester))
           .select('*')
           .execute();
-      final courses = data.data as List<dynamic>;
+      final courses = data.data as List;
 
       // Convert dynamic data to List<Course>
       List<Course> newCourses =
-          courses.map((courseData) => Course.fromJson(courseData)).toList();
+      courses.map((courseData) => Course.fromJson(courseData)).toList();
 
       // Cache the new data
       await _cacheCourses(newCourses);
