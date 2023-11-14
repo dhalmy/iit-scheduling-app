@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../../selected_courses.dart';
+import '../../../selected_courses.dart';
 
 List<List<String>> parseCourses(List<String> courseList) {
   return courseList.map((course) {
@@ -15,56 +15,52 @@ List<List<String>> parseCourses(List<String> courseList) {
 
 Future<void> postSchedule(SelectedCourses selectedCourses) async {
   print("clicked!");
-  var url = Uri.parse('http://localhost:5000/generate_schedule'); 
+  var url = Uri.parse('http://localhost:5000/generate_schedule');
   List<List<String>> parsedCourses = parseCourses(selectedCourses.courses);
 
   for (var course in parsedCourses) {
     print('Parsed course: (${course[0]}, ${course[1]})');
   }
-  try{
+  try {
     var response = await http.post(
       url,
       headers: {"Content-Type": "application/json"},
-      body: json.encode({'courseList': parsedCourses}), // Sending selected courses to python server
+      body: json.encode({
+        'courseList': parsedCourses
+      }), // Sending selected courses to python server
     );
 
     if (response.statusCode == 200) {
-
       var responseData = json.decode(response.body);
       print('Response data: $responseData');
-
     } else {
-
       throw Exception('Failed to load data');
     }
-
   } catch (e) {
     print("Error: $e");
   }
-
 }
 
 Future<dynamic> getCourseDetails(SelectedCourses selectedCourses) async {
-    var url = Uri.parse('http://localhost:5000/get_course_details'); 
-    List<List<String>> parsedCourses = parseCourses(selectedCourses.courses);
-    try{
-      var response = await http.post(
-        url,
-        headers: {"Content-Type": "application/json"},
-        body: json.encode({'courseList': parsedCourses}), // Sending selected courses to python server
-      );
+  var url = Uri.parse('http://localhost:5000/get_course_details');
+  List<List<String>> parsedCourses = parseCourses(selectedCourses.courses);
+  try {
+    var response = await http.post(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: json.encode({
+        'courseList': parsedCourses
+      }), // Sending selected courses to python server
+    );
 
-      if (response.statusCode == 200) {
-
-        var responseData = json.decode(response.body);
-        // print('Response data: $responseData');
-        return responseData;
-
-      } else {
-
-        throw Exception('Failed to load data');
-      }
-    } catch (e) {
-      print("Error: $e");
+    if (response.statusCode == 200) {
+      var responseData = json.decode(response.body);
+      // print('Response data: $responseData');
+      return responseData;
+    } else {
+      throw Exception('Failed to load data');
     }
+  } catch (e) {
+    print("Error: $e");
   }
+}
