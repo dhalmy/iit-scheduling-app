@@ -15,7 +15,7 @@ class QueryBox extends StatefulWidget {
 }
 
 class _QueryBoxState extends State<QueryBox> {
-  late TextEditingController _searchController;
+  // late TextEditingController _searchController;
   List<Course> courses = [];
   late QueryLogic queryLogic;
   bool isMouseEnter = false;
@@ -23,17 +23,17 @@ class _QueryBoxState extends State<QueryBox> {
   @override
   void initState() {
     super.initState();
-    _searchController = TextEditingController();
-    queryLogic = QueryLogic(UserSearchInput(''), YearSemester.unknown);
-    _loadCourses(queryLogic); // Initial load
+    // _searchController = TextEditingController();
+    // queryLogic = QueryLogic(UserSearchInput(''), YearSemester.unknown);
+    // _loadCourses(queryLogic); // Initial load
   }
 
-  Future<void> _loadCourses(QueryLogic queryLogic) async {
-    final newCourses = await queryLogic.parsedUserInput();
-    setState(() {
-      courses = newCourses;
-    });
-  }
+  // Future<void> _loadCourses(QueryLogic queryLogic) async {
+  //   final newCourses = await queryLogic.getFilteredCourses();
+  //   setState(() {
+  //     courses = newCourses;
+  //   });
+  // }
 
   int _getColumnCourseListLength(int columnPosition) {
     if (courses.length % 3 != columnPosition) {
@@ -63,7 +63,7 @@ class _QueryBoxState extends State<QueryBox> {
 
   @override
   void dispose() {
-    _searchController.dispose();
+    // _searchController.dispose();
     super.dispose();
   }
 
@@ -96,7 +96,19 @@ class _QueryBoxState extends State<QueryBox> {
                           ),
                           Expanded(
                             child: TextField(
-                              controller: _searchController,
+                              // controller: _searchController,
+                              onChanged: (userInput) async {
+                                final userSearchInput = UserSearchInput(userInput);
+                                queryLogic = QueryLogic(
+                                    userSearchInput,
+                                      YearSemester
+                                          .fall2023);
+                                final newCourses = await queryLogic.getFilteredCourses();
+                                setState(() {
+                                  courses = newCourses;
+                                });
+                              setState(() {}); // Trigger a rebuild to update the list of words
+                              },
                               decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.only(bottom: 0.5),
                                 hintText: 'Search...',
@@ -107,12 +119,12 @@ class _QueryBoxState extends State<QueryBox> {
                           IconButton(
                             icon: const Icon(Icons.search),
                             onPressed: () async {
-                              final query = _searchController.text;
-                              final userInput = UserSearchInput(query);
-                              await _loadCourses(QueryLogic(
-                                  userInput,
-                                  YearSemester
-                                      .fall2023)); // Load courses when searching
+                              // final query = _searchController.text;
+                              // final userInput = UserSearchInput(query);
+                              // await _loadCourses(QueryLogic(
+                              //     userInput,
+                              //     YearSemester
+                              //         .fall2023)); // Load courses when searching
                             },
                           ),
                         ],
@@ -168,8 +180,6 @@ class _QueryBoxState extends State<QueryBox> {
             } else {
               final courses = snapshot.data ?? [];
               return Expanded(
-              // return SizedBox(
-              //   height: MediaQuery.of(context).size.height * 0.699,
                 child: QueryGrid(
                   courses: courses,
                   firstColumnCourseListLength: _getColumnCourseListLength(0),

@@ -59,18 +59,74 @@ class Course {
       college: json['college'] as String,
       department: json['department'] as String,
       courseType: json['courseType'] as String,
-      credits: json['credits'] as int,
+      credits: (json['credits'] as num).round(),
       days: json['days'] as String,
       time: json['time'] as String,
       instructor: json['instructor'] as String,
-      max: int.tryParse(json['max'].toString()) ?? 0,
-      enrolled: int.tryParse(json['enrolled'].toString()) ?? 0,
-      available: int.tryParse(json['available'].toString()) ?? 0,
-      waitCount: int.tryParse(json['waitCount'].toString()) ?? 0,
+      max: _toInt(json['max']),
+      enrolled: _toInt(json['enrolled']),
+      available: _toInt(json['available']),
+      waitCount: _toInt(json['waitCount']),
       campus: json['campus'] as String,
       locations: json['locations'] as String,
-      seating: int.tryParse(json['seating'].toString()) ?? 0,
+      seating: _toInt(json['seating']),
       dates: json['dates'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'status': status,
+      'departmentCode': departmentCode,
+      'courseCode': courseCode,
+      'courseSubject': courseSubject,
+      'courseNumber': courseNumber,
+      'courseTitle': courseTitle,
+      'crossListCode': crossListCode,
+      'college': college,
+      'department': department,
+      'courseType': courseType,
+      'credits': credits,
+      'days': days,
+      'time': time,
+      'instructor': instructor,
+      'max': max,
+      'enrolled': enrolled,
+      'available': available,
+      'waitCount': waitCount,
+      'campus': campus,
+      'locations': locations,
+      'seating': seating,
+      'dates': dates,
+    };
+  }
+
+  static int _toInt(dynamic value) {
+    if (value == null) {
+      print('Warning: Attempting to convert a null value to int.');
+      return 0; // or handle it as needed in your application
+    }
+
+    try {
+      return value.toInt();
+    } catch (e) {
+      print('Error converting $value to int: $e');
+      return 0; // or handle it as needed in your application
+    }
+  }
+
+  bool containsQuery(String query) {
+    return courseCode.toLowerCase().contains(query.toLowerCase()) ||
+        courseTitle.toLowerCase().contains(query.toLowerCase()) ||
+        crossListCode.toLowerCase().contains(query.toLowerCase()) ||
+        college.toLowerCase().contains(query.toLowerCase()) ||
+        department.toLowerCase().contains(query.toLowerCase()) ||
+        courseType.toLowerCase().contains(query.toLowerCase()) ||
+        days.toLowerCase().contains(query.toLowerCase()) ||
+        time.toLowerCase().contains(query.toLowerCase()) ||
+        instructor.toLowerCase().contains(query.toLowerCase()) ||
+        campus.toLowerCase().contains(query.toLowerCase()) ||
+        locations.toLowerCase().contains(query.toLowerCase()) ||
+        dates.toLowerCase().contains(query.toLowerCase());
   }
 }

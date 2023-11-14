@@ -40,6 +40,8 @@ dependencies:
   provider: any
   dart_openai: ^4.0.0
   flutter_dotenv: ^5.1.0
+  shared_preferences: any
+  collection: any
 
 dev_dependencies:
   flutter_test:
