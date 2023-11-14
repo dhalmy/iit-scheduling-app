@@ -221,13 +221,17 @@ class ListWeekTabBar extends StatelessWidget {
                                 },
                               ),
                               OutlinedButton(
-                                onPressed: () {
+                                onPressed: () async {
                                   var selectedCourses = Provider.of<SelectedCourses>(context, listen: false);
-                                  var courseDetail = getCourseDetails(selectedCourses);
-                                  print(courseDetail);
+                                  try {
+                                    var courseDetail = await getCourseDetails(selectedCourses);
+                                    print("courseDetail: $courseDetail");
+                                  } catch (e) {
+                                    print("Error fetching course details: $e");
+                                  }
                                 },
                                 child: const Text("Generate"),
-                              ),
+                              )
                             ],
                           ),
 

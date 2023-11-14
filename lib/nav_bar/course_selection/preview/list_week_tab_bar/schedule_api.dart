@@ -44,7 +44,7 @@ Future<void> postSchedule(SelectedCourses selectedCourses) async {
 
 }
 
-Future<void> getCourseDetails(SelectedCourses selectedCourses) async {
+Future<dynamic> getCourseDetails(SelectedCourses selectedCourses) async {
     var url = Uri.parse('http://localhost:5000/get_course_details'); 
     List<List<String>> parsedCourses = parseCourses(selectedCourses.courses);
     try{
