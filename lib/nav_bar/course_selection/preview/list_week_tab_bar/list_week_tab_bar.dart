@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/selected_courses.dart';
 import 'package:provider/provider.dart';
+import 'schedule_api.dart';
+
 
 import '../../selected_courses_color.dart';
 
@@ -219,11 +221,17 @@ class ListWeekTabBar extends StatelessWidget {
                                 },
                               ),
                               OutlinedButton(
-                                onPressed: () {
-                                  // Add your logic to generate here
+                                onPressed: () async {
+                                  var selectedCourses = Provider.of<SelectedCourses>(context, listen: false);
+                                  try {
+                                    var courseDetail = await getCourseDetails(selectedCourses);
+                                    print("courseDetail: $courseDetail");
+                                  } catch (e) {
+                                    print("Error fetching course details: $e");
+                                  }
                                 },
                                 child: const Text("Generate"),
-                              ),
+                              )
                             ],
                           ),
 

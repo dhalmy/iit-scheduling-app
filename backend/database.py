@@ -14,7 +14,7 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 def getCourse(courseSubject, courseNumber):
     data = supabase.table("courses").select("*").eq('courseSubject', courseSubject).eq('courseNumber', courseNumber).neq('courseTitle', 'Laboratory').neq("time", " - ").execute().data
     if (data):
-        pp(data) #del
+        # pp(data) #del
         return data
     else:
         print("getCourse: No data found :(")
