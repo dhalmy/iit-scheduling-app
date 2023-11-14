@@ -104,14 +104,14 @@ class Course {
   static int _toInt(dynamic value) {
     if (value == null) {
       print('Warning: Attempting to convert a null value to int.');
-      return 0; // or handle it as needed in your application
+      return 0;
     }
 
     try {
       return value.toInt();
     } catch (e) {
       print('Error converting $value to int: $e');
-      return 0; // or handle it as needed in your application
+      return 0;
     }
   }
 

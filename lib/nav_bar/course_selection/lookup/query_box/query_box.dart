@@ -15,36 +15,13 @@ class QueryBox extends StatefulWidget {
 }
 
 class _QueryBoxState extends State<QueryBox> {
-  // late TextEditingController _searchController;
   List<Course> courses = [];
-  late QueryLogic queryLogic;
   bool isMouseEnter = false;
-
-  @override
-  void initState() {
-    super.initState();
-    // _searchController = TextEditingController();
-    // queryLogic = QueryLogic(UserSearchInput(''), YearSemester.unknown);
-    // _loadCourses(queryLogic); // Initial load
-  }
-
-  // Future<void> _loadCourses(QueryLogic queryLogic) async {
-  //   final newCourses = await queryLogic.getFilteredCourses();
-  //   setState(() {
-  //     courses = newCourses;
-  //   });
-  // }
 
   int _getColumnCourseListLength(int columnPosition) {
     if (courses.length % 3 != columnPosition) {
-      print('ceil');
       return (courses.length / 3).ceil();
     } else {
-      print('else');
-      // print(courses);
-      // print(courses.length); // 200
-      // print(courses.length % 3); // 2
-      print((courses.length / 3).floor());
       return (courses.length / 3).floor();
     }
   }
@@ -59,12 +36,6 @@ class _QueryBoxState extends State<QueryBox> {
     setState(() {
       isMouseEnter = true;
     });
-  }
-
-  @override
-  void dispose() {
-    // _searchController.dispose();
-    super.dispose();
   }
 
   @override
@@ -96,19 +67,22 @@ class _QueryBoxState extends State<QueryBox> {
                           ),
                           Expanded(
                             child: TextField(
-                              // controller: _searchController,
                               onChanged: (userInput) async {
-                                courses.clear();
+                                if (userInput.isEmpty) {
+                                  setState(() {
+                                    courses.clear();
+                                  });
+                                  return;
+                                }
                                 final userSearchInput = UserSearchInput(userInput);
-                                queryLogic = QueryLogic(
-                                    userSearchInput,
-                                      YearSemester
-                                          .fall2023);
+                                QueryLogic queryLogic = QueryLogic(
+                                  userSearchInput,
+                                  YearSemester.fall2023,
+                                );
                                 final newCourses = await queryLogic.getFilteredCourses();
                                 setState(() {
                                   courses = newCourses;
                                 });
-                              setState(() {}); // Trigger a rebuild to update the list of words
                               },
                               decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.only(bottom: 0.5),
@@ -120,12 +94,7 @@ class _QueryBoxState extends State<QueryBox> {
                           IconButton(
                             icon: const Icon(Icons.search),
                             onPressed: () async {
-                              // final query = _searchController.text;
-                              // final userInput = UserSearchInput(query);
-                              // await _loadCourses(QueryLogic(
-                              //     userInput,
-                              //     YearSemester
-                              //         .fall2023)); // Load courses when searching
+                              // Perform additional actions on search button press if needed
                             },
                           ),
                         ],
@@ -146,11 +115,12 @@ class _QueryBoxState extends State<QueryBox> {
                           height: 28,
                           duration: const Duration(milliseconds: 300),
                           child: AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 300),
-                              child: Icon(
-                                Icons.question_mark_rounded,
-                                size: isMouseEnter ? 28 : 24,
-                              )),
+                            duration: const Duration(milliseconds: 300),
+                            child: Icon(
+                              Icons.question_mark_rounded,
+                              size: isMouseEnter ? 28 : 24,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -169,28 +139,15 @@ class _QueryBoxState extends State<QueryBox> {
           ],
         ),
         const SizedBox(height: 24.5),
-        FutureBuilder<List<Course>>(
-          future: Future.value(courses), // Wrap the list in a Future
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator(
-                color: Color(0xFF00BD90),
-              );
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else {
-              final courses = snapshot.data ?? [];
-              return Expanded(
-                child: QueryGrid(
-                  courses: courses,
-                  firstColumnCourseListLength: _getColumnCourseListLength(0),
-                  secondColumnCourseListLength: _getColumnCourseListLength(1),
-                  thirdColumnCourseListLength: _getColumnCourseListLength(2),
-                ),
-              );
-            }
-          },
-        ),
+        if (courses.isNotEmpty)
+          Expanded(
+            child: QueryGrid(
+              courses: courses,
+              firstColumnCourseListLength: _getColumnCourseListLength(0),
+              secondColumnCourseListLength: _getColumnCourseListLength(1),
+              thirdColumnCourseListLength: _getColumnCourseListLength(2),
+            ),
+          ),
         const SizedBox(height: 18.55),
       ],
     );
