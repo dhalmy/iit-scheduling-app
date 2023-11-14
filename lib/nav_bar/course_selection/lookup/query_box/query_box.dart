@@ -98,6 +98,7 @@ class _QueryBoxState extends State<QueryBox> {
                             child: TextField(
                               // controller: _searchController,
                               onChanged: (userInput) async {
+                                courses.clear();
                                 final userSearchInput = UserSearchInput(userInput);
                                 queryLogic = QueryLogic(
                                     userSearchInput,
