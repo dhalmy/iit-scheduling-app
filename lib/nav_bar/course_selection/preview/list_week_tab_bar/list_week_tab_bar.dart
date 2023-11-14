@@ -89,7 +89,9 @@ class ListWeekTabBar extends StatelessWidget {
                               ),
                               OutlinedButton(
                                 onPressed: () {
-                                  postSchedule();
+                                  var selectedCourses = Provider.of<SelectedCourses>(context, listen: false);
+                                  var courseDetail = getCourseDetails(selectedCourses);
+                                  print(courseDetail);
                                 },
                                 child: const Text("Generate"),
                               ),

@@ -67,7 +67,7 @@ class Scheduler: # class to create class schedule variations
 
         return selected_courses
 
-if '__name__' == '__main__':
+if __name__ == '__main__':
     course_list = [
         ('CS', '330'),
         ('CS', '425'),
