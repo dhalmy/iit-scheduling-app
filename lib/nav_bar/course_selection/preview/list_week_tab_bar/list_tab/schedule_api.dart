@@ -64,3 +64,36 @@ Future<dynamic> getCourseDetails(SelectedCourses selectedCourses) async {
     print("Error: $e");
   }
 }
+
+Future<dynamic> getProfessorInfo(String instructor) async {
+  var url = Uri.parse('http://localhost:5000/professor_info');
+
+  List<String> nameParts = instructor.split(', ');
+  if (nameParts.length != 2) {
+    print("Invalid instructor name format");
+    return;
+  }
+
+  String lastName = nameParts[0].trim();
+  String firstName = nameParts[1].trim();
+
+  try {
+    var response = await http.post(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: json.encode({
+        'firstName': firstName,
+        'lastName': lastName
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      var responseData = json.decode(response.body);
+      return responseData;
+    } else {
+      throw Exception('Failed to load professor data');
+    }
+  } catch (e) {
+    print("Error: $e");
+  }
+}

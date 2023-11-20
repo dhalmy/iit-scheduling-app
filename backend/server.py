@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+
+from ratemyprofessor.RMP_APIs import Professor
 from scheduler import Scheduler 
 from database import getCourse
 
@@ -35,6 +37,27 @@ def get_course_details():
     # print(courses)
     print(filtered_courses)
     return jsonify(filtered_courses)
+
+
+@app.route('/professor_info', methods=['POST'])
+def professor_info():
+    data = request.json
+    first_name = data.get('firstName')
+    last_name = data.get('lastName')
+
+    # Create a Professor instance and fetch data
+    professor = Professor(first_name, last_name)
+    professor.activate()
+
+    # Prepare and send response
+    response = {
+        'rating': professor.getRating(),
+        'difficulty': professor.getDifficulty(),
+        # 'pwta': professor.getPwta(),
+        # 'numReviews': professor.getNumreviews()
+    }
+
+    return jsonify(response)
 
 
 if __name__ == '__main__':
