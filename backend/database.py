@@ -6,8 +6,8 @@ import dotenv
 # Connects to the Supabase api
 
 dotenv.load_dotenv()
-SUPABASE_URL: str = os.environ['SUPABASE_URL']
-SUPABASE_KEY: str = os.environ['SUPABASE_KEY']
+SUPABASE_URL: str = os.environ['DB_URL']
+SUPABASE_KEY: str = os.environ['DB_KEY']
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 

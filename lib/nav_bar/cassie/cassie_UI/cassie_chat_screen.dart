@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:iitschedulingapp/nav_bar/course_selection/preview/list_week_tab_bar/list_tab/schedule_api.dart';
+import 'package:provider/provider.dart';
+import '../../course_selection/selected_courses.dart';
 import 'cassie_chat_message.dart';
 import 'package:dart_openai/dart_openai.dart';
 
@@ -24,23 +27,31 @@ class ChatScreenState extends State<ChatScreen> {
       _messages.insert(0, message);
     });
 
+
+    var selectedCourses =
+    Provider.of<SelectedCourses>(context, listen: false);
+
+    var courseDetail = await getCourseDetails(selectedCourses);
+    String courseDetailString = courseDetail.map((item) => item.toString()).join(", ");
+    print(courseDetailString);
+
+
     // Replace this with the logic to send the user's message to your AI model
     // and get a response.
     await dotenv.load(fileName: '.env');
     OpenAI.apiKey = dotenv.env['OPENAI_API_KEY'] ?? "key not found";
 
     final completion = await OpenAI.instance.chat.create(
-      model: "gpt-3.5-turbo",
+      model: "gpt-4",
       messages: [
         OpenAIChatCompletionChoiceMessageModel(
-          content: text,
+          content: "do not provide any extra commentary unless directly prompted for some. give me three unique schedules from this list. classes and labs should not have overlap. the labs and the classes work as pairs with the same class name and professor:"+ courseDetailString,
           role: OpenAIChatMessageRole.user,
         ),
       ],
     );
 
 
-//figure out how to select only the final message from the ai
     String response = completion.choices.last.message.content;
     ChatMessage botMessage = ChatMessage(
       text: response,
