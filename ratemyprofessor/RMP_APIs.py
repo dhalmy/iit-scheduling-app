@@ -4,9 +4,6 @@ url = 'https://hojaypiafpzmnznbilgm.supabase.co'
 key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhvamF5cGlhZnB6bW56bmJpbGdtIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5NjE3NDc4NywiZXhwIjoyMDExNzUwNzg3fQ.Ir4xPkfX4N1-l5sAE8TXAftRBy3jJe9jV9Jjk6tcDSw'
 
 class Professor:
-
-
-
     def __init__(self, first, last):
         self.first = first
         self.last = last
