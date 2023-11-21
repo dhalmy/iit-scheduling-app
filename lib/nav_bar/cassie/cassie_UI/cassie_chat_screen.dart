@@ -45,7 +45,7 @@ class ChatScreenState extends State<ChatScreen> {
       model: "gpt-4",
       messages: [
         OpenAIChatCompletionChoiceMessageModel(
-          content: "do not provide any extra commentary unless directly prompted for some. give me three unique schedules from this list. classes and labs should not have overlap. include the department code in paranthesis at the end referenced as to CRN. the labs and the classes work as pairs with the same class name and professor:"+ courseDetailString,
+          content: "do not provide any extra commentary unless directly prompted for some. give me three unique schedules from this list. classes and labs should not have overlap. include the department code in paranthesis at the end referenced as to CRN. the labs and the classes work as pairs with the same class name and professor:$courseDetailString",
           role: OpenAIChatMessageRole.user,
         ),
       ],

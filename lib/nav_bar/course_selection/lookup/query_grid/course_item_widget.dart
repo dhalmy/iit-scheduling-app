@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iitschedulingapp/hover_builder.dart';
+import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/evaluations/evaluations.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/grid_svg_icon_logic.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +36,8 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
   @override
   void initState() {
     super.initState();
+    // Fetch RateMyProfessor data when the widget is created
+    fetchRateMyProfessorData();
   }
 
   Future<void> fetchRateMyProfessorData() async {
@@ -44,7 +46,7 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
     List<String> nameParts = instructorName.split(', ');
 
     // Assuming the name is in the format "Last, First"
-    String lastName = nameParts.length > 0 ? nameParts[0] : '';
+    String lastName = nameParts.isNotEmpty ? nameParts[0] : '';
     String firstName = nameParts.length > 1 ? nameParts[1] : '';
 
     // Create RateMyProfessorLogic instance with first and last names
@@ -52,8 +54,6 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
 
     // Fetch RateMyProfessor data
     final rmpData = await logic.getRMPData();
-    print(rmpData.rating);
-    print(rmpData.numReviews);
 
     // Update the state with fetched RateMyProfessor data
     setState(() {
@@ -91,7 +91,7 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
                 InkWell(
                   onTap: () {
                     final selectedCoursesProvider =
-                        context.read<SelectedCourses>();
+                    context.read<SelectedCourses>();
                     selectedCoursesProvider.addCourse(
                       "${widget.course.courseCode} ${widget.course.courseTitle} - ${widget.course.instructor} ~ ${widget.course.days} ${widget.course.time}",
                     );
@@ -153,73 +153,7 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     const Text('Catalog >'),
-                    HoverBuilder(builder: (isHovering) {
-                      if (isHovering) {
-                        fetchRateMyProfessorData();
-                      }
-                      return Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          Text(
-                            'Evaluations >',
-                            style: TextStyle(
-                              fontWeight: isHovering
-                                  ? FontWeight.w500
-                                  : FontWeight.w400,
-                              fontSize: isHovering ? 16 : 14,
-                            ),
-                          ),
-                          Positioned(
-                            bottom: -30,
-                            left: 0,
-                            right: -20,
-                            child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 300),
-                              height: isHovering ? 50 : 0,
-                              width: isHovering ? 40 : 0,
-                              child: ClipRect(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.grey,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Center(
-                                    child: Column(
-                                      children: [
-                                        Column(
-                                          children: [
-                                            RichText(text: TextSpan(
-                                              children: [
-                                                TextSpan(
-                                                  text: 'Rate My Professor\n',
-                                                  style: const TextStyle(
-                                                      decoration:
-                                                      TextDecoration.underline,
-                                                    ),
-                                                  children: [
-                                                    TextSpan(
-                                                      text: '${rateMyProfessor.rating} / 5.0 \n${rateMyProfessor.numReviews} reviews',
-                                                      style: const TextStyle(
-                                                        decoration: TextDecoration.none,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            )),
-                                          ],
-                                        ),
-                                        // Add more properties as needed
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    }),
+                    Evaluations(rateMyProfessor: rateMyProfessor),
                   ],
                 ),
               ],

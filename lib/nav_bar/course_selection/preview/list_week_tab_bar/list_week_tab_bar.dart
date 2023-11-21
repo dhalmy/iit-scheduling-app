@@ -2,83 +2,119 @@ import 'package:flutter/material.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/preview/list_week_tab_bar/list_tab/list_tab.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/preview/list_week_tab_bar/week_tab/week_tab.dart';
 
-class ListWeekTabBar extends StatelessWidget {
+import 'custom_tab.dart';
+
+class ListWeekTabBar extends StatefulWidget {
   const ListWeekTabBar({Key? key}) : super(key: key);
 
   @override
+  State<ListWeekTabBar> createState() => _ListWeekTabBarState();
+}
+
+class _ListWeekTabBarState extends State<ListWeekTabBar>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {
+      setState(() {
+        _selectedIndex = _tabController.index;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.825,
-        child: Column(
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.14,
-              height: MediaQuery.of(context).size.height * 0.07,
+    return SizedBox(
+      height: 623,
+      child: Column(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.14,
+            height: MediaQuery.of(context).size.height * 0.07,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CustomTab(
+                      label: 'List',
+                      onTap: () {
+                        if (mounted) {
+                          _tabController.animateTo(0);
+                        }
+                      },
+                      isSelected: _selectedIndex == 0,
+                    ),
+                  ),
+                  const SizedBox(width: 8.0),  // Added gap
+                  Expanded(
+                    child: CustomTab(
+                      label: 'Week',
+                      onTap: () {
+                        if (mounted) {
+                          _tabController.animateTo(1);
+                        }
+                      },
+                      isSelected: _selectedIndex == 1,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),  // Added space
+          // Tab bar view here
+          Padding(
+            padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.025),
+            child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(12.0),
+                borderRadius: BorderRadius.circular(20.0),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TabBar(
-                  labelStyle: const TextStyle(
-                    fontWeight: FontWeight.w500,
+              height: MediaQuery.of(context).size.height * 0.705,
+              child: NotificationListener<ScrollNotification>(
+                onNotification: (notification) {
+                  if (notification is ScrollUpdateNotification) {
+                    return false;
+                  }
+                  return true;
+                },
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
                   ),
-                  controller: DefaultTabController.of(context),
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                    color: const Color(0xFF00BD90),
-                  ),
-                  labelColor: Colors.black,
-                  unselectedLabelColor: Colors.black,
-                  tabs: const [
-                    Tab(text: 'List'),
-                    Tab(text: 'Week'),
-                  ],
-                ),
-              ),
-            ),
-            // Tab bar view here
-            Padding(
-              padding:
-                  EdgeInsets.all(MediaQuery.of(context).size.height * 0.025),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                height: MediaQuery.of(context).size.height * 0.705,
-                child: NotificationListener<ScrollNotification>(
-                  onNotification: (notification) {
-                    if (notification is ScrollUpdateNotification) {
-                      return false;
-                    }
-                    return true;
-                  },
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics(),
-                    ),
-                    child: SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.705,
-                      child: TabBarView(
-                        controller: DefaultTabController.of(context),
-                        children: const [
-                          // First tab bar view widget
-                          ListTab(),
-                          // Second tab bar view widget
-                          WeekTab(),
-                        ],
-                      ),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.705,
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: const [
+                        // First tab bar view widget
+                        ListTab(),
+                        // Second tab bar view widget
+                        WeekTab(),
+                      ],
                     ),
                   ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

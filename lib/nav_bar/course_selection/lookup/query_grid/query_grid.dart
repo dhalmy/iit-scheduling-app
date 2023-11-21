@@ -16,7 +16,7 @@ class QueryGrid extends StatelessWidget {
     required this.thirdColumnCourseListLength,
   }) : super(key: key);
 
-  List<int> _columnCourseListLengths = [];
+  final List<int> _columnCourseListLengths = [];
 
   void _calculateColumnCourseListLengths() {
     for (int i = 0; i < 3; i++) {
@@ -36,7 +36,7 @@ class QueryGrid extends StatelessWidget {
         children: <Widget>[
           for (int i = startIndex; i < courses.length; i += step)
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: 0,
                 bottom: gap,
                 left: gap / 2,

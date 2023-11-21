@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CalendarPage extends StatefulWidget {
+  const CalendarPage({super.key});
+
   @override
-  _CalendarPageState createState() => _CalendarPageState();
+  State<CalendarPage> createState() => _CalendarPageState();
 }
 
 class _CalendarPageState extends State<CalendarPage> {
@@ -27,10 +29,10 @@ class _CalendarPageState extends State<CalendarPage> {
       children: [
         Expanded(
           child: Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             color: Colors.grey[200],
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 7,
                 crossAxisSpacing: 8.0,
                 mainAxisSpacing: 8.0,
@@ -59,7 +61,7 @@ class _CalendarPageState extends State<CalendarPage> {
                             ),
                           ),
                           if (hasTasks)
-                            Icon(
+                            const Icon(
                               Icons.event,
                               color: Colors.blue,
                               size: 12.0,
@@ -75,19 +77,19 @@ class _CalendarPageState extends State<CalendarPage> {
         ),
         Expanded(
           child: Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             color: Colors.grey[100],
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   '${selectedDate.toLocal()}'.split(' ')[0],
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 if (tasks.containsKey(selectedDate))
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +98,7 @@ class _CalendarPageState extends State<CalendarPage> {
                         .toList(),
                   )
                 else
-                  Text('No tasks for this day'),
+                  const Text('No tasks for this day'),
               ],
             ),
           ),

@@ -11,8 +11,6 @@ class MyCalendar extends StatefulWidget {
 class _MyCalendarState extends State<MyCalendar> {
   final DatePickerController _controller = DatePickerController();
 
-  DateTime _selectedValue = DateTime.now();
-
   @override
   void initState() {
     super.initState();
@@ -26,20 +24,6 @@ class _MyCalendarState extends State<MyCalendar> {
           padding: const EdgeInsets.only(top: 4, bottom: 4, left: 4, right: 4),
           child: Column(
             children: [
-              // Row(
-              //   children: [
-              //     // SizedBox(
-              //     //   width: deviceWidth * 0.012,
-              //     // ),
-              //     Text(
-              //       "My Calendar",
-              //       style: TextStyle(
-              //         fontSize: MediaQuery.of(context).size.width * .052,
-              //         fontWeight: FontWeight.w600,
-              //       ),
-              //     ),
-              //   ],
-              // ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.9,
                 padding:
@@ -63,7 +47,6 @@ class _MyCalendarState extends State<MyCalendar> {
                   onDateChange: (date) {
                     // New date selected
                     setState(() {
-                      _selectedValue = date;
                     });
                   },
                 ),

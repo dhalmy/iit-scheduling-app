@@ -11,7 +11,7 @@ class _WeekTabState extends State<WeekTab> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
       ],
     );
