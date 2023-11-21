@@ -106,6 +106,7 @@ class CourseItemWidget extends StatelessWidget {
                     const Text('Catalog >'),
                     HoverBuilder(builder: (isHovering) {
                       return Stack(
+                        clipBehavior: Clip.none,
                         children: [
                           Text(
                             'Evaluations >',
@@ -115,12 +116,12 @@ class CourseItemWidget extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                            bottom: 0,
+                            bottom: -10, // Adjust this value to move it below the parent
                             left: 0,
                             right: 0,
                             child: AnimatedContainer(
                               duration: const Duration(milliseconds: 300),
-                              height: isHovering ? 150 : 0,
+                              height: isHovering ? 200 : 0, // Adjust the height as needed
                               color: Colors.blue,
                             ),
                           ),
