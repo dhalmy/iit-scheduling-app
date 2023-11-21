@@ -30,7 +30,7 @@ def get_course_details():
     course_list = request.json['courseList']
     courses = [group for group in (getCourse(c[0], c[1]) for c in course_list) if group is not None]
 
-    keys_to_keep = ['campus', 'courseNumber', 'days', 'time', 'courseSubject', 'courseTitle', 'courseType']
+    keys_to_keep = ['campus', 'courseNumber', 'days', 'time', 'courseSubject', 'courseTitle', 'courseType', 'departmentCode']
     filtered_courses = []
     filtered_courses = [[{key: course[key] for key in keys_to_keep if key in course} for course in sublist] for sublist in courses]
 
