@@ -20,7 +20,7 @@ class RateMyProfessor {
       firstName: json['first_name'] as String? ?? '',
       lastName: json['last_name'] as String? ?? '',
       rating: json['rating'] as double? ?? 0,
-      numReviews: json['num_reviews'] as int? ?? 0,
+      numReviews: json['numreviews'] as int? ?? 0,
       pwta: json['pwta'] as int? ?? 0,
       difficulty: json['difficulty'] as double? ?? 0,
     );

@@ -36,14 +36,9 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
   @override
   void initState() {
     super.initState();
-    // Fetch RateMyProfessor data when the widget is created
-    fetchRateMyProfessorData();
   }
 
   Future<void> fetchRateMyProfessorData() async {
-    // Print the original instructor's name
-    print('widget.course.instructor: ${widget.course.instructor}');
-
     // Split instructor's name
     String instructorName = widget.course.instructor;
     List<String> nameParts = instructorName.split(', ');
@@ -210,25 +205,8 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
                                                     ),
                                                   ],
                                                 ),
-                                                // TextSpan(
-                                                //   text: '${rateMyProfessor.rating} / 5.0',
-                                                //   style: TextStyle(
-                                                //     color: Colors.black,
-                                                //   ),
-                                                // ),
                                               ],
                                             )),
-                                            // const Text(
-                                            //   'Rate My Professor',
-                                            //   style: TextStyle(
-                                            //     decoration:
-                                            //     TextDecoration.underline,
-                                            //   ),
-                                            // ),
-                                            // Text(
-                                            //   '${rateMyProfessor.rating} / 5.0 \n${rateMyProfessor.numReviews} reviews',
-                                            //   overflow: TextOverflow.ellipsis,
-                                            // ),
                                           ],
                                         ),
                                         // Add more properties as needed
