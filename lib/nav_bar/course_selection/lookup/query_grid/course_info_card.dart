@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/evaluations/evaluations.dart';
 import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/grid_svg_icon_logic.dart';
 import 'package:provider/provider.dart';
 
@@ -8,21 +7,21 @@ import '../query_logic/course.dart';
 import 'evaluations/rate_my_professor.dart';
 import 'evaluations/rate_my_professor_logic.dart';
 
-class CourseItemWidget extends StatefulWidget {
+class CourseInfoCard extends StatefulWidget {
   final Course course;
   final bool isSmallWidget;
 
-  const CourseItemWidget({
+  const CourseInfoCard({
     Key? key,
     required this.course,
     required this.isSmallWidget,
   }) : super(key: key);
 
   @override
-  State<CourseItemWidget> createState() => _CourseItemWidgetState();
+  State<CourseInfoCard> createState() => _CourseInfoCardState();
 }
 
-class _CourseItemWidgetState extends State<CourseItemWidget> {
+class _CourseInfoCardState extends State<CourseInfoCard> {
   // Initialize RateMyProfessor with default values
   RateMyProfessor rateMyProfessor = RateMyProfessor(
     firstName: '',
@@ -113,7 +112,7 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
             Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
               overflow: TextOverflow.ellipsis,
-              maxLines: widget.isSmallWidget ? 3 : 4,
+              maxLines: widget.isSmallWidget ? 2 : 3,
             ),
             const SizedBox(
               height: 2,
@@ -128,7 +127,7 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
                     SizedBox(
                       child: Row(
                         children: [
-                          const Text('Sections'),
+                          Text('Enrolled: ${widget.course.enrolled}/${widget.course.max}', style: TextStyle(fontSize: widget.isSmallWidget ? 10 : 12)),
                           const SizedBox(width: 2),
                           GridSvgIconLogic().getSectionsIcon(
                               widget.course.enrolled, widget.course.max),
@@ -139,11 +138,7 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
                     const Row(
                       textDirection: TextDirection.ltr,
                       children: [
-                        Text('Prerequisites'),
-                        Icon(
-                          Icons.question_mark_outlined,
-                          size: 13,
-                        ),
+                        Text('Prerequisites >'),
                       ],
                     ),
                     const SizedBox(height: 1),
@@ -152,8 +147,27 @@ class _CourseItemWidgetState extends State<CourseItemWidget> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const Text('Catalog >'),
-                    Evaluations(rateMyProfessor: rateMyProfessor),
+                    const SizedBox(height: 1),
+                    SizedBox(
+                      child: Row(
+                        children: [
+                          Text('RMP: ${rateMyProfessor.rating}/5 (${rateMyProfessor.numReviews})', style: TextStyle(fontSize: widget.isSmallWidget ? 10 : 12)),
+                          const SizedBox(width: 2),
+                          GridSvgIconLogic().getSectionsIcon(
+                              widget.course.enrolled, widget.course.max),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 1),
+                    const Row(
+                      textDirection: TextDirection.ltr,
+                      children: [
+                        Text('Catalog >'),
+                      ],
+                    ),
+                    const SizedBox(height: 1),
+                    // Evaluations(rateMyProfessor: rateMyProfessor),
+                    // const Text('Catalog >'),
                   ],
                 ),
               ],

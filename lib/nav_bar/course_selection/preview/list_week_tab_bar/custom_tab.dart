@@ -6,6 +6,7 @@ class CustomTab extends StatelessWidget {
   final bool isSelected;
 
   const CustomTab({
+    super.key,
     required this.label,
     required this.onTap,
     required this.isSelected,
@@ -24,9 +25,8 @@ class CustomTab extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           label,
-          style: TextStyle(
-            color: isSelected ? Colors.white : Colors.black,
-            fontWeight: FontWeight.w500,
+          style: const TextStyle(
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),

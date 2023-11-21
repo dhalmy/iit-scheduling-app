@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../query_logic/course.dart';
-import 'course_item_widget.dart';
+import 'course_info_card.dart';
 
 class QueryGrid extends StatelessWidget {
   final List<Course> courses;
@@ -42,7 +42,7 @@ class QueryGrid extends StatelessWidget {
                 left: gap / 2,
                 right: gap / 2,
               ),
-              child: CourseItemWidget(
+              child: CourseInfoCard(
                 course: courses[i],
                 isSmallWidget: isSmallWidget,
               ),
