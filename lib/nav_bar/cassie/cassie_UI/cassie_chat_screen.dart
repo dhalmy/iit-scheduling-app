@@ -27,14 +27,12 @@ class ChatScreenState extends State<ChatScreen> {
       _messages.insert(0, message);
     });
 
-
-    var selectedCourses =
-    Provider.of<SelectedCourses>(context, listen: false);
+    var selectedCourses = Provider.of<SelectedCourses>(context, listen: false);
 
     var courseDetail = await getCourseDetails(selectedCourses);
-    String courseDetailString = courseDetail.map((item) => item.toString()).join(", ");
+    String courseDetailString =
+        courseDetail.map((item) => item.toString()).join(", ");
     print(courseDetailString);
-
 
     // Replace this with the logic to send the user's message to your AI model
     // and get a response.
@@ -45,18 +43,23 @@ class ChatScreenState extends State<ChatScreen> {
       model: "gpt-4",
       messages: [
         OpenAIChatCompletionChoiceMessageModel(
-          content: "do not provide any extra commentary unless directly prompted for some. give me three unique schedules from this list. classes and labs should not have overlap. include the department code in paranthesis at the end referenced as to CRN. the labs and the classes work as pairs with the same class name and professor:$courseDetailString",
+          content: [
+            OpenAIChatCompletionChoiceMessageContentItemModel.text(
+              "do not provide any extra commentary unless directly prompted for some. give me three unique schedules from this list. classes and labs should not have overlap. include the department code in paranthesis at the end referenced as to CRN. the labs and the classes work as pairs with the same class name and professor:$courseDetailString",
+            ),
+          ],
           role: OpenAIChatMessageRole.user,
         ),
       ],
     );
 
+    String response = completion.choices.last.message.content?.first.text ?? 'Sorry, I did not understand that.';
 
-    String response = completion.choices.last.message.content;
     ChatMessage botMessage = ChatMessage(
       text: response,
       isUser: false,
     );
+
     setState(() {
       _messages.insert(0, botMessage);
     });
@@ -65,7 +68,7 @@ class ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.796,
+      height: MediaQuery.of(context).size.height * 0.789,
       child: Column(
         children: <Widget>[
           Container(
@@ -117,7 +120,8 @@ class ChatScreenState extends State<ChatScreen> {
               child: TextField(
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
-                decoration: const InputDecoration.collapsed(hintText: "Send a message"),
+                decoration:
+                    const InputDecoration.collapsed(hintText: "Send a message"),
               ),
             ),
             IconButton(

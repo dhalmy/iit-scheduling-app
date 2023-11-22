@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/grid_svg_icon_logic.dart';
 import 'package:provider/provider.dart';
 
 import '../../selected_courses.dart';
@@ -7,6 +6,7 @@ import '../../selected_courses_color.dart';
 import '../query_logic/course.dart';
 import 'evaluations/rate_my_professor.dart';
 import 'evaluations/rate_my_professor_logic.dart';
+import 'grid_svg_icon_logic.dart';
 
 class CourseInfoCard extends StatefulWidget {
   final Course course;
@@ -32,17 +32,12 @@ class _CourseInfoCardState extends State<CourseInfoCard> {
     pwta: 0,
     difficulty: 0,
   );
-  bool isAddedInSelectedCourses = false;
-  SelectedCourses selectedCoursesProvider = SelectedCourses();
-  String selectedCourse = '';
 
   @override
-  void initState() {
+  initState() {
     super.initState();
     // Fetch RateMyProfessor data when the widget is created
     fetchRateMyProfessorData();
-    selectedCourse =
-        '${widget.course.courseCode} ${widget.course.courseTitle} - ${widget.course.instructor} ~ ${widget.course.days} ${widget.course.time} in ${widget.course.locations}';
   }
 
   Future<void> fetchRateMyProfessorData() async {
@@ -68,6 +63,15 @@ class _CourseInfoCardState extends State<CourseInfoCard> {
 
   @override
   Widget build(BuildContext context) {
+    SelectedCourses selectedCoursesProvider =
+        Provider.of<SelectedCourses>(context);
+
+    String selectedCourse =
+        '${widget.course.courseCode} ${widget.course.courseTitle} - ${widget.course.instructor} ~ ${widget.course.days} ${widget.course.time} in ${widget.course.locations}';
+
+    bool isAddedInSelectedCourses =
+        selectedCoursesProvider.courses.contains(selectedCourse);
+
     return Container(
       height: widget.isSmallWidget ? 132 : 170,
       width: widget.isSmallWidget ? 205 : 258,
@@ -104,14 +108,7 @@ class _CourseInfoCardState extends State<CourseInfoCard> {
                       )
                     : InkWell(
                         onTap: () {
-                          selectedCoursesProvider =
-                              context.read<SelectedCourses>();
-                          selectedCoursesProvider.addCourse(
-                            "${widget.course.courseCode} ${widget.course.courseTitle} - ${widget.course.instructor} ~ ${widget.course.days} ${widget.course.time} in ${widget.course.locations}",
-                          );
-                          setState(() {
-                            isAddedInSelectedCourses = true;
-                          });
+                          selectedCoursesProvider.addCourse(selectedCourse);
                         },
                         child: Column(
                           children: [
@@ -177,6 +174,7 @@ class _CourseInfoCardState extends State<CourseInfoCard> {
                               style: TextStyle(
                                   fontSize: widget.isSmallWidget ? 10 : 12)),
                           const SizedBox(width: 2),
+                          // You need to update the logic for getStatusIcon according to your requirements
                           GridSvgIconLogic().getStatusIcon(
                               widget.course.enrolled,
                               widget.course.max,
