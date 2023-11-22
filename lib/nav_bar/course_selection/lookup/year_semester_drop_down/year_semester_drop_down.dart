@@ -24,9 +24,8 @@ class _YearSemesterDropDownState extends State<YearSemesterDropDown> {
     double dropdownWidth = MediaQuery.of(context).size.width * 0.11;
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 15),
         // create the dropdown button wrapped in a Container
         SizedBox(
           width: dropdownWidth, // Set the width here
