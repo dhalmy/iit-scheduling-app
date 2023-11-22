@@ -14,14 +14,6 @@ class RateMyProfessorLogic {
         .eq('first_name', firstName).eq('last_name', lastName)
         .execute();
     final rmpData = data.data as List;
-    print('***********');
-    print(RateMyProfessor.fromJson(rmpData[0]).firstName);
-    print(RateMyProfessor.fromJson(rmpData[0]).lastName);
-    print(RateMyProfessor.fromJson(rmpData[0]).rating);
-    print(RateMyProfessor.fromJson(rmpData[0]).numReviews);
-    print(RateMyProfessor.fromJson(rmpData[0]).pwta);
-    print(RateMyProfessor.fromJson(rmpData[0]).difficulty);
-    print('===========');
     return rmpData.isNotEmpty ? RateMyProfessor.fromJson(rmpData[0]) : RateMyProfessor(firstName: '', lastName: '', rating: 0, numReviews: 0, pwta: 0, difficulty: 0);
   }
 }
