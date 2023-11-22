@@ -56,18 +56,14 @@ class QueryGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     _calculateColumnCourseListLengths();
 
-    return ScrollConfiguration(
-      behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical, // Ensure vertical scrolling
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildCourseColumn(0, 3, true),
-            _buildCourseColumn(1, 3, false),
-            _buildCourseColumn(2, 3, true),
-          ],
-        ),
+    return SingleChildScrollView(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildCourseColumn(0, 3, true),
+          _buildCourseColumn(1, 3, false),
+          _buildCourseColumn(2, 3, true),
+        ],
       ),
     );
   }

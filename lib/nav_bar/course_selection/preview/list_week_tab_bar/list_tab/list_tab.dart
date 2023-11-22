@@ -18,7 +18,7 @@ class ListTab extends StatelessWidget {
         Consumer<SelectedCourses>(
           builder: (context, selectedCourses, child) {
             return SizedBox(
-              height: MediaQuery.of(context).size.height * 0.64,
+              height: MediaQuery.of(context).size.height * 0.6349,
               width: double.maxFinite,
               child: ListView.separated(
                 itemCount: selectedCourses.courses.length,
@@ -64,34 +64,61 @@ class ListTab extends StatelessWidget {
                                         ),
                                       ),
                                       const SizedBox(
-                                        width: 10,
+                                        width: 8,
                                       ),
-                                      Text(
-                                        selectedCourses.courses[index],
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
+                                      Flexible(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SizedBox(
+                                              width: 582.23,
+                                              child: Text(
+                                                selectedCourses.courses[index],
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                            Flexible(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  const SizedBox(
+                                                    width: 1,
+                                                  ),
+                                                  Expanded(
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        selectedCourses
+                                                            .removeCourse(
+                                                                selectedCourses
+                                                                        .courses[
+                                                                    index]);
+                                                      },
+                                                      child: const Icon(
+                                                        size: 18.5,
+                                                        Icons.close,
+                                                        color: Colors.red,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                Expanded(
-                                  child: InkWell(
-                                    onTap: () {
-                                      selectedCourses.removeCourse(
-                                          selectedCourses.courses[index]);
-                                    },
-                                    child: const Icon(
-                                      Icons.close,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                ),
                                 const Flexible(
                                   flex: 1,
                                   child: SizedBox(
-                                    width: 30,
+                                    width: 26,
                                   ),
                                 ),
                               ],
@@ -121,7 +148,6 @@ class ListTab extends StatelessWidget {
                         flex: 20,
                         child: Divider(
                           thickness: 1.8,
-                          // color: Colors.black,
                         ),
                       ),
                       Flexible(
@@ -137,6 +163,9 @@ class ListTab extends StatelessWidget {
             );
           },
         ),
+        const SizedBox(
+          height: 6,
+        ),
         OutlinedButton(
           onPressed: () async {
             var selectedCourses =
@@ -149,7 +178,10 @@ class ListTab extends StatelessWidget {
             }
           },
           child: const Text("Generate"),
-        )
+        ),
+        const SizedBox(
+          height: 6,
+        ),
       ],
     );
   }

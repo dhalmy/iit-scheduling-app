@@ -3,6 +3,7 @@ import 'package:iitschedulingapp/nav_bar/course_selection/lookup/query_grid/grid
 import 'package:provider/provider.dart';
 
 import '../../selected_courses.dart';
+import '../../selected_courses_color.dart';
 import '../query_logic/course.dart';
 import 'evaluations/rate_my_professor.dart';
 import 'evaluations/rate_my_professor_logic.dart';
@@ -31,12 +32,17 @@ class _CourseInfoCardState extends State<CourseInfoCard> {
     pwta: 0,
     difficulty: 0,
   );
+  bool isAddedInSelectedCourses = false;
+  SelectedCourses selectedCoursesProvider = SelectedCourses();
+  String selectedCourse = '';
 
   @override
   void initState() {
     super.initState();
     // Fetch RateMyProfessor data when the widget is created
     fetchRateMyProfessorData();
+    selectedCourse =
+        '${widget.course.courseCode} ${widget.course.courseTitle} - ${widget.course.instructor} ~ ${widget.course.days} ${widget.course.time} in ${widget.course.locations}';
   }
 
   Future<void> fetchRateMyProfessorData() async {
@@ -63,59 +69,99 @@ class _CourseInfoCardState extends State<CourseInfoCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.isSmallWidget ? 125 : 154,
+      height: widget.isSmallWidget ? 132 : 170,
       width: widget.isSmallWidget ? 205 : 258,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(4),
+        padding: const EdgeInsets.all(8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                  child: SizedBox(
-                    child: Text(
-                      widget.course.courseCode,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: widget.isSmallWidget ? 20 : 30,
-                      ),
-                    ),
+                Text(
+                  widget.course.courseCode,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: widget.isSmallWidget ? 18 : 28,
                   ),
                 ),
-                InkWell(
-                  onTap: () {
-                    final selectedCoursesProvider =
-                    context.read<SelectedCourses>();
-                    selectedCoursesProvider.addCourse(
-                      "${widget.course.courseCode} ${widget.course.courseTitle} - ${widget.course.instructor} ~ ${widget.course.days} ${widget.course.time}",
-                    );
-                  },
-                  child: Column(
-                    children: [
-                      Icon(
-                        Icons.add,
-                        size: widget.isSmallWidget ? 20 : 30,
+                isAddedInSelectedCourses
+                    ? Container(
+                        width: MediaQuery.of(context).size.width * 0.012,
+                        height: MediaQuery.of(context).size.width * 0.012,
+                        decoration: BoxDecoration(
+                          color: SelectedCourseColor
+                              .values[selectedCoursesProvider.courses
+                                  .indexOf(selectedCourse)]
+                              .selectedColor,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      )
+                    : InkWell(
+                        onTap: () {
+                          selectedCoursesProvider =
+                              context.read<SelectedCourses>();
+                          selectedCoursesProvider.addCourse(
+                            "${widget.course.courseCode} ${widget.course.courseTitle} - ${widget.course.instructor} ~ ${widget.course.days} ${widget.course.time} in ${widget.course.locations}",
+                          );
+                          setState(() {
+                            isAddedInSelectedCourses = true;
+                          });
+                        },
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.add,
+                              size: widget.isSmallWidget ? 18 : 28,
+                            ),
+                            const SizedBox(
+                              height: 2.75,
+                            ),
+                          ],
+                        ),
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
-            Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
-              overflow: TextOverflow.ellipsis,
-              maxLines: widget.isSmallWidget ? 2 : 3,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Instructor: ${widget.course.instructor}',
+                    style: TextStyle(fontSize: widget.isSmallWidget ? 10 : 12)),
+              ],
             ),
-            const SizedBox(
-              height: 2,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Days: ${widget.course.days}',
+                    style: TextStyle(fontSize: widget.isSmallWidget ? 10 : 12)),
+                Text('Time: ${widget.course.time}',
+                    style: TextStyle(fontSize: widget.isSmallWidget ? 10 : 12)),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Location: ${widget.course.locations}',
+                    style: TextStyle(fontSize: widget.isSmallWidget ? 10 : 12)),
+                Text('Campus: ${widget.course.campus}',
+                    style: TextStyle(fontSize: widget.isSmallWidget ? 10 : 12)),
+              ],
+            ),
+            SizedBox(
+              height: widget.isSmallWidget ? 1 : 2,
+            ),
+            Divider(
+              indent: 40,
+              endIndent: 40,
+              thickness: widget.isSmallWidget ? 0.6 : 0.8,
+            ),
+            SizedBox(
+              height: widget.isSmallWidget ? 0 : 1,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,22 +169,30 @@ class _CourseInfoCardState extends State<CourseInfoCard> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 1),
                     SizedBox(
                       child: Row(
                         children: [
-                          Text('Enrolled: ${widget.course.enrolled}/${widget.course.max}', style: TextStyle(fontSize: widget.isSmallWidget ? 10 : 12)),
+                          Text(
+                              'Enrolled: ${widget.course.enrolled}/${widget.course.max}',
+                              style: TextStyle(
+                                  fontSize: widget.isSmallWidget ? 10 : 12)),
                           const SizedBox(width: 2),
-                          GridSvgIconLogic().getSectionsIcon(
-                              widget.course.enrolled, widget.course.max),
+                          GridSvgIconLogic().getStatusIcon(
+                              widget.course.enrolled,
+                              widget.course.max,
+                              2,
+                              false,
+                              widget.isSmallWidget),
                         ],
                       ),
                     ),
                     const SizedBox(height: 1),
-                    const Row(
+                    Row(
                       textDirection: TextDirection.ltr,
                       children: [
-                        Text('Prerequisites >'),
+                        Text('Prerequisites >',
+                            style: TextStyle(
+                                fontSize: widget.isSmallWidget ? 10 : 12)),
                       ],
                     ),
                     const SizedBox(height: 1),
@@ -147,27 +201,33 @@ class _CourseInfoCardState extends State<CourseInfoCard> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const SizedBox(height: 1),
                     SizedBox(
                       child: Row(
                         children: [
-                          Text('RMP: ${rateMyProfessor.rating}/5 (${rateMyProfessor.numReviews})', style: TextStyle(fontSize: widget.isSmallWidget ? 10 : 12)),
+                          Text(
+                              'RMP: ${rateMyProfessor.rating}/5 (${rateMyProfessor.numReviews})',
+                              style: TextStyle(
+                                  fontSize: widget.isSmallWidget ? 10 : 12)),
                           const SizedBox(width: 2),
-                          GridSvgIconLogic().getSectionsIcon(
-                              widget.course.enrolled, widget.course.max),
+                          GridSvgIconLogic().getStatusIcon(
+                              rateMyProfessor.rating,
+                              5,
+                              2,
+                              true,
+                              widget.isSmallWidget),
                         ],
                       ),
                     ),
                     const SizedBox(height: 1),
-                    const Row(
+                    Row(
                       textDirection: TextDirection.ltr,
                       children: [
-                        Text('Catalog >'),
+                        Text('Description >',
+                            style: TextStyle(
+                                fontSize: widget.isSmallWidget ? 10 : 12)),
                       ],
                     ),
                     const SizedBox(height: 1),
-                    // Evaluations(rateMyProfessor: rateMyProfessor),
-                    // const Text('Catalog >'),
                   ],
                 ),
               ],

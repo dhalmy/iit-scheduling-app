@@ -6,6 +6,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'constants.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import 'no_thumb_scroll_behavior.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
@@ -36,8 +38,9 @@ class MyApp extends StatelessWidget {
     }
 
     // Create and return the MaterialApp widget
-    return const MaterialApp(
-      home: NavBar(),
+    return MaterialApp(
+      home: const NavBar(),
+      scrollBehavior: NoThumbScrollBehavior().copyWith(scrollbars: false),
       debugShowCheckedModeBanner: false, // Disable debug banner
     );
   }

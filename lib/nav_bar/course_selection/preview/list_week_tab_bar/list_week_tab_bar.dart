@@ -87,29 +87,16 @@ class _ListWeekTabBarState extends State<ListWeekTabBar>
                 borderRadius: BorderRadius.circular(20.0),
               ),
               height: MediaQuery.of(context).size.height * 0.705,
-              child: NotificationListener<ScrollNotification>(
-                onNotification: (notification) {
-                  if (notification is ScrollUpdateNotification) {
-                    return false;
-                  }
-                  return true;
-                },
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics(),
-                  ),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.705,
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: const [
-                        // First tab bar view widget
-                        ListTab(),
-                        // Second tab bar view widget
-                        WeekTab(),
-                      ],
-                    ),
-                  ),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.705,
+                child: TabBarView(
+                  controller: _tabController,
+                  children: const [
+                    // First tab bar view widget
+                    ListTab(),
+                    // Second tab bar view widget
+                    WeekTab(),
+                  ],
                 ),
               ),
             ),
