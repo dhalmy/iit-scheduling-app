@@ -35,10 +35,10 @@ class _ListWeekTabBarState extends State<ListWeekTabBar>
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 623,
+    return Expanded(
       child: Column(
         children: [
+          const SizedBox(height: 20),
           Container(
             width: MediaQuery.of(context).size.width * 0.14,
             height: 51.94,
@@ -61,7 +61,7 @@ class _ListWeekTabBarState extends State<ListWeekTabBar>
                       isSelected: _selectedIndex == 0,
                     ),
                   ),
-                  const SizedBox(width: 8.0),  // Added gap
+                  const SizedBox(width: 8.0),
                   Expanded(
                     child: CustomTab(
                       label: 'Week',
@@ -77,30 +77,29 @@ class _ListWeekTabBarState extends State<ListWeekTabBar>
               ),
             ),
           ),
-          const SizedBox(height: 10),  // Added space
-          // Tab bar view here
-          Padding(
-            padding: const EdgeInsets.all(18.55),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20.0),
-              ),
+          const SizedBox(height: 20),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            height: 531,
+            width: 674,
+            child: SizedBox(
               height: 523.11,
-              child: SizedBox(
-                height: 523.11,
-                child: TabBarView(
-                  controller: _tabController,
-                  children: const [
-                    // First tab bar view widget
-                    ListTab(),
-                    // Second tab bar view widget
-                    WeekTab(),
-                  ],
-                ),
+              width: double.maxFinite,
+              child: TabBarView(
+                controller: _tabController,
+                children: const [
+                  // First tab bar view widget
+                  ListTab(),
+                  // Second tab bar view widget
+                  WeekTab(),
+                ],
               ),
             ),
           ),
+          const SizedBox(height: 10),
         ],
       ),
     );

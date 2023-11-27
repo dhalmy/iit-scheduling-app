@@ -18,8 +18,7 @@ class ListTab extends StatelessWidget {
         Consumer<SelectedCourses>(
           builder: (context, selectedCourses, child) {
             return SizedBox(
-              height: MediaQuery.of(context).size.height * 0.6349,
-              width: double.maxFinite,
+              height: 471.0958,
               child: ListView.separated(
                 itemCount: selectedCourses.courses.length,
                 itemBuilder: (context, index) {
@@ -51,17 +50,13 @@ class ListTab extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Container(
-                                        width:
-                                        MediaQuery.of(context).size.width *
-                                            0.012,
-                                        height:
-                                        MediaQuery.of(context).size.width *
-                                            0.012,
+                                        width: 17.856,
+                                        height: 17.856,
                                         decoration: BoxDecoration(
                                           color: SelectedCourseColor
                                               .values[index].selectedColor,
                                           borderRadius:
-                                          BorderRadius.circular(4),
+                                              BorderRadius.circular(4),
                                         ),
                                       ),
                                       const SizedBox(
@@ -70,7 +65,7 @@ class ListTab extends StatelessWidget {
                                       Flexible(
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             SizedBox(
                                               width: 582.23,
@@ -86,7 +81,7 @@ class ListTab extends StatelessWidget {
                                             Flexible(
                                               child: Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.end,
+                                                    MainAxisAlignment.end,
                                                 children: [
                                                   const SizedBox(
                                                     width: 1,
@@ -96,12 +91,12 @@ class ListTab extends StatelessWidget {
                                                       onTap: () {
                                                         selectedCourses
                                                             .removeCourse(
-                                                            selectedCourses
-                                                                .courses[
-                                                            index]);
+                                                                selectedCourses
+                                                                        .courses[
+                                                                    index]);
                                                         selectedCourses
                                                             .setAddedInSelectedCourses(
-                                                            false);
+                                                                false);
                                                       },
                                                       child: const Icon(
                                                         size: 18.5,
@@ -174,7 +169,7 @@ class ListTab extends StatelessWidget {
         OutlinedButton(
           onPressed: () async {
             var selectedCourses =
-            Provider.of<SelectedCourses>(context, listen: false);
+                Provider.of<SelectedCourses>(context, listen: false);
             try {
               var courseDetail = await getCourseDetails(selectedCourses);
               print("courseDetail: $courseDetail");
