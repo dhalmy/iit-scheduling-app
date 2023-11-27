@@ -41,7 +41,7 @@ class _ListWeekTabBarState extends State<ListWeekTabBar>
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.14,
-            height: MediaQuery.of(context).size.height * 0.07,
+            height: 51.94,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12.0),
@@ -80,15 +80,15 @@ class _ListWeekTabBarState extends State<ListWeekTabBar>
           const SizedBox(height: 10),  // Added space
           // Tab bar view here
           Padding(
-            padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.025),
+            padding: const EdgeInsets.all(18.55),
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              height: MediaQuery.of(context).size.height * 0.705,
+              height: 523.11,
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.705,
+                height: 523.11,
                 child: TabBarView(
                   controller: _tabController,
                   children: const [
